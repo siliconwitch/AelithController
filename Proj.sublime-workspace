@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"IMUR",
+				"IMUReadBytes"
+			],
+			[
+				"X",
+				"X"
+			],
+			[
+				"IM",
+				"IMUReadByte"
+			],
+			[
+				"E",
+				"Enabled"
+			],
+			[
+				"def",
+				"define"
+			],
+			[
 				"msbA",
 				"msbAccelX"
 			],
@@ -14,10 +34,6 @@
 			[
 				"msb",
 				"msb"
-			],
-			[
-				"IM",
-				"IMUWriteByte"
 			],
 			[
 				"GPIO",
@@ -104,15 +120,23 @@
 	"build_system": "Packages/User/Make from .bat file.sublime-build",
 	"command_palette":
 	{
-		"height": 85.0,
+		"height": 375.0,
 		"selected_items":
 		[
 			[
-				"insta",
+				"in",
 				"Package Control: Install Package"
 			],
 			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
 				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
 				"Package Control: Install Package"
 			],
 			[
@@ -201,6 +225,19 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/main.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/analogue.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/imu.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/ppmoutput.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/watchdogs.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/hallsensors.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/rcradio.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/serial.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/boot/startup_stm32f4xx.c",
+		"/C/Users/Raj/AppData/Roaming/Sublime Text 3/Packages/Clickable URLs/Default (Windows).sublime-keymap",
+		"/C/Users/Raj/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Raj/Dropbox/Public/Naklojik/index.html",
+		"/C/Users/Raj/AppData/Roaming/Sublime Text 3/Packages/User/openinbrowser.sublime-settings",
 		"/C/Users/Raj/Dropbox/Project Aelith/Digital Controller/Firmware/source/application/source/imu.c",
 		"/C/Users/Raj/Dropbox/Project Aelith/Digital Controller/Firmware/source/application/include/imu.h",
 		"/C/Users/Raj/Dropbox/Project Aelith/Digital Controller/Firmware/source/application/source/main.c",
@@ -315,20 +352,7 @@
 		"/C/Users/Raj/Desktop/STM32F407 Template/configs/flash_stlink_2.gdb",
 		"/C/Users/Raj/Desktop/openocd-0.7.0/scripts/board/stm32f4discovery.cfg",
 		"/C/Users/Raj/Desktop/openocd-0.7.0/source/info.txt",
-		"/C/Users/Raj/Desktop/STM32F407 Template/configs/arm-gcc-link.ld",
-		"/C/Users/Raj/Desktop/STM32F407 Template/configs/stm32f4xx_ram.ld",
-		"/C/Users/Raj/Desktop/STM32F407 Template/source/application/source/delay.c",
-		"/C/Users/Raj/Desktop/STM32F407 Template/source/application/include/example.h",
-		"/C/Users/Raj/Desktop/STM32F407 Template/source/main.c",
-		"/C/Users/Raj/Desktop/STM32F407 Template/source/cmsis_lib/example.h",
-		"/C/Users/Raj/Desktop/STM32F407 Template/source/delay.c",
-		"/C/Users/Raj/Desktop/STM32F407 Template/source/example.h",
-		"/C/Users/Raj/Desktop/STM32F407 Template/Proj.sublime-project",
-		"/C/Users/Raj/Desktop/STM32F407 Template/test.hex",
-		"/C/Users/Raj/AppData/Local/Temp/Temp1_CW-STM3240GTest.zip/CW-STM3240GTest/src/main.c",
-		"/C/Users/Raj/Documents/Sublime Builds/C.sublime-build",
-		"/C/Users/Raj/AppData/Roaming/Sublime Text 2/Packages/User/C.sublime-build",
-		"/C/Users/Raj/Desktop/PredictiveText/C.sublime-build"
+		"/C/Users/Raj/Desktop/STM32F407 Template/configs/arm-gcc-link.ld"
 	],
 	"find":
 	{
@@ -469,7 +493,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 197.0
+		"height": 210.0
 	},
 	"output.find_results":
 	{

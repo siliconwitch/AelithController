@@ -1,11 +1,20 @@
-/*------------------------------------------------------
- analogue.c & analogue.h
- v0.1 - 23/05/2014
- 
- Grabs ADC vaules from 4 pins
-
- By Rajesh Nakarja
-------------------------------------------------------*/
+ /*
+ * Brief:    Configures analogue inputs into the device, no uses for this yet
+ *           but it works
+ *
+ * Uses:     
+ *
+ * Datasheet: 
+ *
+ * Copyright (C) 2014 Rajesh Nakarja. All rights reserved
+ * http://www.naklojik.com
+ *
+ * This is free software; you can redistribute it and/or modify it under the 
+ * terms of the GNU Lesser General Public License version 3.0.
+ *
+ * http://opensource.org/licenses/lgpl-3.0.html
+ *
+ */
 
 #include <stm32f4xx.h>
 #include <analogue.h>

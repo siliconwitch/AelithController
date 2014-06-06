@@ -1,3 +1,20 @@
+ /*
+ * Brief:    UART Serial to communicate with Xbee or btooth module
+ *
+ * Uses:     Uses the PB6 and PB7 pins
+ *
+ * Datasheet: 
+ *
+ * Copyright (C) 2014 Rajesh Nakarja. All rights reserved
+ * http://www.naklojik.com
+ *
+ * This is free software; you can redistribute it and/or modify it under the 
+ * terms of the GNU Lesser General Public License version 3.0.
+ *
+ * http://opensource.org/licenses/lgpl-3.0.html
+ *
+ */
+
 #include <stm32f4xx.h>
 
 int i = 0;

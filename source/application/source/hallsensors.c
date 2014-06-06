@@ -1,14 +1,20 @@
-/*------------------------------------------------------
- hallsensors.c & hallsensors.h
- v0.1 - 18/05/2014
- 
- Counts pulses from the hall sensors and wors our rpm
- Uses TIM9, TIM10, TIM11, TIM12
- Uses up IRQn for TIM1 and TIM8
- Uses up IRQn for EXTI 2 - 9
-
- By Rajesh Nakarja
-------------------------------------------------------*/
+ /*
+ * Brief:    Hall sensors are used to measure the RPM of each wheel. Sensors used
+ *           are the AH3761.
+ *
+ * Uses:     Uses PORT A with EXTI 2, 3, 4, 5. Also Uses TIM9, 10, 11, 12
+ *
+ * Datasheet: http://diodes.com/datasheets/AH3761.pdf
+ *
+ * Copyright (C) 2014 Rajesh Nakarja. All rights reserved
+ * http://www.naklojik.com
+ *
+ * This is free software; you can redistribute it and/or modify it under the 
+ * terms of the GNU Lesser General Public License version 3.0.
+ *
+ * http://opensource.org/licenses/lgpl-3.0.html
+ *
+ */
 
 #include <stm32f4xx.h>
 #include <hallsensors.h>

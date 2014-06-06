@@ -1,15 +1,21 @@
-/*------------------------------------------------------
- rcradio.c 7 rcradio.h
- v0.1 - 18/05/2014
+ /*
+ * Brief:    Takes the PPM signal from the RC radio and uses timers and EXTI
+ *           interrupts to derrive a throttle & steering input value
+ *
+ * Uses:     TIM2, EXTI0, EXTI1, pins PA0 & PA1
+ *
+ * Datasheet: 
+ *
+ * Copyright (C) 2014 Rajesh Nakarja. All rights reserved
+ * http://www.naklojik.com
+ *
+ * This is free software; you can redistribute it and/or modify it under the 
+ * terms of the GNU Lesser General Public License version 3.0.
+ *
+ * http://opensource.org/licenses/lgpl-3.0.html
+ *
+ */
  
- Reads in this PPM signals from the RC receiver
- The leads need to be plugged in the right way around
- Uses TIM2, EXTI0, EXTI1
- Uses up IRQn for TIM2, EXTI0, EXTI1
-
- By Rajesh Nakarja
-------------------------------------------------------*/
-
 #include <stm32f4xx.h>
 
 int steeringSignal = 0;
