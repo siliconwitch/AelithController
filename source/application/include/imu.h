@@ -1,6 +1,10 @@
 #ifndef __IMU_H
 #define __IMU_H
 
+#define IMU_ADDRESS 0x68
+#define IMU_WHOAMI 0x75
+#define IMU_PWR_MGMT1 0x6B
+
 extern int IMUTemp;
 extern int AccelX;
 extern int AccelY;

@@ -9,7 +9,6 @@
 
 #include <stm32f4xx.h>
 #include <analogue.h>
-#include <config.h>
 
 uint16_t rawADC[4];
 

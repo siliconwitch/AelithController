@@ -11,9 +11,9 @@ int main(void)
 	SystemInit();
     initRCRadio();
     initHallSensors();
-    initSerial(9600);
-    initADC();
-    initIMU();
+    //initSerial(9600);
+    //initADC();
+    //initIMU();
 
     while(1)
     {

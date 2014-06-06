@@ -9,7 +9,6 @@
 
 #include <stm32f4xx.h>
 #include <imu.h>
-#include <config.h>
 
 GPIO_InitTypeDef  	GPIO_InitStructure;
 I2C_InitTypeDef		I2C_InitStructure;
@@ -64,7 +63,7 @@ void initIMU(void){
     I2C_Cmd(I2C1, ENABLE);
 
     //IMUTemp = IMUReadByte(IMU_WHOAMI);
-    IMUWriteByte(0x6B,0x00); /* Bring IMU out of reset */
+    IMUWriteByte(IMU_PWR_MGMT1,0x00); /* Bring IMU out of reset */
     
 }
 
