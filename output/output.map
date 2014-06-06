@@ -37,7 +37,7 @@ Discarded input sections
                 0x00000000       0x20 output\analogue.o
  .debug_ranges  0x00000000       0x10 output\analogue.o
  .debug_line    0x00000000      0x198 output\analogue.o
- .debug_str     0x00000000      0x5cf output\analogue.o
+ .debug_str     0x00000000      0x5be output\analogue.o
  .comment       0x00000000       0x71 output\analogue.o
  .ARM.attributes
                 0x00000000       0x33 output\analogue.o
@@ -62,7 +62,7 @@ Discarded input sections
                 0x00000000       0x38 output\imu.o
  .debug_ranges  0x00000000       0x28 output\imu.o
  .debug_line    0x00000000      0x269 output\imu.o
- .debug_str     0x00000000      0x4f9 output\imu.o
+ .debug_str     0x00000000      0x4e8 output\imu.o
  .comment       0x00000000       0x71 output\imu.o
  .ARM.attributes
                 0x00000000       0x33 output\imu.o
@@ -185,7 +185,7 @@ Discarded input sections
                 0x00000000      0x148 output\stm32f4xx_adc.o
  .debug_ranges  0x00000000      0x138 output\stm32f4xx_adc.o
  .debug_line    0x00000000      0x499 output\stm32f4xx_adc.o
- .debug_str     0x00000000      0x7c4 output\stm32f4xx_adc.o
+ .debug_str     0x00000000      0x7b3 output\stm32f4xx_adc.o
  .comment       0x00000000       0x71 output\stm32f4xx_adc.o
  .ARM.attributes
                 0x00000000       0x33 output\stm32f4xx_adc.o
@@ -237,7 +237,7 @@ Discarded input sections
                 0x00000000       0xb0 output\stm32f4xx_dma.o
  .debug_ranges  0x00000000       0xa0 output\stm32f4xx_dma.o
  .debug_line    0x00000000      0x321 output\stm32f4xx_dma.o
- .debug_str     0x00000000      0x50c output\stm32f4xx_dma.o
+ .debug_str     0x00000000      0x4fb output\stm32f4xx_dma.o
  .comment       0x00000000       0x71 output\stm32f4xx_dma.o
  .ARM.attributes
                 0x00000000       0x33 output\stm32f4xx_dma.o
@@ -355,7 +355,7 @@ Discarded input sections
                 0x00000000      0x130 output\stm32f4xx_i2c.o
  .debug_ranges  0x00000000      0x120 output\stm32f4xx_i2c.o
  .debug_line    0x00000000      0x44b output\stm32f4xx_i2c.o
- .debug_str     0x00000000      0x672 output\stm32f4xx_i2c.o
+ .debug_str     0x00000000      0x661 output\stm32f4xx_i2c.o
  .comment       0x00000000       0x71 output\stm32f4xx_i2c.o
  .ARM.attributes
                 0x00000000       0x33 output\stm32f4xx_i2c.o
@@ -725,7 +725,7 @@ Discarded input sections
                 0x00000000       0x20 output\watchdogs.o
  .debug_ranges  0x00000000       0x10 output\watchdogs.o
  .debug_line    0x00000000       0xf9 output\watchdogs.o
- .debug_str     0x00000000      0x15f output\watchdogs.o
+ .debug_str     0x00000000      0x14e output\watchdogs.o
  .comment       0x00000000       0x71 output\watchdogs.o
  .ARM.attributes
                 0x00000000       0x33 output\watchdogs.o
@@ -1176,33 +1176,33 @@ OUTPUT(output\output.elf elf32-littlearm)
  .debug_line    0x00001eda      0x3ef output\stm32f4xx_usart.o
  .debug_line    0x000022c9      0x174 output\system_stm32f4xx.o
 
-.debug_str      0x00000000     0x2966
- .debug_str     0x00000000      0xbbf output\hallsensors.o
-                                0xc15 (size before relaxing)
- .debug_str     0x00000bbf       0x38 output\main.o
-                                0x1b5 (size before relaxing)
- .debug_str     0x00000bf7      0x19b output\misc.o
-                                0x399 (size before relaxing)
- .debug_str     0x00000d92       0x94 output\rcradio.o
-                                0xb67 (size before relaxing)
- .debug_str     0x00000e26      0x116 output\serial.o
-                                0x9d3 (size before relaxing)
- .debug_str     0x00000f3c       0x81 output\startup_stm32f4xx.o
-                                0x125 (size before relaxing)
- .debug_str     0x00000fbd       0xe7 output\stm32f4xx_exti.o
-                                0x321 (size before relaxing)
- .debug_str     0x000010a4      0x17a output\stm32f4xx_gpio.o
-                                0x460 (size before relaxing)
- .debug_str     0x0000121e      0x75e output\stm32f4xx_rcc.o
-                                0x955 (size before relaxing)
- .debug_str     0x0000197c      0x15a output\stm32f4xx_syscfg.o
-                                0x2d9 (size before relaxing)
- .debug_str     0x00001ad6      0xa5e output\stm32f4xx_tim.o
-                                0xd90 (size before relaxing)
- .debug_str     0x00002534      0x38e output\stm32f4xx_usart.o
-                                0x64f (size before relaxing)
- .debug_str     0x000028c2       0xa4 output\system_stm32f4xx.o
-                                0x380 (size before relaxing)
+.debug_str      0x00000000     0x2955
+ .debug_str     0x00000000      0xbae output\hallsensors.o
+                                0xc04 (size before relaxing)
+ .debug_str     0x00000bae       0x38 output\main.o
+                                0x1a4 (size before relaxing)
+ .debug_str     0x00000be6      0x19b output\misc.o
+                                0x388 (size before relaxing)
+ .debug_str     0x00000d81       0x94 output\rcradio.o
+                                0xb56 (size before relaxing)
+ .debug_str     0x00000e15      0x116 output\serial.o
+                                0x9c2 (size before relaxing)
+ .debug_str     0x00000f2b       0x81 output\startup_stm32f4xx.o
+                                0x114 (size before relaxing)
+ .debug_str     0x00000fac       0xe7 output\stm32f4xx_exti.o
+                                0x310 (size before relaxing)
+ .debug_str     0x00001093      0x17a output\stm32f4xx_gpio.o
+                                0x44f (size before relaxing)
+ .debug_str     0x0000120d      0x75e output\stm32f4xx_rcc.o
+                                0x944 (size before relaxing)
+ .debug_str     0x0000196b      0x15a output\stm32f4xx_syscfg.o
+                                0x2c8 (size before relaxing)
+ .debug_str     0x00001ac5      0xa5e output\stm32f4xx_tim.o
+                                0xd7f (size before relaxing)
+ .debug_str     0x00002523      0x38e output\stm32f4xx_usart.o
+                                0x63e (size before relaxing)
+ .debug_str     0x000028b1       0xa4 output\system_stm32f4xx.o
+                                0x36f (size before relaxing)
 
 .comment        0x00000000       0x70
  .comment       0x00000000       0x70 output\hallsensors.o
