@@ -3,7 +3,6 @@
 
 #define MOTORPOLES 14	/* How many poles in the motor */
 
-typedef struct { uint32_t FL, FR, BL, BR; } WheelCount;
 typedef struct { double FL, FR, BL, BR; } WheelRPM;
 
 void initHallSensors(void);
