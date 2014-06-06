@@ -19,13 +19,11 @@ NVIC_InitTypeDef  		NVIC_InitStructure;
 TIM_TimeBaseInitTypeDef TIM_InitStructure; 
 EXTI_InitTypeDef  		EXTI_InitStructure;
 
-WheelCount WheelCountStructure = {0,0,0,0};
 WheelRPM WheelRPMStructure = {0,0,0,0};
-
 
 // private variables
 typedef struct { uint32_t FL, FR, BL, BR; } WheelCount;
-
+WheelCount WheelCountStructure = {0,0,0,0};
 
 // private helper function declartions
 double CalculateWheelRPM(int Count);

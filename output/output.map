@@ -767,24 +767,24 @@ Linker script and memory map
  .text.TIM8_BRK_TIM12_IRQHandler
                 0x080005dc       0x4c output\hallsensors.o
                 0x080005dc                TIM8_BRK_TIM12_IRQHandler
- .text.CalculateWheelRPM
-                0x08000628       0x68 output\hallsensors.o
-                0x08000628                CalculateWheelRPM
- .text.ClearInterupt
-                0x08000690       0x34 output\hallsensors.o
-                0x08000690                ClearInterupt
  .text.EXTI2_IRQHandler
-                0x080006c4       0x58 output\hallsensors.o
-                0x080006c4                EXTI2_IRQHandler
+                0x08000628       0x58 output\hallsensors.o
+                0x08000628                EXTI2_IRQHandler
  .text.EXTI3_IRQHandler
-                0x0800071c       0x58 output\hallsensors.o
-                0x0800071c                EXTI3_IRQHandler
+                0x08000680       0x58 output\hallsensors.o
+                0x08000680                EXTI3_IRQHandler
  .text.EXTI4_IRQHandler
-                0x08000774       0x58 output\hallsensors.o
-                0x08000774                EXTI4_IRQHandler
+                0x080006d8       0x58 output\hallsensors.o
+                0x080006d8                EXTI4_IRQHandler
  .text.EXTI9_5_IRQHandler
-                0x080007cc       0x58 output\hallsensors.o
-                0x080007cc                EXTI9_5_IRQHandler
+                0x08000730       0x58 output\hallsensors.o
+                0x08000730                EXTI9_5_IRQHandler
+ .text.CalculateWheelRPM
+                0x08000788       0x68 output\hallsensors.o
+                0x08000788                CalculateWheelRPM
+ .text.ClearInterupt
+                0x080007f0       0x34 output\hallsensors.o
+                0x080007f0                ClearInterupt
  .text.main     0x08000824       0x44 output\main.o
                 0x08000824                main
  .text.NVIC_Init
@@ -1019,8 +1019,8 @@ Linker script and memory map
                 0x20000008                _sbss = .
  *(.bss .bss.*)
  .bss           0x20000008       0x30 output\hallsensors.o
-                0x20000008                WheelCountStructure
-                0x20000018                WheelRPMStructure
+                0x20000008                WheelRPMStructure
+                0x20000028                WheelCountStructure
  .bss           0x20000038        0x8 output\rcradio.o
                 0x20000038                steeringSignal
                 0x2000003c                throttleSignal

@@ -347,6 +347,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"WheelCount",
+			"WheelCountStructure",
 			"ADC_DR",
 			"ADC",
 			"ADC1",
@@ -422,6 +424,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"WheelCountStructure",
+			"WheelCount",
 			"TIM9",
 			"TIM4",
 			"TIM2"
