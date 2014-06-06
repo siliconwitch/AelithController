@@ -3,17 +3,13 @@
 
 #define MOTORPOLES 14	/* How many poles in the motor */
 
-typedef struct { uint32_t FL, FR, BL, BR; }WheelCount;
-typedef struct { double FL, FR, BL, BR; }WheelRPM;
+typedef struct { double FL, FR, BL, BR; } WheelRPM;
 
 void initHallSensors(void);
 void TIM1_BRK_TIM9_IRQHandler(void);
 void TIM1_UP_TIM10_IRQHandler(void);
 void TIM11_IRQHandler(void);
 void TIM12_IRQHandler(void);
-
-double CalculateWheelRPM(int Count);
-void ClearInterupt(TIM_TypeDef* TIMx, uint32_t EXTI_Line);
 
 void EXTI2_IRQHandler(void);
 void EXTI3_IRQHandler(void);
