@@ -17,6 +17,7 @@
  */
 
 #include <stm32f4xx.h>
+#include <watchdogs.h>
 
 void initWatchdogs(){
 

@@ -25,6 +25,5 @@ void TIM8_CC_IRQHandler(void);
 void TIM1_BRK_TIM9_IRQHandler(void);
 void TIM1_UP_TIM10_IRQHandler(void);
 void TIM11_IRQHandler(void);
-void TIM12_IRQHandler(void);
 
 #endif

@@ -16,6 +16,7 @@
  */
 
 #include <stm32f4xx.h>
+#include <serial.h>
 
 int i = 0;
 int j = 0;
@@ -45,7 +46,6 @@ void initSerial(int baudrate){
     
     GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_USART1); //
     GPIO_PinAFConfig(GPIOB, GPIO_PinSource7, GPIO_AF_USART1);
-
 
     USART_InitStructure.USART_BaudRate = baudrate;             // the baudrate is set to the value we passed into this init function
     USART_InitStructure.USART_WordLength = USART_WordLength_8b;// we want the data frame size to be 8 bits (standard)
