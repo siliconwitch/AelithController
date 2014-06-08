@@ -24,15 +24,16 @@ TIM_TimeBaseInitTypeDef TIM_InitStructure;
 
 void initOutputs(void){
 
-/* enable the various periph clocks */
+    /* enable the various periph clocks */
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
+    /* We need 5 timers here for PPM generation */
     //RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM9, ENABLE);
     //RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM10, ENABLE);
     //RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM11, ENABLE);
     //RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM12, ENABLE);
     
-/* Set up output pins */
+    /* Set up output pins */
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
     GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
