@@ -2,6 +2,6 @@
 #define __WATCHDOGS_H
 
 
-void initWatchdogs(int nCount);
+void initWatchdogs();
 
 #endif
