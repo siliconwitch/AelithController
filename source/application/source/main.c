@@ -34,8 +34,8 @@ int main(void)
 
     while(1)
     {
-		//USARTSendString(" - Your serial data\n");
-        IMUGetMotion();
+		//USARTSendString("HI!\n");
+        //IMUGetMotion();
         asm("nop");
     }
 }

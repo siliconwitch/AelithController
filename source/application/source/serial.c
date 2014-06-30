@@ -32,8 +32,6 @@ NVIC_InitTypeDef NVIC_InitStructure;
 
 void initSerial(int baudrate){
 
-	baudrate = baudrate * 3;
-
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
 
@@ -69,7 +67,6 @@ void USART1_IRQHandler(void){
 
     // check if the USART1 receive interrupt flag was set
     int i = 0;
-    GPIO_SetBits(GPIOD, GPIO_Pin_13);
     for(i = 0; i <= 100; i++){
         
         //if( USART_GetITStatus(USART1, USART_IT_RXNE) ){
@@ -81,11 +78,9 @@ void USART1_IRQHandler(void){
             }
         //}    
     }
-    GPIO_ResetBits(GPIOD, GPIO_Pin_13);
 }
 
 void USARTSendString(char a[100]){
-    GPIO_SetBits(GPIOD, GPIO_Pin_15);
     int i = 0;
     for(i = 0; i <= 100; i++){
         if(a[i] == 10){
@@ -95,6 +90,5 @@ void USARTSendString(char a[100]){
         USART_SendData(USART1, a[i]);
         while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET); // Wait for Empty
     }
-    GPIO_ResetBits(GPIOD, GPIO_Pin_15);
 
 }

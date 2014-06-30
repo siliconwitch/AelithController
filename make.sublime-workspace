@@ -9,7 +9,7 @@
 			]
 		]
 	},
-	"build_system": "Packages/User/Batch file.sublime-build",
+	"build_system": "",
 	"command_palette":
 	{
 		"height": 60.0,
@@ -114,10 +114,6 @@
 		]
 	},
 	"menu_visible": true,
-	"output.exec":
-	{
-		"height": 289.0
-	},
 	"output.find_results":
 	{
 		"height": 0.0
