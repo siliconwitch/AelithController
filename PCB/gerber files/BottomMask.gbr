@@ -1,0 +1,15 @@
+G04 DipTrace Beta 2.3.9.1*
+%INBottomMask.gbr*%
+%MOMM*%
+%ADD56C,0.95*%
+%FSLAX53Y53*%
+G04*
+G71*
+G90*
+G75*
+G01*
+%LNBotMask*%
+%LPD*%
+D56*
+X11905Y11905D3*
+M02*

@@ -20,6 +20,10 @@ http://www.emb4fun.de/archive/stlink/index.html
 
 The make.bat file is able to run under Windows to compile, upload and start the debug server. Please ensure that your PATH environment variable are set up in windows for the batch commands to be recognised.
 
+~~ PCB Info ~~
+
+The hardware used in the project is custom. To see the Gerber and Diptrace project files, please see the pcb folder.
+Bare boards are available to order at: https://oshpark.com/shared_projects/t9Uw3F4U
 
 * Copyright (C) 2014 Rajesh Nakarja. All rights reserved
 * http://www.naklojik.com
