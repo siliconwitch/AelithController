@@ -1,4 +1,4 @@
-Project Aelith Digital Controller
+# Project Aelith Digital Controller
 =================================
 
 An embedded control system targeted to RC model cars which feature individual wheel drive. This controller allows for software differentials and power delivery with the aid of various sensors on the vehicle. Currently the system makes use of wheel speed sensors and a 6 axis IMU for real time processing.
