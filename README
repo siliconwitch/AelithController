@@ -37,11 +37,14 @@ Bare boards are available to order at: https://oshpark.com/shared_projects/t9Uw3
 
 I'll upload full documentation soon on how to modify a Schumacher Mi5 chassis to support four motors, in the meantime, the CAD files for motor mounts, couplings and suspension mounts can be found in the mechanical folder
 
-* Copyright (C) 2014 Rajesh Nakarja. All rights reserved
-* http://www.naklojik.com
-*
-* This is free software; you can redistribute it and/or modify it under the 
-* terms of the GNU Lesser General Public License version 3.0.
-*
-* http://opensource.org/licenses/lgpl-3.0.html
-*
+
+~~~~~~~~~~~~~~~
+~~ Copyright ~~
+~~~~~~~~~~~~~~~
+
+Copyright (C) 2014 Rajesh Nakarja. All rights reserved
+http://www.naklojik.com
+
+This is free software; you can redistribute it and/or modify it under the 
+terms of the GNU Lesser General Public License version 3.0.
+http://opensource.org/licenses/lgpl-3.0.html
