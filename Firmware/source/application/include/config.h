@@ -39,8 +39,8 @@
 	/* Control related */
 	#define FRONTPOWERBIAS 1
 	#define REARPOWERBIAS 1
-	#define FRONTSLIP 1
-	#define REARSLIP 1
+	#define FRONTSLIP 0.9
+	#define REARSLIP 0.6
 
 /*------------------------*/
 /* PIN MAPPINGS FOR BOARD */

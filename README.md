@@ -1,4 +1,5 @@
-~~ Project Aelith Digital Controller ~~
+# Project Aelith Digital Controller
+=================================
 
 An embedded control system targeted to RC model cars which feature individual wheel drive. This controller allows for software differentials and power delivery with the aid of various sensors on the vehicle. Currently the system makes use of wheel speed sensors and a 6 axis IMU for real time processing.
 
@@ -21,11 +22,29 @@ http://www.emb4fun.de/archive/stlink/index.html
 The make.bat file is able to run under Windows to compile, upload and start the debug server. Please ensure that your PATH environment variable are set up in windows for the batch commands to be recognised.
 
 
-* Copyright (C) 2014 Rajesh Nakarja. All rights reserved
-* http://www.naklojik.com
-*
-* This is free software; you can redistribute it and/or modify it under the 
-* terms of the GNU Lesser General Public License version 3.0.
-*
-* http://opensource.org/licenses/lgpl-3.0.html
-*
+Control System
+--------------
+The control system for the project is designed in Labview using the C Generation toolbox. Granted this is the only part of the project that requires a non free software, the exported code howver is still in readable C.
+
+PCB Info
+--------
+
+The hardware used in the project is custom. To see the Gerber and Diptrace project files, please see the pcb folder.
+Bare boards are available to order at: https://oshpark.com/shared_projects/t9Uw3F4U
+
+
+CAD Designs
+-----------
+
+I'll upload full documentation soon on how to modify a Schumacher Mi5 chassis to support four motors, in the meantime, the CAD files for motor mounts, couplings and suspension mounts can be found in the mechanical folder
+
+
+Copyright
+---------
+
+Copyright (C) 2014 Rajesh Nakarja. All rights reserved
+http://www.naklojik.com
+
+This is free software; you can redistribute it and/or modify it under the 
+terms of the GNU Lesser General Public License version 3.0.
+http://opensource.org/licenses/lgpl-3.0.html
