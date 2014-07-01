@@ -18,26 +18,47 @@
  */
 
 #include <stm32f4xx.h>
-#include <imu.h>
+#include <prototypes.h>
+#include <config.h>
 
-GPIO_InitTypeDef  	GPIO_InitStructure;
-I2C_InitTypeDef		I2C_InitStructure;
+/* IMU Register locations */
+#define IMU_ADDRESS 0x68
+#define IMU_WHOAMI 0x75
+#define IMU_PWR_MGMT1 0x6B
+#define IMU_CFG 0x1A
+#define IMU_GYRO_CFG 0x1B
+#define IMU_ACCEL_CFG 0x1C
 
-IMUMotion   MotionRaw = {0,0,0,0,0,0,0,0};
-IMUMotion   Motion = {0,0,0,0,0,0,0,0};
+/* Public variables */
+IMUMotion volatile Motion = {0,0,0,0,0,0,0,0};
+
+/* Private variables */
+IMUMotion volatile MotionRaw = {0,0,0,0,0,0,0,0};
+int accelRegister = 0x00;
+int accelConvFactor = 16384;
+int gyroRegister = 0x00;
+int gyroConvFactor = 131;
+
+/* Private helper function declartions */
+
+
+/* Private struct declarations */
+GPIO_InitTypeDef    GPIO_InitStructure;
+I2C_InitTypeDef     I2C_InitStructure;
+
 
 void initIMU(void){
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
 	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9; // we are going to use PB6 and PB9
+	GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_8 | GPIO_Pin_9; // we are going to use PB6 and PB9
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;			// set pins to alternate function
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;		// set GPIO speed
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;			// set output to open drain --> the line has to be only pulled low, not driven high
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;			// enable pull up resistors
-	GPIO_Init(GPIOB, &GPIO_InitStructure);					// init GPIOB
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource8, GPIO_AF_I2C1);	// SCL
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_I2C1); // SDA
+	GPIO_Init(DATAPORT, &GPIO_InitStructure);					// init GPIOB
+	GPIO_PinAFConfig(DATAPORT, GPIO_PinSource8, GPIO_AF_I2C1);
+	GPIO_PinAFConfig(DATAPORT, GPIO_PinSource9, GPIO_AF_I2C1);
 
     /* Set the I2C parameters, pretty much default except ack */
     I2C_InitStructure.I2C_ClockSpeed = 100000;
@@ -51,12 +72,9 @@ void initIMU(void){
     /* Enable the I2C peripheral */
     I2C_Cmd(I2C1, ENABLE);
 
-    /* Configuing the IMU, make sure the G and deg/s match the settings in IMUGetMotion() */
-    IMUReadByte(IMU_WHOAMI);   
-    IMUWriteByte(IMU_CFG, 0x00); /* Reset LPF */
-    IMUWriteByte(IMU_ACCEL_CFG, IMU_4G); /* Set Accel range to 4G */
-    IMUWriteByte(IMU_GYRO_CFG, IMU_500D); /* Set Gyro range to 500deg/sec */
-    IMUWriteByte(IMU_PWR_MGMT1 ,0x00); /* Bring IMU out of reset */
+    /* Config the IMU with defult settings */
+    IMUConfig(DEFAULTACCELRANGE, DEFAULTGYRORANGE);
+
 }
 
 uint8_t IMUReadByte(uint8_t address){
@@ -113,13 +131,33 @@ void IMUGetMotion(){
 
     MotionRaw.Temp = (int16_t)((IMUReadByte(0x41) << 8) | IMUReadByte(0x44));
 
-    Motion.X = (float) MotionRaw.X / (IMU_4G_RANGE);
-    Motion.Y = (float) MotionRaw.Y / (IMU_4G_RANGE);
-    Motion.Z = (float) MotionRaw.Z / (IMU_4G_RANGE);
+    Motion.X = (float) MotionRaw.X / (accelConvFactor);
+    Motion.Y = (float) MotionRaw.Y / (accelConvFactor);
+    Motion.Z = (float) MotionRaw.Z / (accelConvFactor);
     
-    Motion.Roll  = (float) MotionRaw.Roll  / (IMU_500D_RANGE);
-    Motion.Pitch = (float) MotionRaw.Pitch / (IMU_500D_RANGE);
-    Motion.Yaw   = (float) MotionRaw.Yaw   / (IMU_500D_RANGE);
+    Motion.Roll  = (float) MotionRaw.Roll  / (gyroConvFactor);
+    Motion.Pitch = (float) MotionRaw.Pitch / (gyroConvFactor);
+    Motion.Yaw   = (float) MotionRaw.Yaw   / (gyroConvFactor);
     
     Motion.Temp = ((float) MotionRaw.Temp + 12412.0) / 340.0;
+}
+
+void IMUConfig(int accelrange, int gyrorange){
+    /* Figures out what settings to apply */
+         if (accelrange == 4)  {accelRegister = 0x08; accelConvFactor = 8192; }
+    else if (accelrange == 8)  {accelRegister = 0x10; accelConvFactor = 4096; }
+    else if (accelrange == 16) {accelRegister = 0x18; accelConvFactor = 2048; }
+       else  /*Defults to 2*/  {accelRegister = 0x00; accelConvFactor = 16384;}
+
+         if (gyrorange == 500) {gyroRegister = 0x08; gyroConvFactor = 65.5; }
+    else if (gyrorange == 1000){gyroRegister = 0x10; gyroConvFactor = 32.8; }
+    else if (gyrorange == 2000){gyroRegister = 0x18; gyroConvFactor = 16.4; }
+       else /*Defults to 250*/ {gyroRegister = 0x00; gyroConvFactor = 131;  }
+
+    /* Does the configuration */
+    IMUReadByte(IMU_WHOAMI);   
+    IMUWriteByte(IMU_CFG, 0x00); /* Reset LPF */
+    IMUWriteByte(IMU_ACCEL_CFG, accelRegister);
+    IMUWriteByte(IMU_GYRO_CFG, gyroRegister);
+    IMUWriteByte(IMU_PWR_MGMT1 ,0x00); /* Bring IMU out of reset */
 }

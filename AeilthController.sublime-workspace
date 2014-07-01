@@ -1,0 +1,290 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"IW",
+				"IWDG_ReloadCounter"
+			],
+			[
+				"u",
+				"uint32_t"
+			],
+			[
+				"s",
+				"struct	struct"
+			],
+			[
+				"FR",
+				"FRONTSLIP"
+			],
+			[
+				"t",
+				"throttle"
+			],
+			[
+				"FRO",
+				"FRONTPOWERBIAS"
+			],
+			[
+				"st",
+				"steering"
+			],
+			[
+				"RC",
+				"RCRadioStructure"
+			],
+			[
+				"RCR",
+				"RCRadioStructure"
+			],
+			[
+				"v",
+				"volatile"
+			],
+			[
+				"PP",
+				"PPMOutputs"
+			],
+			[
+				"MO",
+				"MOT1"
+			],
+			[
+				"e",
+				"extern"
+			],
+			[
+				"PPM",
+				"PPMOutputStructure"
+			],
+			[
+				"inc",
+				"include"
+			],
+			[
+				"gy",
+				"gyroConvFactor"
+			],
+			[
+				"acc",
+				"accelConvFactor"
+			],
+			[
+				"acce",
+				"accelRegister"
+			],
+			[
+				"in",
+				"include"
+			],
+			[
+				"GP",
+				"GPIO_Pin_9"
+			]
+		]
+	},
+	"build_system": "Packages/User/Batch file.sublime-build",
+	"command_palette":
+	{
+		"height": 60.0,
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 386.0
+	},
+	"console":
+	{
+		"height": 145.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/serial.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/outputs.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/inputs.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/imu.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/analogue.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/watchdogs.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/watchdogs.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/source/stm32f4xx_syscfg.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/boot/startup_stm32f4xx.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/boot/system_stm32f4xx.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/misc.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_pwr.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_wwdg.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_iwdg.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_syscfg.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_tim.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_usart.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/inputs.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/imu.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/analogue.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/serial.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/types.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/config.h",
+		"/C/Users/Raj/Desktop/MultiWii/types.h",
+		"/C/Users/Raj/Desktop/MultiWii/MultiWii.cpp",
+		"/C/Users/Raj/Desktop/MultiWii/Output.cpp",
+		"/C/Users/Raj/Desktop/MultiWii/RX.h",
+		"/C/Users/Raj/Desktop/MultiWii/RX.cpp",
+		"/C/Users/Raj/Desktop/MultiWii/config.h",
+		"/C/Users/Raj/Desktop/MultiWii/MultiWii.h",
+		"/C/Users/Raj/Desktop/MultiWii/Protocol.cpp",
+		"/C/Users/Raj/Desktop/MultiWii/Output.h",
+		"/C/Users/Raj/Desktop/MultiWii/def.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/boot/stm32f4xx.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/boot/system_stm32f4xx.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/source/stm32f4xx_tim.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_gpio.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/outputs.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/pinmappings.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/make.bat",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stm32_flash.ld"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"typedef ",
+			"extern ",
+			"extern",
+			"pid_",
+			"ARMED",
+			"f.",
+			"ARMED",
+			"TIM_ICInitTypeDef",
+			"RCRadioStructure.",
+			"autoreload",
+			"autorelooad",
+			"period",
+			"gpiod"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 289.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 220.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

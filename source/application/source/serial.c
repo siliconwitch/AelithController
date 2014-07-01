@@ -16,38 +16,41 @@
  */
 
 #include <stm32f4xx.h>
-#include <serial.h>
+#include <prototypes.h>
+#include <config.h>
 
+/* Private variables */
 int i = 0;
 int j = 0;
 char received_string[100];
 char t = ' ';
 
+/* Private helper function declartions */
 void USART1_IRQHandler(void);
 void USARTSendString(char *);
 
+/* Private struct declarations */
 GPIO_InitTypeDef  GPIO_InitStructure;
 USART_InitTypeDef USART_InitStructure;
 NVIC_InitTypeDef NVIC_InitStructure;
 
-void initSerial(int baudrate){
 
-	baudrate = baudrate * 3;
+void initSerial(){
 
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
 
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7; // Pins 6 (TX) and 7 (RX) are used
+    GPIO_InitStructure.GPIO_Pin = TXPIN | RXPIN;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;           // the pins are configured as alternate function so the USART peripheral has access to them
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;      // this defines the IO speed and has nothing to do with the baudrate!
     GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;         // this defines the output type as push pull mode (as opposed to open drain)
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;           // this activates the pullup resistors on the IO pins
-    GPIO_Init(GPIOB, &GPIO_InitStructure);
+    GPIO_Init(DATAPORT, &GPIO_InitStructure);
     
-    GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_USART1); //
-    GPIO_PinAFConfig(GPIOB, GPIO_PinSource7, GPIO_AF_USART1);
+    GPIO_PinAFConfig(DATAPORT, GPIO_PinSource6, GPIO_AF_USART1); //
+    GPIO_PinAFConfig(DATAPORT, GPIO_PinSource7, GPIO_AF_USART1);
 
-    USART_InitStructure.USART_BaudRate = baudrate;             // the baudrate is set to the value we passed into this init function
+    USART_InitStructure.USART_BaudRate = BAUDRATE;             // the baudrate is set to the value we passed into this init function
     USART_InitStructure.USART_WordLength = USART_WordLength_8b;// we want the data frame size to be 8 bits (standard)
     USART_InitStructure.USART_StopBits = USART_StopBits_1;     // we want 1 stop bit (standard)
     USART_InitStructure.USART_Parity = USART_Parity_No;        // we don't want a parity bit (standard)
@@ -69,7 +72,6 @@ void USART1_IRQHandler(void){
 
     // check if the USART1 receive interrupt flag was set
     int i = 0;
-    GPIO_SetBits(GPIOD, GPIO_Pin_13);
     for(i = 0; i <= 100; i++){
         
         //if( USART_GetITStatus(USART1, USART_IT_RXNE) ){
@@ -81,11 +83,9 @@ void USART1_IRQHandler(void){
             }
         //}    
     }
-    GPIO_ResetBits(GPIOD, GPIO_Pin_13);
 }
 
 void USARTSendString(char a[100]){
-    GPIO_SetBits(GPIOD, GPIO_Pin_15);
     int i = 0;
     for(i = 0; i <= 100; i++){
         if(a[i] == 10){
@@ -95,6 +95,5 @@ void USARTSendString(char a[100]){
         USART_SendData(USART1, a[i]);
         while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET); // Wait for Empty
     }
-    GPIO_ResetBits(GPIOD, GPIO_Pin_15);
 
 }
