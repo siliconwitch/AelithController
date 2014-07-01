@@ -4,6 +4,82 @@
 		"selected_items":
 		[
 			[
+				"IW",
+				"IWDG_ReloadCounter"
+			],
+			[
+				"u",
+				"uint32_t"
+			],
+			[
+				"s",
+				"struct	struct"
+			],
+			[
+				"FR",
+				"FRONTSLIP"
+			],
+			[
+				"t",
+				"throttle"
+			],
+			[
+				"FRO",
+				"FRONTPOWERBIAS"
+			],
+			[
+				"st",
+				"steering"
+			],
+			[
+				"RC",
+				"RCRadioStructure"
+			],
+			[
+				"RCR",
+				"RCRadioStructure"
+			],
+			[
+				"v",
+				"volatile"
+			],
+			[
+				"PP",
+				"PPMOutputs"
+			],
+			[
+				"MO",
+				"MOT1"
+			],
+			[
+				"e",
+				"extern"
+			],
+			[
+				"PPM",
+				"PPMOutputStructure"
+			],
+			[
+				"inc",
+				"include"
+			],
+			[
+				"gy",
+				"gyroConvFactor"
+			],
+			[
+				"acc",
+				"accelConvFactor"
+			],
+			[
+				"acce",
+				"accelRegister"
+			],
+			[
+				"in",
+				"include"
+			],
+			[
 				"GP",
 				"GPIO_Pin_9"
 			]
@@ -45,12 +121,47 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Raj/Documents/GitHub/AelithController/make.bat",
-		"/C/Users/Raj/Documents/GitHub/AelithController/source/stm32_flash.ld",
-		"/C/Users/Raj/Documents/GitHub/AelithController/source/boot/stm32f4xx.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/serial.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/outputs.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/inputs.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/imu.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/analogue.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/watchdogs.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/watchdogs.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/source/stm32f4xx_syscfg.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/boot/startup_stm32f4xx.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/boot/system_stm32f4xx.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/misc.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_pwr.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_wwdg.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_iwdg.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_syscfg.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_tim.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_usart.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/inputs.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/imu.c",
-		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/analogue.c"
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/analogue.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/serial.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/types.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/config.h",
+		"/C/Users/Raj/Desktop/MultiWii/types.h",
+		"/C/Users/Raj/Desktop/MultiWii/MultiWii.cpp",
+		"/C/Users/Raj/Desktop/MultiWii/Output.cpp",
+		"/C/Users/Raj/Desktop/MultiWii/RX.h",
+		"/C/Users/Raj/Desktop/MultiWii/RX.cpp",
+		"/C/Users/Raj/Desktop/MultiWii/config.h",
+		"/C/Users/Raj/Desktop/MultiWii/MultiWii.h",
+		"/C/Users/Raj/Desktop/MultiWii/Protocol.cpp",
+		"/C/Users/Raj/Desktop/MultiWii/Output.h",
+		"/C/Users/Raj/Desktop/MultiWii/def.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/boot/stm32f4xx.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/boot/system_stm32f4xx.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/source/stm32f4xx_tim.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_gpio.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/outputs.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/pinmappings.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/make.bat",
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stm32_flash.ld"
 	],
 	"find":
 	{
@@ -58,9 +169,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			""
 		]
 	},
 	"find_state":
@@ -68,6 +180,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"typedef ",
+			"extern ",
+			"extern",
+			"pid_",
+			"ARMED",
+			"f.",
+			"ARMED",
+			"TIM_ICInitTypeDef",
+			"RCRadioStructure.",
+			"autoreload",
+			"autorelooad",
+			"period",
 			"gpiod"
 		],
 		"highlight": true,

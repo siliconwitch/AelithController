@@ -16,26 +16,59 @@
  */
 
 #include <stm32f4xx.h>
-#include <serial.h>
-#include <inputs.h>
-#include <watchdogs.h>
-#include <analogue.h>
-#include <imu.h>
-#include <outputs.h>
+#include <stm32f4xx_iwdg.h>
+#include <prototypes.h>
+#include <config.h>
 
-int main(void)
-{
+/* Public variables */
+extern PPMOutputs PPMOutputStructure;
+extern RCRadio RCRadioStructure;
+
+
+int main(void){
+    /* Boots the system */    
 	SystemInit();
+
+    /* Init the i-watchdog */
+    IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
+    IWDG_SetPrescaler(IWDG_Prescaler_4);
+    IWDG_SetReload(0x0FFF);
+    IWDG_Enable();
+
+    /* Init vehicle functions */
     initInputs();
     initOutputs();
-    initSerial(9600);
+    initSerial();
     initADC();
     initIMU();
 
     while(1)
     {
-		//USARTSendString("HI!\n");
-        //IMUGetMotion();
-        asm("nop");
+        /*-------------------------------------------------------------------------*/
+        /*                            TEST CODE ONLY                               */
+        
+        if((RCRadioStructure.steering > 0) && (RCRadioStructure.throttle > 0)){
+
+            /* This needs to be replaced with a control system */
+            PPMOutputStructure.MOT1 = RCRadioStructure.throttle;
+            PPMOutputStructure.MOT2 = RCRadioStructure.throttle;
+            PPMOutputStructure.MOT3 = RCRadioStructure.throttle;
+            PPMOutputStructure.MOT4 = RCRadioStructure.throttle;
+            PPMOutputStructure.AUX4 = RCRadioStructure.steering;
+        }
+        int i = 0;
+        for(i = 0; i < 100000; i++){}
+
+        //USARTSendString("HI!\n");
+        IMUGetMotion();
+
+        /*                                                                         */
+        /*-------------------------------------------------------------------------*/
+
+
+        /* Reset Watchdog */
+        IWDG_ReloadCounter();
     }
+
+    return 0;
 }

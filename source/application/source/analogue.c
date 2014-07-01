@@ -17,7 +17,8 @@
  */
 
 #include <stm32f4xx.h>
-#include <analogue.h>
+#include <prototypes.h>
+#include <config.h>
 
 /* Public variables */
 uint16_t rawADC[4];
@@ -27,6 +28,7 @@ GPIO_InitTypeDef      GPIO_InitStructure;
 ADC_InitTypeDef       ADC_InitStructure;
 ADC_CommonInitTypeDef ADC_CommonInitStructure;
 DMA_InitTypeDef       DMA_InitStructure;
+
 
 void initADC(void){
     /* Set all structures to default values */
@@ -41,10 +43,10 @@ void initADC(void){
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2,ENABLE);
 
     /* Initialization of the GPIO Pins */
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3;
+    GPIO_InitStructure.GPIO_Pin = ANA1PIN | ANA2PIN | ANA3PIN | ANA4PIN;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-    GPIO_Init(GPIOC, &GPIO_InitStructure);
+    GPIO_Init(ANAPORT, &GPIO_InitStructure);
 
     /* Configure the DMA  */
     DMA_DeInit(DMA2_Stream4);  /* Set DMA registers to default values */
@@ -82,10 +84,11 @@ void initADC(void){
     ADC_CommonInitStructure.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
     ADC_CommonInit(&ADC_CommonInitStructure);
 
-    ADC_RegularChannelConfig(ADC1,ADC_Channel_10,1,ADC_SampleTime_480Cycles);
-    ADC_RegularChannelConfig(ADC1,ADC_Channel_11,2,ADC_SampleTime_480Cycles);
-    ADC_RegularChannelConfig(ADC1,ADC_Channel_12,3,ADC_SampleTime_480Cycles);
-    ADC_RegularChannelConfig(ADC1,ADC_Channel_13,4,ADC_SampleTime_480Cycles);
+    /* Sets up the sample size for the ADCs */
+    ADC_RegularChannelConfig(ADC1,ADC_Channel_10,1,ADCSAMPLES);
+    ADC_RegularChannelConfig(ADC1,ADC_Channel_11,2,ADCSAMPLES);
+    ADC_RegularChannelConfig(ADC1,ADC_Channel_12,3,ADCSAMPLES);
+    ADC_RegularChannelConfig(ADC1,ADC_Channel_13,4,ADCSAMPLES);
 
     ADC_DMARequestAfterLastTransferCmd(ADC1, ENABLE);
 

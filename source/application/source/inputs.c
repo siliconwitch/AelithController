@@ -5,7 +5,7 @@
  *			  Decodes PPM signals from RC radio with TIM2 and EXTI0, 1, 6, 7
  *			  Hall effect sensors used are the AH3761.
  *
- * Uses:      Uses PORT A with EXTI 2, 3, 4, 5. Also Uses TIM9, 10, 11, 12. TIM2, EXTI0, EXTI1, pins PA0 & PA1
+ * Uses:      Uses PORT A with EXTI 2, 3, 4, 5. Uses TIM2, TIM8, TIM9, TIM10, TIM11, EXTI0, EXTI1, pins PA0, PA1, PA2, PA3
  *
  * Datasheet: http://diodes.com/datasheets/AH3761.pdf
  *
@@ -19,12 +19,13 @@
  *
  */
 
- #include <stm32f4xx.h>
- #include <inputs.h>
+#include <stm32f4xx.h>
+#include <prototypes.h>
+#include <config.h>
 
-/* Public Variables */
-RCRadio RCRadioStructure = {0,0,0,0,0};
-WheelRPM WheelRPMStructure = {0,0,0,0};
+/* Public variables */
+RCRadio volatile RCRadioStructure = {0,0,0,0,0};
+WheelRPM volatile WheelRPMStructure = {0,0,0,0};
 
 /* Private variables */
 typedef struct { uint32_t FL, FR, BL, BR; } WheelCount;
@@ -34,10 +35,12 @@ WheelCount WheelCountStructure = {0,0,0,0};
 double CalculateWheelRPM(int Count);
 void ClearInterupt(TIM_TypeDef* TIMx, uint32_t EXTI_Line);
 
+/* Private struct declarations */
 GPIO_InitTypeDef  		GPIO_InitStructure;
 NVIC_InitTypeDef  		NVIC_InitStructure;
 TIM_TimeBaseInitTypeDef TIM_InitStructure; 
 EXTI_InitTypeDef  		EXTI_InitStructure;
+
 
 void initInputs(){
     /* Enable all the periph clocks */
@@ -50,11 +53,17 @@ void initInputs(){
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM11, ENABLE);
 
     /* Init the input pins */
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
+    GPIO_InitStructure.GPIO_Pin = REC1PIN | REC2PIN | REC3PIN | REC4PIN;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    GPIO_Init(RECPORT, &GPIO_InitStructure);
+
+    GPIO_InitStructure.GPIO_Pin = FB1PIN | FB2PIN | FB3PIN | FB4PIN;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+    GPIO_Init(FBPORT, &GPIO_InitStructure);
 
     /* Connect the external interrupts to the pins */
     SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, EXTI_PinSource0);
@@ -176,7 +185,7 @@ void TIM2_IRQHandler(void){
 /* Interrupt on Steering pin */
 void EXTI0_IRQHandler(void){
   if(EXTI_GetITStatus(EXTI_Line0) != RESET){
-  	if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0) != RESET){
+  	if(GPIO_ReadInputDataBit(RECPORT, REC1PIN) != RESET){
         TIM_SetCounter(TIM2, 0);
         RCRadioStructure.valid = 1;
   		RCRadioStructure.throttle = 0;
@@ -195,7 +204,7 @@ void EXTI0_IRQHandler(void){
 /* Interrupt on Throttle pin */
 void EXTI1_IRQHandler(void){
   if(EXTI_GetITStatus(EXTI_Line1) != RESET){
-  	if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_1) == RESET){
+  	if(GPIO_ReadInputDataBit(RECPORT, REC2PIN) == RESET){
     	RCRadioStructure.steering = TIM_GetCounter(TIM2);
         RCRadioStructure.valid = 0;
     	TIM_SetCounter(TIM2, 0);
