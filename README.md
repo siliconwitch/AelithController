@@ -22,6 +22,10 @@ http://www.emb4fun.de/archive/stlink/index.html
 The make.bat file is able to run under Windows to compile, upload and start the debug server. Please ensure that your PATH environment variable are set up in windows for the batch commands to be recognised.
 
 
+Control System
+--------------
+The control system for the project is designed in Labview using the C Generation toolbox. Granted this is the only part of the project that requires a non free software, the exported code howver is still in readable C.
+
 PCB Info
 --------
 
