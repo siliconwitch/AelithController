@@ -111,8 +111,6 @@
 
 	typedef struct { uint32_t ch1; uint32_t ch2; uint32_t ch3; uint32_t ch4; } AnalogueOutput; //currently unused
 
-	typedef struct { float X, Y, Z, Roll, Pitch, Yaw, Temp, Valid; } IMUMotion;
-
-	extern uint16_t rawADC[4];
+	typedef struct { float x, y, z, roll, pitch, yaw, temp, valid; } IMUMotion;
 
 #endif
