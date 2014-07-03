@@ -32,7 +32,7 @@ int main(void){
     /* Init the i-watchdog */
     IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
     IWDG_SetPrescaler(IWDG_Prescaler_4);
-    IWDG_SetReload(0x0FFF);
+    IWDG_SetReload(2047); /* 256mS Timeout */
     IWDG_Enable();
 
     /* Init vehicle functions */
@@ -46,15 +46,22 @@ int main(void){
     {
         /*-------------------------------------------------------------------------*/
         /*                            TEST CODE ONLY                               */
-        
-        if((RCRadioStructure.steering > 0) && (RCRadioStructure.throttle > 0)){
+        RCRadioStructureTest();
 
-            /* This needs to be replaced with a control system */
+        if(RCRadioStructure.valid != RESET){
             PPMOutputStructure.MOT1 = RCRadioStructure.throttle;
             PPMOutputStructure.MOT2 = RCRadioStructure.throttle;
             PPMOutputStructure.MOT3 = RCRadioStructure.throttle;
             PPMOutputStructure.MOT4 = RCRadioStructure.throttle;
             PPMOutputStructure.AUX4 = RCRadioStructure.steering;
+        }
+        else
+        {
+            PPMOutputStructure.MOT1 = RECEIVERMIDSIGNAL;
+            PPMOutputStructure.MOT2 = RECEIVERMIDSIGNAL;
+            PPMOutputStructure.MOT3 = RECEIVERMIDSIGNAL;
+            PPMOutputStructure.MOT4 = RECEIVERMIDSIGNAL;
+            PPMOutputStructure.AUX4 = RECEIVERMIDSIGNAL;
         }
         int i = 0;
         for(i = 0; i < 100000; i++){}

@@ -24,15 +24,16 @@
 #include <config.h>
 
 /* Public variables */
-RCRadio volatile RCRadioStructure = {0,0,0,0,0};
+RCRadio volatile RCRadioStructure = {RECEIVERMIDSIGNAL,RECEIVERMIDSIGNAL,RECEIVERMIDSIGNAL,RECEIVERMIDSIGNAL,0,0};
 WheelRPM volatile WheelRPMStructure = {0,0,0,0};
 
 /* Private variables */
 typedef struct { uint32_t FL, FR, BL, BR; } WheelCount;
 WheelCount WheelCountStructure = {0,0,0,0};
+int w =0;
 
 /* Private helper function declartions */
-double CalculateWheelRPM(int Count);
+double CalculateWheelRPM(uint32_t Count);
 void ClearInterupt(TIM_TypeDef* TIMx, uint32_t EXTI_Line);
 
 /* Private struct declarations */
@@ -47,6 +48,7 @@ void initInputs(){
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM8, ENABLE);
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM9, ENABLE);
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM10, ENABLE);
@@ -105,29 +107,15 @@ void initInputs(){
     EXTI_Init(&EXTI_InitStructure);
 
     /* init the NVIC for EXTI and TIM */
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+    /* Lowest priority for wheel speed sensors */
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 5;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 5;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
-    NVIC_Init(&NVIC_InitStructure);
-
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;
-    NVIC_Init(&NVIC_InitStructure);
-
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn;
-    NVIC_Init(&NVIC_InitStructure);
-
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI3_IRQn;
-    NVIC_Init(&NVIC_InitStructure);
 
     NVIC_InitStructure.NVIC_IRQChannel = EXTI4_IRQn;
     NVIC_Init(&NVIC_InitStructure);
 
     NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
-    NVIC_Init(&NVIC_InitStructure);
-
-    NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
     NVIC_Init(&NVIC_InitStructure);
 
     NVIC_InitStructure.NVIC_IRQChannel = TIM8_CC_IRQn;
@@ -142,20 +130,54 @@ void initInputs(){
     NVIC_InitStructure.NVIC_IRQChannel = TIM1_TRG_COM_TIM11_IRQn;
     NVIC_Init(&NVIC_InitStructure);
 
+    /* Highest priority for receiver inputs */
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    
+    NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
+    NVIC_Init(&NVIC_InitStructure);
+
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
+    NVIC_Init(&NVIC_InitStructure);
+
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;
+    NVIC_Init(&NVIC_InitStructure);
+
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn;
+    NVIC_Init(&NVIC_InitStructure);
+
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI3_IRQn;
+    NVIC_Init(&NVIC_InitStructure);
+
+
+
     /* init the timers */
-    TIM_InitStructure.TIM_Prescaler = 17;
-    TIM_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;
-    TIM_InitStructure.TIM_Period = 50000; /* Needs refining */
-    TIM_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
     TIM_InitStructure.TIM_RepetitionCounter = 0;
+    TIM_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;
+
+    /* This is the reciver timeout timer */
+    TIM_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1; /* This will div the TIM clock from 84MHz to 84MHz */
+    TIM_InitStructure.TIM_Prescaler = PPMTIMEOUTPRESCALER; /* We div 84MHz by prescaler defined in config.h to get x MHz i.e. 1/x uS ticks*/
+    TIM_InitStructure.TIM_Period = PPMTIMEOUTVALUE; /* After timeout*x uS = 20mS, there is an overflow timeout */
+
+    TIM_TimeBaseInit(TIM4, &TIM_InitStructure);
+    TIM_ITConfig(TIM4, TIM_IT_Update, ENABLE);
+    TIM_Cmd(TIM4, ENABLE);
+
+    /* This is for the receiver count timer */
+    TIM_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1; /* This will div the TIM clock from 84MHz to 84MHz */
+    TIM_InitStructure.TIM_Prescaler = PPMMEASUREPRESCALER; /* We div 84MHz by prescaler defined in config.h to get x MHz i.e. 1/x uS ticks*/
+    TIM_InitStructure.TIM_Period = 65535; /* After timeout*x uS = 20mS, there is an overflow timeout */
 
     TIM_TimeBaseInit(TIM2, &TIM_InitStructure);
-    TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE);
     TIM_Cmd(TIM2, ENABLE);
 
+    /* This is for the four wheelspeed timers */
+    TIM_InitStructure.TIM_ClockDivision = TIM_CKD_DIV2;
     TIM_InitStructure.TIM_Prescaler = 840; /* These TIMs run at 168MHz, but we div by 2, then by 840 to get 1uS ticks */
     TIM_InitStructure.TIM_Period = 1000; /* Overflow after 1mS, implies no speed */
-    TIM_InitStructure.TIM_ClockDivision = TIM_CKD_DIV2;
+
 
     TIM_TimeBaseInit(TIM8, &TIM_InitStructure);
     TIM_ITConfig(TIM8, TIM_IT_Update, ENABLE);
@@ -174,45 +196,50 @@ void initInputs(){
     TIM_Cmd(TIM11, ENABLE);
 }
 
-/* Timer for working out RCRadio inputs */
-void TIM2_IRQHandler(void){
-  if (TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET){
-    RCRadioStructure.valid = 1;
-    TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
+void RCRadioStructureTest(){
+    if( (RCRadioStructure.lostsignal == RESET) &&
+        (RCRadioStructure.steering < RECEIVERMAXSIGNAL) && 
+        (RCRadioStructure.steering > RECEIVERMINSIGNAL) &&
+        (RCRadioStructure.throttle < RECEIVERMAXSIGNAL) && 
+        (RCRadioStructure.throttle > RECEIVERMINSIGNAL)        ){
+
+        RCRadioStructure.valid = 1;       
+    }
+    
+    else{
+        RCRadioStructure.valid = 0;
+    }
+}
+
+/* Timer for detecting overflow on receiver timer, i.e no data in the last 10mS, brings down the signal valid flag */
+void TIM4_IRQHandler(void){
+  if (TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET){
+    RCRadioStructure.lostsignal = 1;
+    TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
   }
 }
 
-/* Interrupt on Steering pin */
+/* Interrupt on receiver steering pin */
 void EXTI0_IRQHandler(void){
   if(EXTI_GetITStatus(EXTI_Line0) != RESET){
-  	if(GPIO_ReadInputDataBit(RECPORT, REC1PIN) != RESET){
-        TIM_SetCounter(TIM2, 0);
-        RCRadioStructure.valid = 1;
-  		RCRadioStructure.throttle = 0;
-    }
-
-    else{
-    	RCRadioStructure.throttle = TIM_GetCounter(TIM2);
-    	RCRadioStructure.steering = 0;
-        RCRadioStructure.valid = 1;
-    	TIM_SetCounter(TIM2, 0);
-    }
+  	if(GPIO_ReadInputDataBit(RECPORT, REC1PIN) == RESET){    RCRadioStructure.steering = TIM_GetCounter(TIM2);   }  
+    TIM_SetCounter(TIM2, 0);
+    RCRadioStructure.lostsignal = 0;  /* FAILSAFE */
+    TIM_SetCounter(TIM4, 0); /* FAILSAFE */
     EXTI_ClearITPendingBit(EXTI_Line0);
   }
 }
 
-/* Interrupt on Throttle pin */
+/* Interrupt on receiver throttle pin */
 void EXTI1_IRQHandler(void){
   if(EXTI_GetITStatus(EXTI_Line1) != RESET){
-  	if(GPIO_ReadInputDataBit(RECPORT, REC2PIN) == RESET){
-    	RCRadioStructure.steering = TIM_GetCounter(TIM2);
-        RCRadioStructure.valid = 0;
-    	TIM_SetCounter(TIM2, 0);
-    }
+  	if(GPIO_ReadInputDataBit(RECPORT, REC2PIN) == RESET){    RCRadioStructure.throttle = TIM_GetCounter(TIM2);   }
+    TIM_SetCounter(TIM2, 0);
     EXTI_ClearITPendingBit(EXTI_Line1);
   }
 }
 
+/* Interrupt on receiver aux1 pin */
 void EXTI2_IRQHandler(void){
 	if(EXTI_GetITStatus(EXTI_Line2) != RESET){
 
@@ -220,6 +247,7 @@ void EXTI2_IRQHandler(void){
 	EXTI_ClearITPendingBit(EXTI_Line2);
 }
 
+/* Interrupt on receiver aux2 pin */
 void EXTI3_IRQHandler(void){
 	if(EXTI_GetITStatus(EXTI_Line3) != RESET){
 
@@ -289,7 +317,7 @@ void EXTI9_5_IRQHandler(void){
     }
 }
 
-double CalculateWheelRPM(int Count){
+double CalculateWheelRPM(uint32_t Count){
     return 60.0 / ((Count/100000.0) * MOTORPOLES);
 }
 

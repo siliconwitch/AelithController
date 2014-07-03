@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"th",
+				"throttle"
+			],
+			[
+				"de",
+				"define"
+			],
+			[
+				"TIM_G",
+				"TIM_GetCounter"
+			],
+			[
 				"IW",
 				"IWDG_ReloadCounter"
 			],
@@ -121,6 +133,20 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/include/stm32f4xx_rcc.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/startup_stm32f4xx.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/system_stm32f4xx.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/stm32f4xx.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/fca9d264-98ad-4ea2-9f25-823142f5672f.dmp",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/stm32f4xx_syscfg.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/stm32f4xx_exti.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/system_stm32f4xx.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/stm32f4xx_conf.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/misc.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/include/stm32f4xx_tim.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/source/outputs.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/stm32f4xx_tim.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/source/main.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/serial.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/outputs.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/inputs.h",
@@ -180,6 +206,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"TIM4",
+			"/**",
+			"tim_it_trigger",
+			"tim_itc",
+			"TIM2",
+			"ena",
+			"TIM2_IRQH",
+			"tim2_irqh",
 			"typedef ",
 			"extern ",
 			"extern",

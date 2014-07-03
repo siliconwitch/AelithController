@@ -29,6 +29,7 @@
 
 /* inputs.c Function prototypes */
 	void initInputs(void);
+	void RCRadioStructureTest(void);
 
 	void EXTI0_IRQHandler(void);
 	void EXTI1_IRQHandler(void);

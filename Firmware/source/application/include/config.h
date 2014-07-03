@@ -31,6 +31,14 @@
 	#define BAUDRATE 	9600
 
 	/* Receiver related */
+ 	#define PPMTIMEOUTVALUE		40000
+ 	#define PPMTIMEOUTPRESCALER	42
+
+ 	#define PPMMEASUREPRESCALER	4
+ 	#define RECEIVERMINSIGNAL	16000
+ 	#define RECEIVERMIDSIGNAL	25000
+ 	#define RECEIVERMAXSIGNAL	34000
+ 
 
 	/* IMU related */
 	#define DEFAULTACCELRANGE	4
@@ -95,7 +103,7 @@
 /*    GLOBAL VARIABLES    */
 /*------------------------*/
 
-	typedef struct { uint32_t steering; uint32_t throttle; uint32_t aux1; uint32_t aux2; uint32_t valid; } RCRadio;
+	typedef struct { uint32_t steering; uint32_t throttle; uint32_t aux1; uint32_t aux2; uint32_t lostsignal; uint32_t valid; } RCRadio;
 
 	typedef struct { uint32_t MOT1; uint32_t MOT2; uint32_t MOT3; uint32_t MOT4; uint32_t AUX1; uint32_t AUX2; uint32_t AUX3; uint32_t AUX4; } PPMOutputs;
 
