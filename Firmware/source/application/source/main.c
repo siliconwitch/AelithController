@@ -29,7 +29,7 @@ int main(void){
     /* Boots the system */    
 	SystemInit();
 
-    /* Init the i-watchdog */
+    /* Init the independent watchdog */
     IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
     IWDG_SetPrescaler(IWDG_Prescaler_4);
     IWDG_SetReload(2047); /* 256mS Timeout */
@@ -76,6 +76,5 @@ int main(void){
         /* Reset Watchdog */
         IWDG_ReloadCounter();
     }
-
     return 0;
 }

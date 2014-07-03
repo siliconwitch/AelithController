@@ -33,7 +33,8 @@
 IMUMotion volatile Motion = {0,0,0,0,0,0,0,0};
 
 /* Private variables */
-IMUMotion volatile MotionRaw = {0,0,0,0,0,0,0,0};
+uint8_t rawIMU[14];
+
 int accelRegister = 0x00;
 int accelConvFactor = 16384;
 int gyroRegister = 0x00;
@@ -59,6 +60,7 @@ void initIMU(void){
 	GPIO_Init(DATAPORT, &GPIO_InitStructure);					// init GPIOB
 	GPIO_PinAFConfig(DATAPORT, GPIO_PinSource8, GPIO_AF_I2C1);
 	GPIO_PinAFConfig(DATAPORT, GPIO_PinSource9, GPIO_AF_I2C1);
+       
 
     /* Set the I2C parameters, pretty much default except ack */
     I2C_InitStructure.I2C_ClockSpeed = 100000;
@@ -77,14 +79,14 @@ void initIMU(void){
 
 }
 
-uint8_t IMUReadByte(uint8_t address){
+void IMUReadBytes(uint8_t startAddress, uint8_t numOfBytes, uint8_t *location){
     I2C_GenerateSTART(I2C1, ENABLE);
     while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT));
     
     I2C_Send7bitAddress(I2C1, IMU_ADDRESS << 1, I2C_Direction_Transmitter);
     while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
 
-    I2C_SendData(I2C1, address);
+    I2C_SendData(I2C1, startAddress);
     while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
     
     I2C_GenerateSTART(I2C1, ENABLE);
@@ -93,13 +95,17 @@ uint8_t IMUReadByte(uint8_t address){
     I2C_Send7bitAddress(I2C1, IMU_ADDRESS << 1, I2C_Direction_Receiver);
     while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED));
 
-    I2C_AcknowledgeConfig(I2C1, DISABLE);
-    while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_RECEIVED));
+    int num = 0;
+    for(num = 0; num <= numOfBytes; num++){
+        if(num == numOfBytes){
+            I2C_AcknowledgeConfig(I2C1, DISABLE);   /* ЧоєуТ»О»єуТЄ№Ш±ХУ¦ґрµД */
+            I2C_GenerateSTOP(I2C1, ENABLE);         /* ·ўЛННЈЦ№О» */
+        }
 
-    I2C_GenerateSTOP(I2C1, ENABLE);
+        while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_RECEIVED));  /* EV7 */
+        location[num] = I2C_ReceiveData(I2C1);
+    }
     I2C_AcknowledgeConfig(I2C1, ENABLE);
-    
-    return I2C_ReceiveData(I2C1);
 }
 
 void IMUWriteByte(uint8_t address, uint8_t data){
@@ -121,25 +127,17 @@ void IMUWriteByte(uint8_t address, uint8_t data){
 }
 
 void IMUGetMotion(){
-    MotionRaw.X = (int16_t)((IMUReadByte(0x3B) << 8) | IMUReadByte(0x3C));
-    MotionRaw.Y = (int16_t)((IMUReadByte(0x3D) << 8) | IMUReadByte(0x3E));
-    MotionRaw.Z = (int16_t)((IMUReadByte(0x3F) << 8) | IMUReadByte(0x40));
-
-    MotionRaw.Roll  = (int16_t)((IMUReadByte(0x43) << 8) | IMUReadByte(0x44));
-    MotionRaw.Pitch = (int16_t)((IMUReadByte(0x45) << 8) | IMUReadByte(0x46));
-    MotionRaw.Yaw   = (int16_t)((IMUReadByte(0x47) << 8) | IMUReadByte(0x47));
-
-    MotionRaw.Temp = (int16_t)((IMUReadByte(0x41) << 8) | IMUReadByte(0x44));
-
-    Motion.X = (float) MotionRaw.X / (accelConvFactor);
-    Motion.Y = (float) MotionRaw.Y / (accelConvFactor);
-    Motion.Z = (float) MotionRaw.Z / (accelConvFactor);
+    IMUReadBytes(0x3B,14,&rawIMU);
     
-    Motion.Roll  = (float) MotionRaw.Roll  / (gyroConvFactor);
-    Motion.Pitch = (float) MotionRaw.Pitch / (gyroConvFactor);
-    Motion.Yaw   = (float) MotionRaw.Yaw   / (gyroConvFactor);
+    Motion.x = (float) ( (int16_t)((rawIMU[0] << 8) | rawIMU[1]) ) / accelConvFactor;
+    Motion.y = (float) ( (int16_t)((rawIMU[2] << 8) | rawIMU[3]) ) / accelConvFactor;
+    Motion.z = (float) ( (int16_t)((rawIMU[4] << 8) | rawIMU[5]) ) / accelConvFactor;
     
-    Motion.Temp = ((float) MotionRaw.Temp + 12412.0) / 340.0;
+    Motion.temp = ((float) ( (int16_t)((rawIMU[6] << 8) | rawIMU[7]) ) + 12412.0) / 340.0;
+
+    Motion.roll  = (float) ( (int16_t)((rawIMU[8]  << 8) | rawIMU[9] ) ) / gyroConvFactor;
+    Motion.pitch = (float) ( (int16_t)((rawIMU[10] << 8) | rawIMU[11]) ) / gyroConvFactor;
+    Motion.yaw   = (float) ( (int16_t)((rawIMU[12] << 8) | rawIMU[13]) ) / gyroConvFactor;
 }
 
 void IMUConfig(int accelrange, int gyrorange){
@@ -155,7 +153,7 @@ void IMUConfig(int accelrange, int gyrorange){
        else /*Defults to 250*/ {gyroRegister = 0x00; gyroConvFactor = 131;  }
 
     /* Does the configuration */
-    IMUReadByte(IMU_WHOAMI);   
+    //IMUReadByte(IMU_WHOAMI);   
     IMUWriteByte(IMU_CFG, 0x00); /* Reset LPF */
     IMUWriteByte(IMU_ACCEL_CFG, accelRegister);
     IMUWriteByte(IMU_GYRO_CFG, gyroRegister);

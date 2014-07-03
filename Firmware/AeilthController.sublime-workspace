@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"gyr",
+				"gyroConvFactor"
+			],
+			[
+				"u",
+				"uint8_t"
+			],
+			[
 				"th",
 				"throttle"
 			],
@@ -18,10 +26,6 @@
 			[
 				"IW",
 				"IWDG_ReloadCounter"
-			],
-			[
-				"u",
-				"uint32_t"
 			],
 			[
 				"s",
@@ -133,10 +137,13 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/stm32f4xx_dma.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/include/stm32f4xx_dma.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/include/stm32f4xx_i2c.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/stm32f4xx.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/include/stm32f4xx_rcc.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/startup_stm32f4xx.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/system_stm32f4xx.c",
-		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/stm32f4xx.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/fca9d264-98ad-4ea2-9f25-823142f5672f.dmp",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/stm32f4xx_syscfg.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/stm32f4xx_exti.c",
@@ -206,6 +213,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"dma_get",
+			"dma_itconfig",
+			"dma",
+			"read",
+			"dma",
+			"ADC1",
+			"DR",
+			"DMA1",
+			"DMA2",
+			"dma",
+			"timeout",
+			"sr1",
 			"TIM4",
 			"/**",
 			"tim_it_trigger",
