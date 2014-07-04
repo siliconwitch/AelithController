@@ -38,7 +38,6 @@
  	#define RECEIVERMINSIGNAL	16000
  	#define RECEIVERMIDSIGNAL	25000
  	#define RECEIVERMAXSIGNAL	34000
- 
 
 	/* IMU related */
 	#define DEFAULTACCELRANGE	4
@@ -103,13 +102,13 @@
 /*    GLOBAL VARIABLES    */
 /*------------------------*/
 
-	typedef struct { uint32_t steering; uint32_t throttle; uint32_t aux1; uint32_t aux2; uint32_t lostsignal; uint32_t valid; } RCRadio;
+	typedef struct { double steering; float throttle; float aux1; float aux2; uint8_t lostsignal; uint8_t valid; } RCRadio;
 
-	typedef struct { uint32_t MOT1; uint32_t MOT2; uint32_t MOT3; uint32_t MOT4; uint32_t AUX1; uint32_t AUX2; uint32_t AUX3; uint32_t AUX4; } PPMOutputs;
+	typedef struct { double MOT1, MOT2, MOT3, MOT4, AUX1, AUX2, AUX3, AUX4; } PPMOutputs;
 
 	typedef struct { double FL, FR, BL, BR; } WheelRPM;
 
-	typedef struct { uint32_t ch1; uint32_t ch2; uint32_t ch3; uint32_t ch4; } AnalogueOutput; //currently unused
+	typedef struct { uint32_t ch1,  ch2,  ch3,  ch4; } AnalogueOutput; //currently unused
 
 	typedef struct { float x, y, z, roll, pitch, yaw, temp, valid; } IMUMotion;
 

@@ -20,13 +20,13 @@
 #include <config.h>
 
 /* Public variables */
-PPMOutputs volatile PPMOutputStructure = {6000,6000,6000,6000,6000,6000,6000,6000};
+PPMOutputs volatile PPMOutputStructure = {0,0,0,0,0,0,0,0};
 
 /* Private variables */
 int pulseIndex = 0;
 
 /* Private helper function declartions */
-void TIM3_IRQHandler(void);
+uint32_t denormaliseSignal(double input); /* Turns the float speed value back into a timer count value */
 
 /* Private struct declarations */
 GPIO_InitTypeDef        GPIO_InitStructure;
@@ -74,39 +74,39 @@ void initOutputs(void){
 }
 
 void TIM3_IRQHandler(void){
-
     if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET){
         switch(pulseIndex){
             case 0:
-                TIM_SetAutoreload(TIM3, PPMOutputStructure.MOT1);
+                TIM_SetAutoreload(TIM3, denormaliseSignal(PPMOutputStructure.MOT1));
                 GPIO_SetBits(AUXPORT, AUX4PIN);
                 GPIO_ResetBits(MOTORPORT, MOTOR1PIN);
                 pulseIndex++;
                 break;
 
             case 1:
-                TIM_SetAutoreload(TIM3, PPMOutputStructure.MOT2);
+                TIM_SetAutoreload(TIM3, denormaliseSignal(PPMOutputStructure.MOT2));
                 GPIO_SetBits(MOTORPORT, MOTOR1PIN);
                 GPIO_ResetBits(MOTORPORT, MOTOR2PIN);
                 pulseIndex++;
                 break;
 
             case 2:
-                TIM_SetAutoreload(TIM3, PPMOutputStructure.MOT3);
+                TIM_SetAutoreload(TIM3, denormaliseSignal(PPMOutputStructure.MOT3));
                 GPIO_SetBits(MOTORPORT, MOTOR2PIN);
                 GPIO_ResetBits(MOTORPORT, MOTOR3PIN);
                 pulseIndex++;
                 break;
 
             case 3:
-                TIM_SetAutoreload(TIM3, PPMOutputStructure.MOT4);
+
+                TIM_SetAutoreload(TIM3, denormaliseSignal(PPMOutputStructure.MOT4));
                 GPIO_SetBits(MOTORPORT, MOTOR3PIN);
                 GPIO_ResetBits(MOTORPORT, MOTOR4PIN);
                 pulseIndex++;
                 break;
 
             case 4:
-                TIM_SetAutoreload(TIM3, PPMOutputStructure.AUX4);
+                TIM_SetAutoreload(TIM3, denormaliseSignal(PPMOutputStructure.AUX4));
                 GPIO_SetBits(MOTORPORT, MOTOR4PIN);
                 GPIO_ResetBits(AUXPORT, AUX4PIN);
                 pulseIndex = 0;
@@ -114,4 +114,8 @@ void TIM3_IRQHandler(void){
             }
         }
     TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
+}
+
+uint32_t denormaliseSignal(double input){
+    return (uint32_t) (( (input+1) * ((RECEIVERMAXSIGNAL-RECEIVERMINSIGNAL)/2) ) + RECEIVERMINSIGNAL);
 }

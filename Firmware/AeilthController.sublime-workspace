@@ -4,12 +4,16 @@
 		"selected_items":
 		[
 			[
-				"gyr",
-				"gyroConvFactor"
+				"in",
+				"input"
 			],
 			[
 				"u",
-				"uint8_t"
+				"uint32_t"
+			],
+			[
+				"gyr",
+				"gyroConvFactor"
 			],
 			[
 				"th",
@@ -92,10 +96,6 @@
 				"accelRegister"
 			],
 			[
-				"in",
-				"include"
-			],
-			[
 				"GP",
 				"GPIO_Pin_9"
 			]
@@ -137,6 +137,7 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/source/inputs.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/stm32f4xx_dma.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/include/stm32f4xx_dma.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/include/stm32f4xx_i2c.h",

@@ -57,11 +57,11 @@ int main(void){
         }
         else
         {
-            PPMOutputStructure.MOT1 = RECEIVERMIDSIGNAL;
-            PPMOutputStructure.MOT2 = RECEIVERMIDSIGNAL;
-            PPMOutputStructure.MOT3 = RECEIVERMIDSIGNAL;
-            PPMOutputStructure.MOT4 = RECEIVERMIDSIGNAL;
-            PPMOutputStructure.AUX4 = RECEIVERMIDSIGNAL;
+            PPMOutputStructure.MOT1 = 0;
+            PPMOutputStructure.MOT2 = 0;
+            PPMOutputStructure.MOT3 = 0;
+            PPMOutputStructure.MOT4 = 0;
+            PPMOutputStructure.AUX4 = 0;
         }
         int i = 0;
         for(i = 0; i < 100000; i++){}

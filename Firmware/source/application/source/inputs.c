@@ -24,17 +24,18 @@
 #include <config.h>
 
 /* Public variables */
-RCRadio volatile RCRadioStructure = {RECEIVERMIDSIGNAL,RECEIVERMIDSIGNAL,RECEIVERMIDSIGNAL,RECEIVERMIDSIGNAL,0,0};
+RCRadio volatile RCRadioStructure = {0,0,0,0,0,0};
 WheelRPM volatile WheelRPMStructure = {0,0,0,0};
 
 /* Private variables */
 typedef struct { uint32_t FL, FR, BL, BR; } WheelCount;
 WheelCount WheelCountStructure = {0,0,0,0};
-int w =0;
+int w = 0;
 
 /* Private helper function declartions */
 double CalculateWheelRPM(uint32_t Count);
 void ClearInterupt(TIM_TypeDef* TIMx, uint32_t EXTI_Line);
+double normaliseSignal(uint32_t input);  /* Turns the Timer count value of the input, into a -1 to 1 float */
 
 /* Private struct declarations */
 GPIO_InitTypeDef  		GPIO_InitStructure;
@@ -198,10 +199,10 @@ void initInputs(){
 
 void RCRadioStructureTest(){
     if( (RCRadioStructure.lostsignal == RESET) &&
-        (RCRadioStructure.steering < RECEIVERMAXSIGNAL) && 
-        (RCRadioStructure.steering > RECEIVERMINSIGNAL) &&
-        (RCRadioStructure.throttle < RECEIVERMAXSIGNAL) && 
-        (RCRadioStructure.throttle > RECEIVERMINSIGNAL)        ){
+        (RCRadioStructure.steering < 1) && 
+        (RCRadioStructure.steering > -1) &&
+        (RCRadioStructure.throttle < 1) && 
+        (RCRadioStructure.throttle > -1)        ){
 
         RCRadioStructure.valid = 1;       
     }
@@ -222,7 +223,7 @@ void TIM4_IRQHandler(void){
 /* Interrupt on receiver steering pin */
 void EXTI0_IRQHandler(void){
   if(EXTI_GetITStatus(EXTI_Line0) != RESET){
-  	if(GPIO_ReadInputDataBit(RECPORT, REC1PIN) == RESET){    RCRadioStructure.steering = TIM_GetCounter(TIM2);   }  
+  	if(GPIO_ReadInputDataBit(RECPORT, REC1PIN) == RESET){    RCRadioStructure.steering = normaliseSignal( TIM_GetCounter(TIM2) );   }  
     TIM_SetCounter(TIM2, 0);
     RCRadioStructure.lostsignal = 0;  /* FAILSAFE */
     TIM_SetCounter(TIM4, 0); /* FAILSAFE */
@@ -233,7 +234,7 @@ void EXTI0_IRQHandler(void){
 /* Interrupt on receiver throttle pin */
 void EXTI1_IRQHandler(void){
   if(EXTI_GetITStatus(EXTI_Line1) != RESET){
-  	if(GPIO_ReadInputDataBit(RECPORT, REC2PIN) == RESET){    RCRadioStructure.throttle = TIM_GetCounter(TIM2);   }
+  	if(GPIO_ReadInputDataBit(RECPORT, REC2PIN) == RESET){    RCRadioStructure.throttle = normaliseSignal( TIM_GetCounter(TIM2) );   }
     TIM_SetCounter(TIM2, 0);
     EXTI_ClearITPendingBit(EXTI_Line1);
   }
@@ -324,4 +325,8 @@ double CalculateWheelRPM(uint32_t Count){
 void ClearInterupt(TIM_TypeDef* TIMx, uint32_t EXTI_Line){
     TIM_SetCounter(TIMx, 0);
     EXTI_ClearITPendingBit(EXTI_Line);
+}
+
+double normaliseSignal(uint32_t input){
+    return (((double)input-RECEIVERMINSIGNAL) / ((RECEIVERMAXSIGNAL-RECEIVERMINSIGNAL)/2)) - 1;
 }
