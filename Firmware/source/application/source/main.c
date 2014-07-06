@@ -29,10 +29,10 @@ int main(void){
     /* Boots the system */    
 	SystemInit();
 
-    /* Init the i-watchdog */
+    /* Init the independent watchdog */
     IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
     IWDG_SetPrescaler(IWDG_Prescaler_4);
-    IWDG_SetReload(0x0FFF);
+    IWDG_SetReload(2047); /* 256mS Timeout */
     IWDG_Enable();
 
     /* Init vehicle functions */
@@ -44,31 +44,18 @@ int main(void){
 
     while(1)
     {
-        /*-------------------------------------------------------------------------*/
-        /*                            TEST CODE ONLY                               */
-        
-        if((RCRadioStructure.steering > 0) && (RCRadioStructure.throttle > 0)){
-
-            /* This needs to be replaced with a control system */
-            PPMOutputStructure.MOT1 = RCRadioStructure.throttle;
-            PPMOutputStructure.MOT2 = RCRadioStructure.throttle;
-            PPMOutputStructure.MOT3 = RCRadioStructure.throttle;
-            PPMOutputStructure.MOT4 = RCRadioStructure.throttle;
-            PPMOutputStructure.AUX4 = RCRadioStructure.steering;
-        }
-        int i = 0;
-        for(i = 0; i < 100000; i++){}
-
         //USARTSendString("HI!\n");
-        IMUGetMotion();
+        //IMUGetMotion();
 
-        /*                                                                         */
-        /*-------------------------------------------------------------------------*/
-
+        /* Differential Algorithm */
+        PPMOutputStructure.MOT1 = (RCRadioStructure.throttle * FRONTPOWERBIAS) * ((RCRadioStructure.steering * FRONTSLIP) + 1);
+        PPMOutputStructure.MOT2 = (RCRadioStructure.throttle * FRONTPOWERBIAS) * ((RCRadioStructure.steering * FRONTSLIP * -1) + 1);
+        PPMOutputStructure.MOT3 = (RCRadioStructure.throttle * REARPOWERBIAS)  * ((RCRadioStructure.steering * REARSLIP)  + 1);
+        PPMOutputStructure.MOT4 = (RCRadioStructure.throttle * REARPOWERBIAS)  * ((RCRadioStructure.steering * REARSLIP  * -1) + 1);
+        PPMOutputStructure.AUX4 = RCRadioStructure.steering;
 
         /* Reset Watchdog */
         IWDG_ReloadCounter();
     }
-
     return 0;
 }

@@ -21,6 +21,9 @@
 #include <config.h>
 
 /* Public variables */
+AnalogueOutput volatile AnalogueResult = {0,0,0,0};
+
+/* Private variables */
 uint16_t rawADC[4];
 
 /* Private structures */
@@ -28,6 +31,7 @@ GPIO_InitTypeDef      GPIO_InitStructure;
 ADC_InitTypeDef       ADC_InitStructure;
 ADC_CommonInitTypeDef ADC_CommonInitStructure;
 DMA_InitTypeDef       DMA_InitStructure;
+NVIC_InitTypeDef      NVIC_InitStructure;
 
 
 void initADC(void){
@@ -66,6 +70,14 @@ void initADC(void){
     DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
     DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
     DMA_Init(DMA2_Stream4, &DMA_InitStructure);
+    DMA_ITConfig(DMA2_Stream4, DMA_IT_TC, ENABLE);  /* Init the DMA interrupt */
+
+    NVIC_InitStructure.NVIC_IRQChannel = DMA2_Stream4_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
     DMA_Cmd(DMA2_Stream4, ENABLE);
 
     /* Config ADC1 */
@@ -91,10 +103,19 @@ void initADC(void){
     ADC_RegularChannelConfig(ADC1,ADC_Channel_13,4,ADCSAMPLES);
 
     ADC_DMARequestAfterLastTransferCmd(ADC1, ENABLE);
-
     ADC_DMACmd(ADC1, ENABLE); /* Enable ADC1 DMA */
-
     ADC_Cmd(ADC1, ENABLE);   /* Enable ADC1 */
-
     ADC_SoftwareStartConv(ADC1); /* Start ADC1 conversion */
+}
+
+/* Takes the ADC results from the DMA memory output and puts it in a structure, */
+/* We can easily apply conversion calculations here if we like */
+void DMA2_Stream4_IRQHandler(){
+    if(DMA_GetITStatus(DMA2_Stream4, DMA_IT_TCIF4)){
+        AnalogueResult.ch1 = rawADC[0];
+        AnalogueResult.ch2 = rawADC[1];
+        AnalogueResult.ch3 = rawADC[3];
+        AnalogueResult.ch4 = rawADC[4];
+    }
+    DMA_ClearITPendingBit(DMA2_Stream4, DMA_FLAG_TCIF4);
 }

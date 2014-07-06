@@ -4,12 +4,40 @@
 		"selected_items":
 		[
 			[
-				"IW",
-				"IWDG_ReloadCounter"
+				"FRONT",
+				"FRONTPOWERBIAS"
+			],
+			[
+				"a",
+				"application"
+			],
+			[
+				"in",
+				"input"
 			],
 			[
 				"u",
 				"uint32_t"
+			],
+			[
+				"gyr",
+				"gyroConvFactor"
+			],
+			[
+				"th",
+				"throttle"
+			],
+			[
+				"de",
+				"define"
+			],
+			[
+				"TIM_G",
+				"TIM_GetCounter"
+			],
+			[
+				"IW",
+				"IWDG_ReloadCounter"
 			],
 			[
 				"s",
@@ -76,10 +104,6 @@
 				"accelRegister"
 			],
 			[
-				"in",
-				"include"
-			],
-			[
 				"GP",
 				"GPIO_Pin_9"
 			]
@@ -121,6 +145,42 @@
 	},
 	"file_history":
 	[
+		"/C/Program Files (x86)/National Instruments/LabVIEW 2013/CCodeGen/analysis/LV/source/include/extcode.h",
+		"/C/Program Files (x86)/National Instruments/LabVIEW 2013/CCodeGen/analysis/development/include/platdefines.h",
+		"/C/Program Files (x86)/National Instruments/LabVIEW 2013/CCodeGen/libsrc/comms/crc.c",
+		"/C/Program Files (x86)/National Instruments/LabVIEW 2013/CCodeGen/libsrc/comms/CCGVIRefSupport.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/LabViewInc/LVDefs_plat.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/Makefile.cygwin",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/CCodeGen/include/platform/arm-keil/LVDefs_plat.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/CCodeGen/include/blockdiagram/LVCGenIncludes.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/labview/LVCGenIncludes.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/labview/LVDefs_plat.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/LVCCG.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/Differential_BiasingLib.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/include/prototypes.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/Differential_Biasing.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/LVDefs_plat.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/LVDefs_misc.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/LVGlobs.h",
+		"/C/Program Files (x86)/National Instruments/LabVIEW 2013/CCodeGen/include/platform/arm-keil/LVDefs_plat.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/source/inputs.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/stm32f4xx_dma.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/include/stm32f4xx_dma.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/include/stm32f4xx_i2c.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/stm32f4xx.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/include/stm32f4xx_rcc.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/startup_stm32f4xx.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/system_stm32f4xx.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/fca9d264-98ad-4ea2-9f25-823142f5672f.dmp",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/stm32f4xx_syscfg.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/stm32f4xx_exti.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/system_stm32f4xx.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/stm32f4xx_conf.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/misc.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/include/stm32f4xx_tim.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/source/outputs.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/stm32f4xx_tim.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/source/main.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/serial.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/outputs.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/include/inputs.h",
@@ -180,6 +240,27 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"LVCGenRTInit",
+			"dma_get",
+			"dma_itconfig",
+			"dma",
+			"read",
+			"dma",
+			"ADC1",
+			"DR",
+			"DMA1",
+			"DMA2",
+			"dma",
+			"timeout",
+			"sr1",
+			"TIM4",
+			"/**",
+			"tim_it_trigger",
+			"tim_itc",
+			"TIM2",
+			"ena",
+			"TIM2_IRQH",
+			"tim2_irqh",
 			"typedef ",
 			"extern ",
 			"extern",
@@ -240,7 +321,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 289.0
+		"height": 259.0
 	},
 	"output.find_results":
 	{
@@ -282,7 +363,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 220.0,
+	"side_bar_width": 271.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
