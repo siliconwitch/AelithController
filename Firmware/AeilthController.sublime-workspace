@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"FRONT",
+				"FRONTPOWERBIAS"
+			],
+			[
+				"a",
+				"application"
+			],
+			[
 				"in",
 				"input"
 			],
@@ -137,6 +145,24 @@
 	},
 	"file_history":
 	[
+		"/C/Program Files (x86)/National Instruments/LabVIEW 2013/CCodeGen/analysis/LV/source/include/extcode.h",
+		"/C/Program Files (x86)/National Instruments/LabVIEW 2013/CCodeGen/analysis/development/include/platdefines.h",
+		"/C/Program Files (x86)/National Instruments/LabVIEW 2013/CCodeGen/libsrc/comms/crc.c",
+		"/C/Program Files (x86)/National Instruments/LabVIEW 2013/CCodeGen/libsrc/comms/CCGVIRefSupport.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/LabViewInc/LVDefs_plat.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/Makefile.cygwin",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/CCodeGen/include/platform/arm-keil/LVDefs_plat.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/CCodeGen/include/blockdiagram/LVCGenIncludes.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/labview/LVCGenIncludes.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/labview/LVDefs_plat.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/LVCCG.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/Differential_BiasingLib.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/include/prototypes.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/Differential_Biasing.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/LVDefs_plat.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/LVDefs_misc.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/controller/LVGlobs.h",
+		"/C/Program Files (x86)/National Instruments/LabVIEW 2013/CCodeGen/include/platform/arm-keil/LVDefs_plat.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/source/inputs.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/stm32f4xx_dma.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/include/stm32f4xx_dma.h",
@@ -214,6 +240,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"LVCGenRTInit",
 			"dma_get",
 			"dma_itconfig",
 			"dma",
@@ -294,7 +321,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 289.0
+		"height": 259.0
 	},
 	"output.find_results":
 	{
@@ -336,7 +363,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 220.0,
+	"side_bar_width": 271.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

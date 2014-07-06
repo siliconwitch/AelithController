@@ -33,6 +33,7 @@
 
 /* outputs.c Function prototypes */
 	void initOutputs(void);
+	void safeMode(void);
 
 /* serial.c Function prototypes */
 	void initSerial();

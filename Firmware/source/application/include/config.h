@@ -31,7 +31,7 @@
 	#define BAUDRATE 	9600
 
 	/* Receiver related */
- 	#define PPMTIMEOUTVALUE		40000
+ 	#define PPMTIMEOUTVALUE		50000
  	#define PPMTIMEOUTPRESCALER	42
 
  	#define PPMMEASUREPRESCALER	4
@@ -44,10 +44,10 @@
 	#define DEFAULTGYRORANGE	500
 
 	/* Control related */
-	#define FRONTPOWERBIAS 1
-	#define REARPOWERBIAS 1
-	#define FRONTSLIP 0.9
-	#define REARSLIP 0.6
+	#define FRONTPOWERBIAS 0.9
+	#define REARPOWERBIAS 1.0
+	#define FRONTSLIP 0.2
+	#define REARSLIP 0.9
 
 /*------------------------*/
 /* PIN MAPPINGS FOR BOARD */
@@ -57,10 +57,10 @@
 	   interrupts tied to them, so they'd also need changing */
 
 	/* Pins and port for motor outputs */
-	#define MOTOR1PIN	GPIO_Pin_6
-	#define MOTOR2PIN	GPIO_Pin_7
-	#define MOTOR3PIN	GPIO_Pin_8
-	#define MOTOR4PIN	GPIO_Pin_9
+	#define MOTOR1PIN	GPIO_Pin_6		/* FL Wheel */
+	#define MOTOR2PIN	GPIO_Pin_7		/* FR Wheel */
+	#define MOTOR3PIN	GPIO_Pin_8		/* BL Wheel */
+	#define MOTOR4PIN	GPIO_Pin_9		/* BR Wheel */
 	#define MOTORPORT	GPIOC
 
 	/* Pins and port for AUX outputs */
@@ -102,7 +102,7 @@
 /*    GLOBAL VARIABLES    */
 /*------------------------*/
 
-	typedef struct { double steering; float throttle; float aux1; float aux2; uint8_t lostsignal; uint8_t valid; } RCRadio;
+	typedef struct { double steering; float throttle; float aux1; float aux2; } RCRadio;
 
 	typedef struct { double MOT1, MOT2, MOT3, MOT4, AUX1, AUX2, AUX3, AUX4; } PPMOutputs;
 

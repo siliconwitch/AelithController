@@ -44,34 +44,15 @@ int main(void){
 
     while(1)
     {
-        /*-------------------------------------------------------------------------*/
-        /*                            TEST CODE ONLY                               */
-        RCRadioStructureTest();
-
-        if(RCRadioStructure.valid != RESET){
-            PPMOutputStructure.MOT1 = RCRadioStructure.throttle;
-            PPMOutputStructure.MOT2 = RCRadioStructure.throttle;
-            PPMOutputStructure.MOT3 = RCRadioStructure.throttle;
-            PPMOutputStructure.MOT4 = RCRadioStructure.throttle;
-            PPMOutputStructure.AUX4 = RCRadioStructure.steering;
-        }
-        else
-        {
-            PPMOutputStructure.MOT1 = 0;
-            PPMOutputStructure.MOT2 = 0;
-            PPMOutputStructure.MOT3 = 0;
-            PPMOutputStructure.MOT4 = 0;
-            PPMOutputStructure.AUX4 = 0;
-        }
-        int i = 0;
-        for(i = 0; i < 100000; i++){}
-
         //USARTSendString("HI!\n");
-        IMUGetMotion();
+        //IMUGetMotion();
 
-        /*                                                                         */
-        /*-------------------------------------------------------------------------*/
-
+        /* Differential Algorithm */
+        PPMOutputStructure.MOT1 = (RCRadioStructure.throttle * FRONTPOWERBIAS) * ((RCRadioStructure.steering * FRONTSLIP) + 1);
+        PPMOutputStructure.MOT2 = (RCRadioStructure.throttle * FRONTPOWERBIAS) * ((RCRadioStructure.steering * FRONTSLIP * -1) + 1);
+        PPMOutputStructure.MOT3 = (RCRadioStructure.throttle * REARPOWERBIAS)  * ((RCRadioStructure.steering * REARSLIP)  + 1);
+        PPMOutputStructure.MOT4 = (RCRadioStructure.throttle * REARPOWERBIAS)  * ((RCRadioStructure.steering * REARSLIP  * -1) + 1);
+        PPMOutputStructure.AUX4 = RCRadioStructure.steering;
 
         /* Reset Watchdog */
         IWDG_ReloadCounter();

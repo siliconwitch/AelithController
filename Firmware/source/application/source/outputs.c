@@ -117,5 +117,16 @@ void TIM3_IRQHandler(void){
 }
 
 uint32_t denormaliseSignal(double input){
+    if(input >  1.0){input =  1.0;}
+    if(input < -1.0){input = -1.0;}
     return (uint32_t) (( (input+1) * ((RECEIVERMAXSIGNAL-RECEIVERMINSIGNAL)/2) ) + RECEIVERMINSIGNAL);
+}
+
+/* Halt the vehicle */
+void safeMode(void){
+    PPMOutputStructure.MOT1 = 0;
+    PPMOutputStructure.MOT2 = 0;
+    PPMOutputStructure.MOT3 = 0;
+    PPMOutputStructure.MOT4 = 0;
+    PPMOutputStructure.AUX4 = 0;
 }

@@ -24,7 +24,7 @@
 #include <config.h>
 
 /* Public variables */
-RCRadio volatile RCRadioStructure = {0,0,0,0,0,0};
+RCRadio volatile RCRadioStructure = {0,0,0,0};
 WheelRPM volatile WheelRPMStructure = {0,0,0,0};
 
 /* Private variables */
@@ -197,25 +197,11 @@ void initInputs(){
     TIM_Cmd(TIM11, ENABLE);
 }
 
-void RCRadioStructureTest(){
-    if( (RCRadioStructure.lostsignal == RESET) &&
-        (RCRadioStructure.steering < 1) && 
-        (RCRadioStructure.steering > -1) &&
-        (RCRadioStructure.throttle < 1) && 
-        (RCRadioStructure.throttle > -1)        ){
-
-        RCRadioStructure.valid = 1;       
-    }
-    
-    else{
-        RCRadioStructure.valid = 0;
-    }
-}
-
-/* Timer for detecting overflow on receiver timer, i.e no data in the last 10mS, brings down the signal valid flag */
+/* Timer for detecting overflow on receiver timer, i.e no data in the last 20mS, brings down the signal valid flag */
 void TIM4_IRQHandler(void){
   if (TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET){
-    RCRadioStructure.lostsignal = 1;
+    RCRadioStructure.steering = 0;
+    RCRadioStructure.throttle = 0;
     TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
   }
 }
@@ -225,8 +211,7 @@ void EXTI0_IRQHandler(void){
   if(EXTI_GetITStatus(EXTI_Line0) != RESET){
   	if(GPIO_ReadInputDataBit(RECPORT, REC1PIN) == RESET){    RCRadioStructure.steering = normaliseSignal( TIM_GetCounter(TIM2) );   }  
     TIM_SetCounter(TIM2, 0);
-    RCRadioStructure.lostsignal = 0;  /* FAILSAFE */
-    TIM_SetCounter(TIM4, 0); /* FAILSAFE */
+    TIM_SetCounter(TIM4, 0); /* Reset Lost signal timer */
     EXTI_ClearITPendingBit(EXTI_Line0);
   }
 }
@@ -328,5 +313,11 @@ void ClearInterupt(TIM_TypeDef* TIMx, uint32_t EXTI_Line){
 }
 
 double normaliseSignal(uint32_t input){
-    return (((double)input-RECEIVERMINSIGNAL) / ((RECEIVERMAXSIGNAL-RECEIVERMINSIGNAL)/2)) - 1;
+    if(input > RECEIVERMINSIGNAL && input < RECEIVERMAXSIGNAL){
+        return (((double)input-RECEIVERMINSIGNAL) / ((RECEIVERMAXSIGNAL-RECEIVERMINSIGNAL)/2)) - 1;
+    }
+
+    else{
+        return 0.0;
+    }
 }
