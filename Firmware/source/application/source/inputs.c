@@ -5,7 +5,7 @@
  *			  Decodes PPM signals from RC radio with TIM2 and EXTI0, 1, 6, 7
  *			  Hall effect sensors used are the AH3761.
  *
- * Uses:      Uses PORT A with EXTI 2, 3, 4, 5. Uses TIM2, TIM8, TIM9, TIM10, TIM11, EXTI0, EXTI1, pins PA0, PA1, PA2, PA3
+ * Uses:      Uses PORT A pins 0 - 7, TIM2, TIM4, TIM10, TIM11, TIM13, TIM14, EXTI 0 - 7
  *
  * Datasheet: http://diodes.com/datasheets/AH3761.pdf
  *
@@ -28,13 +28,10 @@ RCRadio volatile RCRadioStructure = {0,0,0,0};
 WheelRPM volatile WheelRPMStructure = {0,0,0,0};
 
 /* Private variables */
-typedef struct { uint32_t FL, FR, BL, BR; } WheelCount;
-WheelCount WheelCountStructure = {0,0,0,0};
-int w = 0;
+
 
 /* Private helper function declartions */
 double CalculateWheelRPM(uint32_t Count);
-void ClearInterupt(TIM_TypeDef* TIMx, uint32_t EXTI_Line);
 double normaliseSignal(uint32_t input);  /* Turns the Timer count value of the input, into a -1 to 1 float */
 
 /* Private struct declarations */
@@ -50,10 +47,10 @@ void initInputs(){
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM8, ENABLE);
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM9, ENABLE);
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM10, ENABLE);
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM11, ENABLE);
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM13, ENABLE);
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM14, ENABLE);
 
     /* Init the input pins */
     GPIO_InitStructure.GPIO_Pin = REC1PIN | REC2PIN | REC3PIN | REC4PIN;
@@ -110,7 +107,7 @@ void initInputs(){
     /* init the NVIC for EXTI and TIM */
     /* Lowest priority for wheel speed sensors */
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 5;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 5;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 
     NVIC_InitStructure.NVIC_IRQChannel = EXTI4_IRQn;
@@ -119,16 +116,16 @@ void initInputs(){
     NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
     NVIC_Init(&NVIC_InitStructure);
 
-    NVIC_InitStructure.NVIC_IRQChannel = TIM8_CC_IRQn;
-    NVIC_Init(&NVIC_InitStructure);
-
-    NVIC_InitStructure.NVIC_IRQChannel = TIM1_BRK_TIM9_IRQn;
-    NVIC_Init(&NVIC_InitStructure);
-
     NVIC_InitStructure.NVIC_IRQChannel = TIM1_UP_TIM10_IRQn;
     NVIC_Init(&NVIC_InitStructure);
 
     NVIC_InitStructure.NVIC_IRQChannel = TIM1_TRG_COM_TIM11_IRQn;
+    NVIC_Init(&NVIC_InitStructure);
+
+    NVIC_InitStructure.NVIC_IRQChannel = TIM8_UP_TIM13_IRQn;
+    NVIC_Init(&NVIC_InitStructure);
+
+    NVIC_InitStructure.NVIC_IRQChannel = TIM8_TRG_COM_TIM14_IRQn;
     NVIC_Init(&NVIC_InitStructure);
 
     /* Highest priority for receiver inputs */
@@ -150,8 +147,6 @@ void initInputs(){
 
     NVIC_InitStructure.NVIC_IRQChannel = EXTI3_IRQn;
     NVIC_Init(&NVIC_InitStructure);
-
-
 
     /* init the timers */
     TIM_InitStructure.TIM_RepetitionCounter = 0;
@@ -175,18 +170,9 @@ void initInputs(){
     TIM_Cmd(TIM2, ENABLE);
 
     /* This is for the four wheelspeed timers */
-    TIM_InitStructure.TIM_ClockDivision = TIM_CKD_DIV2;
-    TIM_InitStructure.TIM_Prescaler = 840; /* These TIMs run at 168MHz, but we div by 2, then by 840 to get 1uS ticks */
-    TIM_InitStructure.TIM_Period = 1000; /* Overflow after 1mS, implies no speed */
-
-
-    TIM_TimeBaseInit(TIM8, &TIM_InitStructure);
-    TIM_ITConfig(TIM8, TIM_IT_Update, ENABLE);
-    TIM_Cmd(TIM8, ENABLE);
-
-    TIM_TimeBaseInit(TIM9, &TIM_InitStructure);
-    TIM_ITConfig(TIM9, TIM_IT_Update, ENABLE);
-    TIM_Cmd(TIM9, ENABLE);
+    TIM_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+    TIM_InitStructure.TIM_Prescaler = 1600; /* These TIMs run at 168MHz, but we div 1680 to get 1uS ticks */
+    TIM_InitStructure.TIM_Period = 10000; /* Overflow after 1mS, implies no speed */
 
     TIM_TimeBaseInit(TIM10, &TIM_InitStructure);
     TIM_ITConfig(TIM10, TIM_IT_Update, ENABLE);
@@ -195,6 +181,18 @@ void initInputs(){
     TIM_TimeBaseInit(TIM11, &TIM_InitStructure);
     TIM_ITConfig(TIM11, TIM_IT_Update, ENABLE);
     TIM_Cmd(TIM11, ENABLE);
+
+    TIM_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+    TIM_InitStructure.TIM_Prescaler = 840; /* These TIMs run at 84Hz, but we div 840 to get 1uS ticks */
+    TIM_InitStructure.TIM_Period = 10000; /* Overflow after 1mS, implies no speed */
+
+    TIM_TimeBaseInit(TIM13, &TIM_InitStructure);
+    TIM_ITConfig(TIM13, TIM_IT_Update, ENABLE);
+    TIM_Cmd(TIM13, ENABLE);
+
+    TIM_TimeBaseInit(TIM14, &TIM_InitStructure);
+    TIM_ITConfig(TIM14, TIM_IT_Update, ENABLE);
+    TIM_Cmd(TIM14, ENABLE);
 }
 
 /* Timer for detecting overflow on receiver timer, i.e no data in the last 20mS, brings down the signal valid flag */
@@ -242,74 +240,65 @@ void EXTI3_IRQHandler(void){
 }
 
 /* Timer interrupts for the hallsensor count */
-void TIM8_CC_IRQHandler(void){
-    if (TIM_GetITStatus(TIM8, TIM_IT_Update) != RESET){
-        WheelCountStructure.FL = 0;
-        CalculateWheelRPM(WheelCountStructure.FL);
-        TIM_ClearITPendingBit(TIM8, TIM_IT_Update);
-    }
-}
-
-void TIM1_BRK_TIM9_IRQHandler(void){
-	if (TIM_GetITStatus(TIM9, TIM_IT_Update) != RESET){
-		WheelCountStructure.FR = 0;
-        CalculateWheelRPM(WheelCountStructure.FR);
-		TIM_ClearITPendingBit(TIM9, TIM_IT_Update);
-	}
-}
-
 void TIM1_UP_TIM10_IRQHandler(void){
     if (TIM_GetITStatus(TIM10, TIM_IT_Update) != RESET){
-        WheelCountStructure.BL = 0;
-        CalculateWheelRPM(WheelCountStructure.BL);
+        WheelRPMStructure.FL = 0;
         TIM_ClearITPendingBit(TIM10, TIM_IT_Update);
     }
 }
 
 void TIM1_TRG_COM_TIM11_IRQHandler(void){
-    if (TIM_GetITStatus(TIM11, TIM_IT_Update) != RESET){
-        WheelCountStructure.BR = 0;
-        CalculateWheelRPM(WheelCountStructure.BR);
-        TIM_ClearITPendingBit(TIM11, TIM_IT_Update);
+	if (TIM_GetITStatus(TIM11, TIM_IT_Update) != RESET){
+		WheelRPMStructure.FR = 0;
+		TIM_ClearITPendingBit(TIM11, TIM_IT_Update);
+	}
+}
+
+void TIM8_UP_TIM13_IRQHandler(void){
+    if (TIM_GetITStatus(TIM13, TIM_IT_Update) != RESET){
+        WheelRPMStructure.BL = 0;
+        TIM_ClearITPendingBit(TIM13, TIM_IT_Update);
+    }
+}
+
+void TIM8_TRG_COM_TIM14_IRQHandler(void){
+    if (TIM_GetITStatus(TIM14, TIM_IT_Update) != RESET){
+        WheelRPMStructure.BR = 0;
+        TIM_ClearITPendingBit(TIM14, TIM_IT_Update);
     }
 }
 
 /* Interrupts for feedback pins */
 void EXTI4_IRQHandler(void){
 	if(EXTI_GetITStatus(EXTI_Line4) != RESET){
-		WheelCountStructure.FL = TIM_GetCounter(TIM9);
-        WheelRPMStructure.FL = CalculateWheelRPM(WheelCountStructure.FL);
-        ClearInterupt(TIM8, EXTI_Line4);
+        WheelRPMStructure.FL = CalculateWheelRPM(TIM_GetCounter(TIM10));
+        TIM_SetCounter(TIM10, 0);
+        EXTI_ClearITPendingBit(EXTI_Line4);
 	}
 }
 
 void EXTI9_5_IRQHandler(void){
     if(EXTI_GetITStatus(EXTI_Line5) != RESET){
-        WheelCountStructure.FR = TIM_GetCounter(TIM9);
-        WheelRPMStructure.FR = CalculateWheelRPM(WheelCountStructure.FR);
-        ClearInterupt(TIM9, EXTI_Line5);
+        WheelRPMStructure.FR = CalculateWheelRPM(TIM_GetCounter(TIM11));
+        TIM_SetCounter(TIM11, 0);
+        EXTI_ClearITPendingBit(EXTI_Line5);
     }
 
 	if(EXTI_GetITStatus(EXTI_Line6) != RESET){
-        WheelCountStructure.BL = TIM_GetCounter(TIM10);
-        WheelRPMStructure.BL = CalculateWheelRPM(WheelCountStructure.BL);
-        ClearInterupt(TIM10, EXTI_Line6);
+        WheelRPMStructure.BL = CalculateWheelRPM(TIM_GetCounter(TIM13));
+        TIM_SetCounter(TIM13, 0);
+        EXTI_ClearITPendingBit(EXTI_Line6);
     }
 
     if(EXTI_GetITStatus(EXTI_Line7) != RESET){
-        WheelCountStructure.BR = TIM_GetCounter(TIM11);
-        WheelRPMStructure.BR = CalculateWheelRPM(WheelCountStructure.BR);
-        ClearInterupt(TIM11, EXTI_Line7);
+        WheelRPMStructure.BR = CalculateWheelRPM(TIM_GetCounter(TIM14));
+        TIM_SetCounter(TIM14, 0);
+        EXTI_ClearITPendingBit(EXTI_Line7);
     }
 }
 
 double CalculateWheelRPM(uint32_t Count){
     return 60.0 / ((Count/100000.0) * MOTORPOLES);
-}
-
-void ClearInterupt(TIM_TypeDef* TIMx, uint32_t EXTI_Line){
-    TIM_SetCounter(TIMx, 0);
-    EXTI_ClearITPendingBit(EXTI_Line);
 }
 
 double normaliseSignal(uint32_t input){

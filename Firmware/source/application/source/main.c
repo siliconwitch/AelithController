@@ -14,16 +14,15 @@
  * http://opensource.org/licenses/lgpl-3.0.html
  *
  */
-
 #include <stm32f4xx.h>
 #include <stm32f4xx_iwdg.h>
 #include <prototypes.h>
 #include <config.h>
+#include <differentialBiasing.h>
 
 /* Public variables */
 extern PPMOutputs PPMOutputStructure;
 extern RCRadio RCRadioStructure;
-
 
 int main(void){
     /* Boots the system */    
@@ -42,17 +41,29 @@ int main(void){
     initADC();
     initIMU();
 
+    differentialBiasing_initialize();
+
     while(1)
     {
         //USARTSendString("HI!\n");
         //IMUGetMotion();
 
-        /* Differential Algorithm */
-        PPMOutputStructure.MOT1 = (RCRadioStructure.throttle * FRONTPOWERBIAS) * ((RCRadioStructure.steering * FRONTSLIP) + 1);
-        PPMOutputStructure.MOT2 = (RCRadioStructure.throttle * FRONTPOWERBIAS) * ((RCRadioStructure.steering * FRONTSLIP * -1) + 1);
-        PPMOutputStructure.MOT3 = (RCRadioStructure.throttle * REARPOWERBIAS)  * ((RCRadioStructure.steering * REARSLIP)  + 1);
-        PPMOutputStructure.MOT4 = (RCRadioStructure.throttle * REARPOWERBIAS)  * ((RCRadioStructure.steering * REARSLIP  * -1) + 1);
-        PPMOutputStructure.AUX4 = RCRadioStructure.steering;
+        differentialBiasing_U.frontslip = (FRONTSLIP);
+        differentialBiasing_U.rearslip = (REARSLIP);
+        differentialBiasing_U.frontpowerbias = (FRONTPOWERBIAS);
+        differentialBiasing_U.rearpowerbias = (REARPOWERBIAS);
+        differentialBiasing_U.steering = RCRadioStructure.steering;
+        differentialBiasing_U.throttle = RCRadioStructure.throttle;
+        differentialBiasing_step();
+
+        /* Differential Algorithm from Simulink Model */
+        PPMOutputStructure.MOT1 = differentialBiasing_Y.FLWheel;
+        PPMOutputStructure.MOT2 = differentialBiasing_Y.FRWheel;
+        PPMOutputStructure.MOT3 = differentialBiasing_Y.BLWheel;
+        PPMOutputStructure.MOT4 = differentialBiasing_Y.BRWheel;
+
+        /* Steering Signal */
+        PPMOutputStructure.AUX4 = RCRadioStructure.steering;        
 
         /* Reset Watchdog */
         IWDG_ReloadCounter();

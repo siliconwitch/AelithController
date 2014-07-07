@@ -6,14 +6,16 @@
 
 del /Q /F output\*
 
-arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F405RG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ ^
+arm-none-eabi-gcc -mcpu=cortex-m4 -Wall -mthumb -ffunction-sections -g -O0 -c -DSTM32F405RG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ ^
 -Isource\application\include ^
 -Isource\cmsis ^
 -Isource\boot ^
 -Isource\stdlibs\include ^
+-Isource\matlab\ ^
 source\application\source\*.c ^
 source\boot\*.c ^
-source\stdlibs\source\*.c
+source\stdlibs\source\*.c ^
+source\matlab\*.c
 
 
 move *.o output
