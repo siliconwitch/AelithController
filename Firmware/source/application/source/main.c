@@ -14,16 +14,18 @@
  * http://opensource.org/licenses/lgpl-3.0.html
  *
  */
-
 #include <stm32f4xx.h>
 #include <stm32f4xx_iwdg.h>
 #include <prototypes.h>
 #include <config.h>
+#include <Differential.h>
 
 /* Public variables */
 extern PPMOutputs PPMOutputStructure;
 extern RCRadio RCRadioStructure;
 
+extern ExtU_Differential_T Differential_U;
+extern ExtY_Differential_T Differential_Y;
 
 int main(void){
     /* Boots the system */    
@@ -42,17 +44,27 @@ int main(void){
     initADC();
     initIMU();
 
+    Differential_initialize();
+
     while(1)
     {
         //USARTSendString("HI!\n");
         //IMUGetMotion();
+
+        Differential_U.frontslip = (FRONTSLIP);
+        Differential_U.rearslip = (REARSLIP);
+        Differential_U.frontpowerbias = (FRONTPOWERBIAS);
+        Differential_U.rearpowerbias = (REARPOWERBIAS);
+        Differential_U.steering = RCRadioStructure.steering;
+        Differential_U.throttle = RCRadioStructure.throttle;
+        Differential_step();
 
         /* Differential Algorithm */
         PPMOutputStructure.MOT1 = (RCRadioStructure.throttle * FRONTPOWERBIAS) * ((RCRadioStructure.steering * FRONTSLIP) + 1);
         PPMOutputStructure.MOT2 = (RCRadioStructure.throttle * FRONTPOWERBIAS) * ((RCRadioStructure.steering * FRONTSLIP * -1) + 1);
         PPMOutputStructure.MOT3 = (RCRadioStructure.throttle * REARPOWERBIAS)  * ((RCRadioStructure.steering * REARSLIP)  + 1);
         PPMOutputStructure.MOT4 = (RCRadioStructure.throttle * REARPOWERBIAS)  * ((RCRadioStructure.steering * REARSLIP  * -1) + 1);
-        PPMOutputStructure.AUX4 = RCRadioStructure.steering;
+        PPMOutputStructure.AUX4 = RCRadioStructure.steering;        
 
         /* Reset Watchdog */
         IWDG_ReloadCounter();

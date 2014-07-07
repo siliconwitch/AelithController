@@ -18,6 +18,7 @@
 #ifndef __PINMAPPINGS_H
 #define __PINMAPPINGS_H
 
+#define ARM_MATH_CM4
 /*------------------------*/
 /* INITIAL CONFIGURATION  */
 /*------------------------*/
@@ -47,7 +48,7 @@
 	#define FRONTPOWERBIAS 0.9
 	#define REARPOWERBIAS 1.0
 	#define FRONTSLIP 0.2
-	#define REARSLIP 0.9
+	#define REARSLIP 1.4
 
 /*------------------------*/
 /* PIN MAPPINGS FOR BOARD */
