@@ -1,5 +1,5 @@
 /*
- * File: rtmodel.h
+ * File: differentialBiasing_types.h
  *
  * Code generated for Simulink model 'differentialBiasing'.
  *
@@ -13,10 +13,17 @@
  * Validation result: Not run
  */
 
-#ifndef RTW_HEADER_rtmodel_h_
-#define RTW_HEADER_rtmodel_h_
-#include "differentialBiasing.h"
-#endif                                 /* RTW_HEADER_rtmodel_h_ */
+#ifndef RTW_HEADER_differentialBiasing_types_h_
+#define RTW_HEADER_differentialBiasing_types_h_
+#include "rtwtypes.h"
+
+/* Parameters (auto storage) */
+typedef struct P_differentialBiasing_T_ P_differentialBiasing_T;
+
+/* Forward declaration for rtModel */
+typedef struct tag_RTM_differentialBiasing_T RT_MODEL_differentialBiasing_T;
+
+#endif                                 /* RTW_HEADER_differentialBiasing_types_h_ */
 
 /*
  * File trailer for generated code.

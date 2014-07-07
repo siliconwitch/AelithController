@@ -1,13 +1,13 @@
 ###########################################################################
-## Makefile generated for Simulink model 'Differential'. 
+## Makefile generated for Simulink model 'differentialBiasing'. 
 ## 
-## Makefile     : Differential.mk
-## Generated on : Mon Jul 07 11:52:23 2014
+## Makefile     : differentialBiasing.mk
+## Generated on : Mon Jul 07 23:06:13 2014
 ## MATLAB Coder version: 2.5 (R2013b)
 ## 
 ## Build Info:
 ## 
-## Final product: $(RELATIVE_PATH_TO_ANCHOR)/Differential.elf
+## Final product: $(RELATIVE_PATH_TO_ANCHOR)/differentialBiasing.elf
 ## Product type : executable
 ## Build type   : Top-Level Standalone Executable
 ## 
@@ -22,8 +22,8 @@
 # MAKEFILE                Name of this makefile
 # COMPUTER                Computer type. See the MATLAB "computer" command.
 
-PRODUCT_NAME              = Differential
-MAKEFILE                  = Differential.mk
+PRODUCT_NAME              = differentialBiasing
+MAKEFILE                  = differentialBiasing.mk
 COMPUTER                  = PCWIN64
 MATLAB_ROOT               = C:/PROGRA~1/MATLAB/R2013b
 MATLAB_BIN                = C:/Program Files/MATLAB/R2013b/bin
@@ -35,7 +35,7 @@ SOLVER                    =
 SOLVER_OBJ                = 
 CLASSIC_INTERFACE         = 0
 TGT_FCN_LIB               = C89/C90 (ANSI)
-MODELREF_LINK_RSPFILE_NAME = Differential_ref.rsp
+MODELREF_LINK_RSPFILE_NAME = differentialBiasing_ref.rsp
 RELATIVE_PATH_TO_ANCHOR   = ..
 
 ###########################################################################
@@ -188,7 +188,7 @@ MAKE_EXT            = .mk
 ## OUTPUT INFO
 ###########################################################################
 
-PRODUCT = $(RELATIVE_PATH_TO_ANCHOR)/Differential.elf
+PRODUCT = $(RELATIVE_PATH_TO_ANCHOR)/differentialBiasing.elf
 PRODUCT_TYPE = "executable"
 BUILD_TYPE = "Top-Level Standalone Executable"
 
@@ -196,7 +196,7 @@ BUILD_TYPE = "Top-Level Standalone Executable"
 ## INCLUDE PATHS
 ###########################################################################
 
-INCLUDES_BUILDINFO = -I$(START_DIR)/Differential_ert_rtw -I$(START_DIR) -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert
+INCLUDES_BUILDINFO = -I$(START_DIR)/differentialBiasing_ert_rtw -I$(START_DIR) -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert
 
 INCLUDES = $(INCLUDES_BUILDINFO)
 
@@ -206,7 +206,7 @@ INCLUDES = $(INCLUDES_BUILDINFO)
 
 DEFINES_BUILD_ARGS = -DONESTEPFCN=1 -DTERMFCN=0 -DMAT_FILE=0 -DMULTI_INSTANCE_CODE=0 -DINTEGER_CODE=0 -DMT=0 -DCLASSIC_INTERFACE=0
 DEFINES_IMPLIED = -DTID01EQ=0
-DEFINES_STANDARD = -DMODEL=Differential -DNUMST=1 -DNCSTATES=0 -DHAVESTDIO
+DEFINES_STANDARD = -DMODEL=differentialBiasing -DNUMST=1 -DNCSTATES=0 -DHAVESTDIO
 
 DEFINES = $(DEFINES_BUILD_ARGS) $(DEFINES_IMPLIED) $(DEFINES_STANDARD)
 
@@ -214,7 +214,7 @@ DEFINES = $(DEFINES_BUILD_ARGS) $(DEFINES_IMPLIED) $(DEFINES_STANDARD)
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/Differential_ert_rtw/Differential.c $(START_DIR)/Differential_ert_rtw/Differential_data.c
+SRCS = $(START_DIR)/differentialBiasing_ert_rtw/differentialBiasing.c $(START_DIR)/differentialBiasing_ert_rtw/differentialBiasing_data.c
 
 MAIN_SRC = $(MATLAB_ROOT)/rtw/c/src/common/rt_main.c
 
@@ -224,7 +224,7 @@ ALL_SRCS = $(SRCS) $(MAIN_SRC)
 ## OBJECTS
 ###########################################################################
 
-OBJS = Differential.o Differential_data.o
+OBJS = differentialBiasing.o differentialBiasing_data.o
 
 MAIN_OBJ = rt_main.o
 
@@ -401,15 +401,15 @@ $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS) $(MAIN_OBJ)
 	$(CPP) $(CPPFLAGS) -o "$@" "$<"
 
 
-%.o : $(START_DIR)/Differential_ert_rtw/%.c
+%.o : $(START_DIR)/differentialBiasing_ert_rtw/%.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 
-%.o : $(START_DIR)/Differential_ert_rtw/%.s
+%.o : $(START_DIR)/differentialBiasing_ert_rtw/%.s
 	$(AS) $(ASFLAGS) -o "$@" "$<"
 
 
-%.o : $(START_DIR)/Differential_ert_rtw/%.cpp
+%.o : $(START_DIR)/differentialBiasing_ert_rtw/%.cpp
 	$(CPP) $(CPPFLAGS) -o "$@" "$<"
 
 

@@ -1,4 +1,4 @@
-MODEL=Differential
+MODEL=differentialBiasing
 NUMST=1
 NCSTATES=0
 HAVESTDIO

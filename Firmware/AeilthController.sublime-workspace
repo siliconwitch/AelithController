@@ -161,6 +161,8 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/matlab/differentialBiasing.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Control System/differentialBiasing_ert_rtw/differentialBiasing.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/stm32f4xx.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/stm32f4xx_conf.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/matlab/Differential.h",
@@ -286,9 +288,7 @@
 		"/C/Users/Raj/Desktop/MultiWii/def.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/source/boot/stm32f4xx.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/source/boot/system_stm32f4xx.h",
-		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/source/stm32f4xx_tim.c",
-		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/include/stm32f4xx_gpio.h",
-		"/C/Users/Raj/Documents/GitHub/AelithController/source/application/source/outputs.c"
+		"/C/Users/Raj/Documents/GitHub/AelithController/source/stdlibs/source/stm32f4xx_tim.c"
 	],
 	"find":
 	{

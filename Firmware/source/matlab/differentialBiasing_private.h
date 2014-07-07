@@ -1,11 +1,11 @@
 /*
- * File: Differential_private.h
+ * File: differentialBiasing_private.h
  *
- * Code generated for Simulink model 'Differential'.
+ * Code generated for Simulink model 'differentialBiasing'.
  *
- * Model version                  : 1.2
+ * Model version                  : 1.8
  * Simulink Coder version         : 8.5 (R2013b) 08-Aug-2013
- * C/C++ source code generated on : Mon Jul 07 11:52:22 2014
+ * C/C++ source code generated on : Mon Jul 07 23:15:50 2014
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -13,8 +13,8 @@
  * Validation result: Not run
  */
 
-#ifndef RTW_HEADER_Differential_private_h_
-#define RTW_HEADER_Differential_private_h_
+#ifndef RTW_HEADER_differentialBiasing_private_h_
+#define RTW_HEADER_differentialBiasing_private_h_
 #include "rtwtypes.h"
 #ifndef __RTWTYPES_H__
 #error This file requires rtwtypes.h to be included
@@ -23,7 +23,7 @@
 #error This file requires rtwtypes.h to be included before tmwtypes.h
 #endif                                 /* TMWTYPES_PREVIOUSLY_INCLUDED */
 #endif                                 /* __RTWTYPES_H__ */
-#endif                                 /* RTW_HEADER_Differential_private_h_ */
+#endif                                 /* RTW_HEADER_differentialBiasing_private_h_ */
 
 /*
  * File trailer for generated code.

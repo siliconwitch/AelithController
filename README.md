@@ -24,7 +24,7 @@ The make.bat file is able to run under Windows to compile, upload and start the 
 
 Control System
 --------------
-The control system for the project is designed in Labview using the C Generation toolbox. Granted this is the only part of the project that requires a non free software, the exported code howver is still in readable C.
+The control system for the project is designed in Simulink and can be exported as C code using the embedded coder module. Granted this is the only part of the project that requires a non free software, the exported code howver is still in readable C. Useful resource: http://www.mathworks.co.uk/hardware-support/arm-cortex-m-cmsis.html and http://www.mathworks.co.uk/hardware-support/st-discovery-board.html
 
 PCB Info
 --------

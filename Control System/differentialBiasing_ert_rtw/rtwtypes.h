@@ -1,11 +1,11 @@
 /*
  * File: rtwtypes.h
  *
- * Code generated for Simulink model 'Differential'.
+ * Code generated for Simulink model 'differentialBiasing'.
  *
- * Model version                  : 1.2
+ * Model version                  : 1.8
  * Simulink Coder version         : 8.5 (R2013b) 08-Aug-2013
- * C/C++ source code generated on : Mon Jul 07 11:52:22 2014
+ * C/C++ source code generated on : Mon Jul 07 23:15:50 2014
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex

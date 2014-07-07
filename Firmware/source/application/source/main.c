@@ -18,14 +18,11 @@
 #include <stm32f4xx_iwdg.h>
 #include <prototypes.h>
 #include <config.h>
-#include <Differential.h>
+#include <differentialBiasing.h>
 
 /* Public variables */
 extern PPMOutputs PPMOutputStructure;
 extern RCRadio RCRadioStructure;
-
-extern ExtU_Differential_T Differential_U;
-extern ExtY_Differential_T Differential_Y;
 
 int main(void){
     /* Boots the system */    
@@ -44,26 +41,28 @@ int main(void){
     initADC();
     initIMU();
 
-    Differential_initialize();
+    differentialBiasing_initialize();
 
     while(1)
     {
         //USARTSendString("HI!\n");
         //IMUGetMotion();
 
-        Differential_U.frontslip = (FRONTSLIP);
-        Differential_U.rearslip = (REARSLIP);
-        Differential_U.frontpowerbias = (FRONTPOWERBIAS);
-        Differential_U.rearpowerbias = (REARPOWERBIAS);
-        Differential_U.steering = RCRadioStructure.steering;
-        Differential_U.throttle = RCRadioStructure.throttle;
-        Differential_step();
+        differentialBiasing_U.frontslip = (FRONTSLIP);
+        differentialBiasing_U.rearslip = (REARSLIP);
+        differentialBiasing_U.frontpowerbias = (FRONTPOWERBIAS);
+        differentialBiasing_U.rearpowerbias = (REARPOWERBIAS);
+        differentialBiasing_U.steering = RCRadioStructure.steering;
+        differentialBiasing_U.throttle = RCRadioStructure.throttle;
+        differentialBiasing_step();
 
-        /* Differential Algorithm */
-        PPMOutputStructure.MOT1 = (RCRadioStructure.throttle * FRONTPOWERBIAS) * ((RCRadioStructure.steering * FRONTSLIP) + 1);
-        PPMOutputStructure.MOT2 = (RCRadioStructure.throttle * FRONTPOWERBIAS) * ((RCRadioStructure.steering * FRONTSLIP * -1) + 1);
-        PPMOutputStructure.MOT3 = (RCRadioStructure.throttle * REARPOWERBIAS)  * ((RCRadioStructure.steering * REARSLIP)  + 1);
-        PPMOutputStructure.MOT4 = (RCRadioStructure.throttle * REARPOWERBIAS)  * ((RCRadioStructure.steering * REARSLIP  * -1) + 1);
+        /* Differential Algorithm from Simulink Model */
+        PPMOutputStructure.MOT1 = differentialBiasing_Y.FLWheel;
+        PPMOutputStructure.MOT2 = differentialBiasing_Y.FRWheel;
+        PPMOutputStructure.MOT3 = differentialBiasing_Y.BLWheel;
+        PPMOutputStructure.MOT4 = differentialBiasing_Y.BRWheel;
+
+        /* Steering Signal */
         PPMOutputStructure.AUX4 = RCRadioStructure.steering;        
 
         /* Reset Watchdog */
