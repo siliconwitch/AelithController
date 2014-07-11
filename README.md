@@ -3,6 +3,8 @@
 
 An embedded control system targeted to RC model cars which feature individual wheel drive. This controller allows for software differentials and power delivery with the aid of various sensors on the vehicle. Currently the system makes use of wheel speed sensors and a 6 axis IMU for real time processing.
 
+Overview Video: http://youtu.be/ET1HEyqEQJQ
+
 The controller communicates to a steering servo and four brushless DC motor controllers. It also listens to a standard RC radio receiver for user input, as well as a serial port for telemetry over wireless modules such as xbee or bluetooth.
 
 It's hoped that this project allows for advanced features such as traction control, under/over steer detection, adaptive power delivery and real-time telemetry.
@@ -19,17 +21,17 @@ To enable debugging, GDB is required and can be found here:
 
 http://www.emb4fun.de/archive/stlink/index.html
 
-The make.bat file is able to run under Windows to compile, upload and start the debug server. Please ensure that your PATH environment variable are set up in windows for the batch commands to be recognised.
+The make.bat file is able to run under Windows to compile, upload and start the debug server. Please ensure that your PATH environment variable are set up in windows for the batch commands to be recognized.
 
 
 Control System
 --------------
-The control system for the project is designed in Simulink and can be exported as C code using the embedded coder module. Granted this is the only part of the project that requires a non free software, the exported code howver is still in readable C. Useful resource: http://www.mathworks.co.uk/hardware-support/arm-cortex-m-cmsis.html and http://www.mathworks.co.uk/hardware-support/st-discovery-board.html
+The control system for the project is designed in Simulink and can be exported as C code using the embedded coder module. Granted this is the only part of the project that requires a non free software, the exported code however is still in readable C. Useful resource: http://www.mathworks.co.uk/hardware-support/arm-cortex-m-cmsis.html and http://www.mathworks.co.uk/hardware-support/st-discovery-board.html
 
 PCB Info
 --------
 
-The hardware used in the project is custom. To see the Gerber and Diptrace project files, please see the pcb folder.
+The hardware used in the project is custom. To see the Schematic, Gerber and Diptrace project files, please see the PCB folder.
 Bare boards are available to order at: https://oshpark.com/shared_projects/t9Uw3F4U
 
 
