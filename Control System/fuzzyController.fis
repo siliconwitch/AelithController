@@ -1,0 +1,114 @@
+[System]
+Name='fuzzyController'
+Type='mamdani'
+Version=2.0
+NumInputs=6
+NumOutputs=5
+NumRules=12
+AndMethod='min'
+OrMethod='max'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='gyroYaw'
+Range=[-2 2]
+NumMFs=3
+MF1='CW':'trimf',[0 1 2]
+MF2='CCW':'trimf',[-2 -1 0]
+MF3='still':'trimf',[-1 0 1]
+
+[Input2]
+Name='steeringSignal'
+Range=[-2 2]
+NumMFs=3
+MF1='left':'trimf',[-2 -1 0]
+MF2='right':'trimf',[0 1 2]
+MF3='center':'trimf',[-1 0 1]
+
+[Input3]
+Name='throttleSignal'
+Range=[-2 2]
+NumMFs=3
+MF1='reverse':'trimf',[-2 -1 0]
+MF2='neutral':'trimf',[-1 0 1]
+MF3='forward':'trimf',[-0 1 2]
+
+[Input4]
+Name='frontDifferential'
+Range=[-2 2]
+NumMFs=3
+MF1='loose':'trimf',[-2 -1 0]
+MF2='medium':'trimf',[-1 0 1]
+MF3='tight':'trimf',[-0 1 2]
+
+[Input5]
+Name='rearDifferential'
+Range=[-2 2]
+NumMFs=3
+MF1='loose':'trimf',[-2 -1 0]
+MF2='medium':'trimf',[-1 0 1]
+MF3='tight':'trimf',[0 1 2]
+
+[Input6]
+Name='powerBias'
+Range=[-2 2]
+NumMFs=3
+MF1='front':'trimf',[-2 -1 0]
+MF2='middle':'trimf',[-1 0 1]
+MF3='back':'trimf',[0 1 2]
+
+[Output1]
+Name='steeringOutput'
+Range=[-2 2]
+NumMFs=3
+MF1='left':'trimf',[-2 -1 0]
+MF2='right':'trimf',[0 1 2]
+MF3='center':'trimf',[-1 0 1]
+
+[Output2]
+Name='FLWheelOutput'
+Range=[-2 2]
+NumMFs=3
+MF1='reverse':'trimf',[-2 -1 0]
+MF2='neutral':'trimf',[-1 0 1]
+MF3='forward':'trimf',[0 1 2]
+
+[Output3]
+Name='FRWheelOutput'
+Range=[-2 2]
+NumMFs=3
+MF1='reverse':'trimf',[-2 -1 0]
+MF2='neutral':'trimf',[-1 0 1]
+MF3='forward':'trimf',[0 1 2]
+
+[Output4]
+Name='BLWheelOutput'
+Range=[-2 2]
+NumMFs=3
+MF1='reverse':'trimf',[-2 -1 -0]
+MF2='neutral':'trimf',[-1 0 1]
+MF3='forward':'trimf',[0 1 2]
+
+[Output5]
+Name='BRWheelOutput'
+Range=[-2 2]
+NumMFs=3
+MF1='reverse':'trimf',[-2 -1 0]
+MF2='neutral':'trimf',[-1 0 1]
+MF3='forward':'trimf',[0 1 2]
+
+[Rules]
+0 1 0 0 0 0, 1 0 0 0 0 (1) : 1
+0 2 0 0 0 0, 2 0 0 0 0 (1) : 1
+0 3 0 0 0 0, 3 0 0 0 0 (1) : 1
+0 0 3 0 0 0, 0 3 3 3 3 (1) : 1
+0 0 3 0 0 1, 0 3 3 1 1 (1) : 1
+0 0 3 0 0 3, 0 1 1 3 3 (1) : 1
+0 0 2 0 0 0, 0 2 2 2 2 (1) : 1
+0 0 1 0 0 0, 0 1 1 1 1 (1) : 1
+0 1 3 0 1 0, 0 0 0 1 3 (1) : 1
+0 2 3 0 1 0, 0 0 0 3 1 (1) : 1
+0 1 3 0 2 0, 0 0 0 2 3 (1) : 1
+0 2 3 0 2 0, 0 0 0 3 2 (1) : 1

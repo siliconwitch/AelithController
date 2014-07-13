@@ -45,10 +45,9 @@
 	#define DEFAULTGYRORANGE	500
 
 	/* Control related */
-	#define FRONTPOWERBIAS 0.9
-	#define REARPOWERBIAS 1.0
-	#define FRONTSLIP 0.2
-	#define REARSLIP 1.4
+	#define POWERBIAS 0.0
+	#define FRONTSLIP 0.0
+	#define REARSLIP 0.0
 
 /*------------------------*/
 /* PIN MAPPINGS FOR BOARD */

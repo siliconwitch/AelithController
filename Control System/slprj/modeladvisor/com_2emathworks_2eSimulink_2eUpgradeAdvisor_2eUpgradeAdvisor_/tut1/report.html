@@ -1,0 +1,393 @@
+<html>  <head>  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Model Advisor Report for 'tut1'</title>  
+<style><!--
+H3 {font-size:14pt; font-weight:200;}  
+H4 {font-size:9pt; font-weight:normal;}  
+H5 {font-size: 12pt; font-style:italic; font-weight: bold; color: #333333; margin-bottom: 2px}  
+body {font-family: Arial, Helvetica, sans-serif}  
+.subsection {padding-left: 30px;}  
+
+table.AdvTable { border-collapse:collapse; margin:0px 0px 20px 0px; border:1px solid #ececec; border-right:none; border-bottom:none; }
+.AdvTable td.AdvTableColHeading { padding-left:5px; padding-right:5px; color:#fff; line-height:120%; background:#80a0c1 url(data:image/gif;base64,R0lGODlhAQAaAKIAAHSRr3mXtn+fv2V/mX2cvG2JpVxzi4CgwSH5BAAAAAAALAAAAAABABoAAAMJeLrcLCSAMkwCADs=) repeat-x bottom left; border-right: 1px solid #ececec; border-bottom: 1px solid #ececec; }
+.AdvTable td { padding-left:5px; padding-right:5px; border-right:1px solid #ececec; border-bottom: 1px solid #ececec; }
+td.AdvTableColHeading p { margin-bottom:0px; }
+.AdvTable p { margin-bottom:10px; }
+table.AdvTableNoBorder { border-collapse:collapse; margin:0px 0px 20px 0px; border:none}
+.AdvTableNoBorder td { padding-left:5px; padding-right:5px; border:none; }
+.AdvTableNoBorder p { margin-bottom:10px; }
+--></style>  
+<script> <!-- 
+// rtwreport needs it 
+function init() {
+    var showFailed = document.getElementById("Failed Checkbox");
+    var showPassed = document.getElementById("Passed Checkbox");
+    var showWarning = document.getElementById("Warning Checkbox");
+    var showNotRun = document.getElementById("Not Run Checkbox");       
+    
+    inputText = RegExp('\\?(.*)').exec(window.location.search);
+    
+    if (inputText == null) {
+        return;
+    }
+    else {
+        showFailed.checked = false;
+        showPassed.checked = false;
+        showWarning.checked = false;
+        showNotRun.checked = false;
+    }
+    
+    if (!inputText[1].localeCompare("showPassedChecks")) {
+        showPassed.checked = true;
+    }
+    if (!inputText[1].localeCompare("showWarningChecks")) {
+        showWarning.checked = true;
+    }
+    if (!inputText[1].localeCompare("showFailedChecks")) {
+        showFailed.checked = true;
+    }
+    if (!inputText[1].localeCompare("showNotRunChecks")) {
+        showNotRun.checked = true;
+    }
+    updateVisibleChecks();
+}
+
+function updateVisibleChecks(){
+    
+    var showFailed = document.getElementById("Failed Checkbox").checked;
+    var showPassed = document.getElementById("Passed Checkbox").checked;
+    var showWarning = document.getElementById("Warning Checkbox").checked;
+    var showNotRun = document.getElementById("Not Run Checkbox").checked;
+    var allshowFlag = showFailed && showPassed && showWarning && showNotRun;
+    var passedChecks = document.getElementsByName("Passed Check");
+    var failedChecks = document.getElementsByName("Failed Check");
+    var warningChecks = document.getElementsByName("Warning Check");
+    var notRunChecks = document.getElementsByName("Not Run Check");
+    var i;
+    
+    if(failedChecks==null){failedChecks = 0;}
+    if(passedChecks==null){passedChecks = 0;}
+    if(warningChecks==null){warningChecks = 0;}
+    if(notRunChecks==null){notRunChecks = 0;}
+    
+    for(i = 0; i < passedChecks.length; i++)
+    {
+        passedChecks[i].style.display = "none";
+    }     
+    for(i = 0; i < failedChecks.length; i++)
+    {
+        failedChecks[i].style.display = "none";
+    }     
+    for(i = 0; i < warningChecks.length; i++)
+    {
+        warningChecks[i].style.display = "none";
+    }     
+    for(i = 0; i < notRunChecks.length; i++)
+    {
+        notRunChecks[i].style.display = "none";
+    }     
+    
+    if(showFailed || allshowFlag)
+    {
+        for(i = 0; i < failedChecks.length; i++)
+        {
+	    failedChecks[i].style.display = "";
+        }     
+    }
+    
+    if(showPassed || allshowFlag)
+    {
+        for(i = 0; i < passedChecks.length; i++)
+        {
+	    passedChecks[i].style.display = "";
+        }     
+    }
+    
+    if(showWarning || allshowFlag)
+    {
+        for(i = 0; i < warningChecks.length; i++)
+        {
+	    warningChecks[i].style.display = "";
+        }     
+    }
+    
+    if(showNotRun || allshowFlag)
+    {
+        for(i = 0; i < notRunChecks.length; i++)
+        {
+	    notRunChecks[i].style.display = "";
+        }     
+    }
+}
+
+function MATableShrink(o,tagNameStr,tagNameStr1){
+    var temp = document.getElementsByName(tagNameStr);
+    var classUsed = document.getElementsByName('EmbedImages'); 
+    var embeddedMode = !(classUsed.length == 0);
+    if (temp[0].style.display == "") 
+    {
+        temp[0].style.display = "none";
+        if (embeddedMode)
+        {
+            //o.innerHTML = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAAkUlEQVR42mL8//8/AyUAIICYGCgEAAFEsQEAAUSxAQABxIIu0NTURDBQ6urqGGFsgABiwaagpqYOp+aWliYUPkAAEfQCCwt+JQABRHEYAAQQCzE2w9h//vzDUAcQQDgNgCkGacamEQYAAohiLwAEEEED8NkOAgABxEJMVOEDAAHESGlmAgggisMAIIAoNgAgwAC+/BqtC+40NQAAAABJRU5ErkJggg==" class="plus"/>';        
+            o.firstChild.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAAkUlEQVR42mL8//8/AyUAIICYGCgEAAFEsQEAAUSxAQABxIIu0NTURDBQ6urqGGFsgABiwaagpqYOp+aWliYUPkAAEfQCCwt+JQABRHEYAAQQCzE2w9h//vzDUAcQQDgNgCkGacamEQYAAohiLwAEEEED8NkOAgABxEJMVOEDAAHESGlmAgggisMAIIAoNgAgwAC+/BqtC+40NQAAAABJRU5ErkJggg==";
+        }
+        else
+        {
+            //o.innerHTML = '<img src="plus.png"/>';    
+            o.firstChild.src = "plus.png";
+        }
+        temp = document.getElementsByName(tagNameStr1);
+        if(temp[0] != undefined)
+        {
+            temp[0].style.display = "";
+        }
+    } 
+    else 
+    {
+        temp[0].style.display = "";
+        if (embeddedMode)
+        {
+            //o.innerHTML = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAAhklEQVR42mL8//8/AyUAIICYGCgEAAFEsQEAAUSxAQABxIIu0NTURDBQ6urqGGFsgABiwaagpqYOp+aWliYUPkAAUewFgACi2ACAAGLBKcGCafafP/8wxAACCKcB2BRjAwABRLEXAAKIYgMAAoiFmKjCBwACiJHSzAQQQBR7ASCAKDYAIMAAUtQUow+YsTsAAAAASUVORK5CYII=" />';
+            o.firstChild.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAAhklEQVR42mL8//8/AyUAIICYGCgEAAFEsQEAAUSxAQABxIIu0NTURDBQ6urqGGFsgABiwaagpqYOp+aWliYUPkAAUewFgACi2ACAAGLBKcGCafafP/8wxAACCKcB2BRjAwABRLEXAAKIYgMAAoiFmKjCBwACiJHSzAQQQBR7ASCAKDYAIMAAUtQUow+YsTsAAAAASUVORK5CYII=";
+        }
+        else
+        {
+            //o.innerHTML = '<img src="minus.png"/>';
+            o.firstChild.src = "minus.png";
+        }
+        temp = document.getElementsByName(tagNameStr1);
+        if(temp[0] != undefined)
+        {
+            temp[0].style.display = "none";
+        }
+    }
+}
+
+// rtwreport needs it 
+function updateHyperlink() {
+    docObj = window.document;
+    loc = document.location;
+    var aHash = "";
+    var externalweb = "false";
+    if (loc.search || loc.hash) {
+        if (loc.search)
+            aHash = loc.search.substring(1);
+        else
+            aHash = loc.hash.substring(1);
+    }    
+    var args = new Array();
+    args = aHash.split('&');
+    for (var i = 0; i < args.length; ++i) {
+        var arg = args[i];
+          sep = arg.indexOf('=');
+        if (sep != -1) {
+            var cmd = arg.substring(0,sep);
+            var opt = arg.substring(sep+1);
+            switch (cmd.toLowerCase()) {
+            case "externalweb":
+                externalweb = opt;
+                break;
+            }
+        }
+    }        
+    if (externalweb === "true") {        
+        var objs = docObj.getElementsByTagName("a");
+        if (objs.length > 0 && objs[0].removeAttribute) {
+            for (var i = 0; i < objs.length; ++i) {           
+                if (objs[i].href.indexOf('matlab') > -1)           
+                    objs[i].removeAttribute("href");                
+            }
+        }
+    }
+    init();
+}
+    
+/* Copyright 2013 The MathWorks, Inc. */
+//COLLAPSIBLE FEATURE
+/* global variables */
+var GlobalCollapseState = "off";
+
+/* System defined collapsible mode */
+function collapseSDHelper(o, CollElement, disp){
+
+    if (CollElement.nodeName == "UL" || CollElement.nodeName == "OL"){
+        var CollName = "LI";
+    }else if (CollElement.nodeName == "TABLE"){
+        var CollName = "TR";
+    }
+    // get children (li for list and tr for table)
+    var children = CollElement.childNodes;
+    if (children[0].nodeName=="TBODY"){
+        children = children[0].childNodes;
+    }
+    var nElements = 0;
+    for (var i=0;i<children.length;i++){
+        if (children[i].nodeName == CollName){
+            nElements = nElements + 1;
+            if (nElements > 5){
+                children[i].style.display = disp;
+            }
+        }
+    }
+    if (disp == "none"){
+        if (CollName == "LI"){
+            var text = " items)";
+        }else{
+            var text = " rows)";
+        }
+        var textNode = document.createTextNode(("\u2228 More (" + (nElements-5) + text));
+        o.replaceChild(textNode,o.firstChild);
+
+        CollElement.setAttribute("dataCollapse", "on");
+    }else{
+        var textNode = document.createTextNode(("\u2227 " + "Less"));
+        o.replaceChild(textNode,o.firstChild);
+
+        CollElement.setAttribute("dataCollapse", "off");
+    }
+}
+
+function collapseSD(o, ID){
+    var CollElement = document.getElementById(ID);
+    if (CollElement != null){
+        if (CollElement.getAttribute("dataCollapse") == "off"){
+            var disp="none";
+        }else{
+            var disp="";
+        }
+        collapseSDHelper(o, CollElement, disp);
+    }
+}
+
+/* Collapse all mode */
+function collapseAllHelper(o, CollElement, CollInfo, disp){
+
+    if (CollElement != null){
+        if (disp == "none"){
+            CollElement.style.display = disp;
+			o.firstChild.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAAkUlEQVR42mL8//8/AyUAIICYGCgEAAFEsQEAAUSxAQABxIIu0NTURDBQ6urqGGFsgABiwaagpqYOp+aWliYUPkAAEfQCCwt+JQABRHEYAAQQCzE2w9h//vzDUAcQQDgNgCkGacamEQYAAohiLwAEEEED8NkOAgABxEJMVOEDAAHESGlmAgggisMAIIAoNgAgwAC+/BqtC+40NQAAAABJRU5ErkJggg==";
+        }else{
+            CollElement.style.display = disp;
+			o.firstChild.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAAhklEQVR42mL8//8/AyUAIICYGCgEAAFEsQEAAUSxAQABxIIu0NTURDBQ6urqGGFsgABiwaagpqYOp+aWliYUPkAAUewFgACi2ACAAGLBKcGCafafP/8wxAACCKcB2BRjAwABRLEXAAKIYgMAAoiFmKjCBwACiJHSzAQQQBR7ASCAKDYAIMAAUtQUow+YsTsAAAAASUVORK5CYII=";
+        }
+
+        if (CollInfo != null){
+            if (disp == "none"){
+                CollInfo.style.display = "";
+            }else{
+                CollInfo.style.display = "none";
+            }
+        }
+    }
+}
+function collapseAll(o, ID, ID2){
+    var CollElement = document.getElementById(ID);
+    var CollInfo = document.getElementById(ID2);
+
+    if (CollElement.style.display == ""){
+        var disp = "none";
+    }else{
+        var disp = "";
+    }
+
+    collapseAllHelper(o, CollElement, CollInfo, disp);
+}
+
+/* Collapsible helper functions */
+function getNextTag(o, tag){
+    while(o.nextSibling.nodeName != tag){
+        o = o.nextSibling;
+    }
+    return o.nextSibling;
+}
+
+function getPreviousTag(o, tag){
+    while(o.nodeName != tag){
+        o = o.previousSibling;
+    }
+    return o;
+}
+
+function getElByClassName(cla, tags){
+    //var nodes;
+    var ClassNodes = [];
+    for (var i=0;i<tags.length;i++){
+        var nodes = document.getElementsByTagName(tags[i]);
+        for (var ii=0;ii<nodes.length;ii++){
+            var tempclass = nodes[ii].className;
+            if (nodes[ii].className.indexOf(cla) != -1){
+                ClassNodes.push(nodes[ii]);
+            }
+        }
+    }
+    return ClassNodes;
+}
+
+/* Expand / collapse all */
+function expandCollapseAll(o){
+	/* IE has no method for getting elements by class name */
+    if (!(document.getElementsByClassName)){
+        var SDCollapse = getElByClassName("SystemdefinedCollapse", Array("table","ul","ol"));
+    }else{		
+        var SDCollapse = document.getElementsByClassName("SystemdefinedCollapse");
+    }
+    var Button = null;
+
+    if (GlobalCollapseState == "off"){
+        var disp = "none";
+        GlobalCollapseState = "on";
+        if (o != null){
+            o.innerHTML = "&or; ";
+        }
+    }else{
+        var disp = "";
+        GlobalCollapseState = "off";
+        if (o != null){
+            o.innerHTML = "&and; ";
+        }
+    }
+    for (var i=0;i<SDCollapse.length;i++){
+        Button = getNextTag(SDCollapse[i], "SPAN");
+        collapseSDHelper(Button, SDCollapse[i], disp);
+    }
+	
+    if (!(document.getElementsByClassName)){
+        var AllCollapse = getElByClassName("AllCollapse", Array("div"));
+    }else{		
+        var AllCollapse = document.getElementsByClassName("AllCollapse");
+    }
+
+    for (i=0;i<AllCollapse.length;i++){
+		Button = getPreviousTag(AllCollapse[i], "SPAN");
+		
+        var HiddenText =  getNextTag(AllCollapse[i], "DIV");
+        collapseAllHelper(Button, AllCollapse[i], HiddenText, disp);
+    }
+}
+
+
+function expandCollapseAllOnLoad(){
+    GlobalCollapseState = "on";
+    var Switch = document.getElementById("ExpandCollapseAll");
+    expandCollapseAll(Switch);
+}
+//END COLLAPSIBLE
+
+ --></script></head>  
+<body onload="updateHyperlink(); expandCollapseAllOnLoad();">  
+<table width="100%" class="AdvTableNoBorder" border="0"><tr><td colspan="2" align="center"><b>Model Advisor Report</b>
+</td>
+</tr>
+<tr><td align="left" valign="top"><b>Simulink version: <font color="#800000">8.2</font></b>
+</td>
+<td align="right" valign="top"><b>Model version: <font color="#800000">1.5</font></b>
+</td>
+</tr>
+<tr><td align="left" valign="top"><b>System: <font color="#800000">tut1</font></b>
+</td>
+<td align="right" valign="top"><b>Current run: <font color="#800000">12-Jul-2014 10:25:45</font></b>
+</td>
+</tr>
+</table>
+<h4>No results to display. Select one or more items in the left pane, then press <b>Run Selected Checks</b>.</h4>
+</body>  
+</html>  

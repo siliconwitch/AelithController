@@ -18,7 +18,10 @@
 #include <stm32f4xx_iwdg.h>
 #include <prototypes.h>
 #include <config.h>
-#include <differentialBiasing.h>
+//#include <differentialBiasing.h>
+#include <fuzzyController.h>
+#include <rtwtypes.h>
+#include <stdio.h>
 
 /* Public variables */
 extern PPMOutputs PPMOutputStructure;
@@ -41,29 +44,32 @@ int main(void){
     initADC();
     initIMU();
 
-    differentialBiasing_initialize();
+    /* Start up the controller */
+    //differentialBiasing_initialize();
+    fuzzyController_initialize();
 
     while(1)
     {
         //USARTSendString("HI!\n");
         //IMUGetMotion();
 
-        differentialBiasing_U.frontslip = (FRONTSLIP);
-        differentialBiasing_U.rearslip = (REARSLIP);
-        differentialBiasing_U.frontpowerbias = (FRONTPOWERBIAS);
-        differentialBiasing_U.rearpowerbias = (REARPOWERBIAS);
-        differentialBiasing_U.steering = RCRadioStructure.steering;
-        differentialBiasing_U.throttle = RCRadioStructure.throttle;
-        differentialBiasing_step();
+        /* Send inputs into the controller */
+        fuzzyController_U.gyroYaw = 0;          
+        fuzzyController_U.steeringSignal = RCRadioStructure.steering;   
+        fuzzyController_U.throttleSignal = RCRadioStructure.throttle;   
+        fuzzyController_U.frontDifferential = FRONTSLIP;
+        fuzzyController_U.rearDifferential = REARSLIP; 
+        fuzzyController_U.powerBias = POWERBIAS; 
 
-        /* Differential Algorithm from Simulink Model */
-        PPMOutputStructure.MOT1 = differentialBiasing_Y.FLWheel;
-        PPMOutputStructure.MOT2 = differentialBiasing_Y.FRWheel;
-        PPMOutputStructure.MOT3 = differentialBiasing_Y.BLWheel;
-        PPMOutputStructure.MOT4 = differentialBiasing_Y.BRWheel;
+        /* Run the controller */ 
+        fuzzyController_step();
 
-        /* Steering Signal */
-        PPMOutputStructure.AUX4 = RCRadioStructure.steering;        
+        /* Apply outputs from controller */
+        PPMOutputStructure.AUX4 = fuzzyController_Y.steeringOutput;
+        PPMOutputStructure.MOT1 = fuzzyController_Y.FLWheelOutput;
+        PPMOutputStructure.MOT2 = fuzzyController_Y.FRWheelOutput;
+        PPMOutputStructure.MOT3 = fuzzyController_Y.BLWheelOutput;
+        PPMOutputStructure.MOT4 = fuzzyController_Y.BRWheelOutput;      
 
         /* Reset Watchdog */
         IWDG_ReloadCounter();
