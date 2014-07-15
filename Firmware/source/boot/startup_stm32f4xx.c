@@ -25,6 +25,11 @@
 __attribute__ ((section(".co_stack")))
 unsigned long pulStack[STACK_SIZE];
 
+#define HEAP_SIZE       0x00000200
+__attribute__ ((section(".co_heap")))
+unsigned long pulHeap[HEAP_SIZE];
+extern unsigned long __cs3_heap_start;
+extern unsigned long __cs3_heap_end;
 
 /*----------Macro definition--------------------------------------------------*/
 #define WEAK __attribute__ ((weak))

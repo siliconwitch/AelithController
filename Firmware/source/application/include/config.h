@@ -19,6 +19,8 @@
 #define __PINMAPPINGS_H
 
 #define ARM_MATH_CM4
+#define NO_PRINTF
+ 
 /*------------------------*/
 /* INITIAL CONFIGURATION  */
 /*------------------------*/
@@ -45,9 +47,9 @@
 	#define DEFAULTGYRORANGE	500
 
 	/* Control related */
-	#define POWERBIAS 0.0
-	#define FRONTSLIP 0.0
-	#define REARSLIP 0.0
+	#define POWERBIAS 0
+	#define FRONTSLIP 0.8
+	#define REARSLIP 0
 
 /*------------------------*/
 /* PIN MAPPINGS FOR BOARD */

@@ -18,14 +18,13 @@
 #include <stm32f4xx_iwdg.h>
 #include <prototypes.h>
 #include <config.h>
-//#include <differentialBiasing.h>
 #include <fuzzyController.h>
 #include <rtwtypes.h>
-#include <stdio.h>
 
 /* Public variables */
 extern PPMOutputs PPMOutputStructure;
 extern RCRadio RCRadioStructure;
+extern IMUMotion Motion;
 
 int main(void){
     /* Boots the system */    
@@ -45,7 +44,6 @@ int main(void){
     initIMU();
 
     /* Start up the controller */
-    //differentialBiasing_initialize();
     fuzzyController_initialize();
 
     while(1)
@@ -54,7 +52,7 @@ int main(void){
         //IMUGetMotion();
 
         /* Send inputs into the controller */
-        fuzzyController_U.gyroYaw = 0;          
+        fuzzyController_U.gyroYaw = Motion.yaw/DEFAULTGYRORANGE;          
         fuzzyController_U.steeringSignal = RCRadioStructure.steering;   
         fuzzyController_U.throttleSignal = RCRadioStructure.throttle;   
         fuzzyController_U.frontDifferential = FRONTSLIP;
