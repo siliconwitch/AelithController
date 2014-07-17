@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'fuzzyController'.
  *
- * Model version                  : 1.10
+ * Model version                  : 1.11
  * Simulink Coder version         : 8.5 (R2013b) 08-Aug-2013
- * C/C++ source code generated on : Tue Jul 15 18:52:03 2014
+ * C/C++ source code generated on : Tue Jul 15 21:10:01 2014
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
