@@ -1,0 +1,575 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"te",
+				"telemetryFlag"
+			],
+			[
+				"rx",
+				"rxString"
+			],
+			[
+				"c",
+				"command"
+			],
+			[
+				"sti",
+				"string"
+			],
+			[
+				"st",
+				"string"
+			],
+			[
+				"r",
+				"rxBuffer"
+			],
+			[
+				"in",
+				"index"
+			],
+			[
+				"s",
+				"string"
+			],
+			[
+				"u",
+				"uint8_t"
+			],
+			[
+				"hi2c",
+				"hi2c1"
+			],
+			[
+				"data",
+				"DataLength"
+			],
+			[
+				"h",
+				"hiwdg"
+			],
+			[
+				"R",
+				"REC1PIN"
+			],
+			[
+				"GP",
+				"GPIO_Pin"
+			],
+			[
+				"NO",
+				"NO_PRINTF"
+			],
+			[
+				"a",
+				"arm-gcc-link"
+			],
+			[
+				"m",
+				"matlab"
+			],
+			[
+				"TI",
+				"TIM_IT_Update"
+			],
+			[
+				"REAR",
+				"REARPOWERBIAS"
+			],
+			[
+				"FR",
+				"FRONTPOWERBIAS"
+			],
+			[
+				"ARM",
+				"ARMCM4"
+			],
+			[
+				"defn",
+				"define"
+			],
+			[
+				"FRONT",
+				"FRONTPOWERBIAS"
+			],
+			[
+				"gyr",
+				"gyroConvFactor"
+			],
+			[
+				"th",
+				"throttle"
+			],
+			[
+				"de",
+				"define"
+			],
+			[
+				"TIM_G",
+				"TIM_GetCounter"
+			],
+			[
+				"IW",
+				"IWDG_ReloadCounter"
+			],
+			[
+				"t",
+				"throttle"
+			],
+			[
+				"FRO",
+				"FRONTPOWERBIAS"
+			],
+			[
+				"RC",
+				"RCRadioStructure"
+			],
+			[
+				"RCR",
+				"RCRadioStructure"
+			],
+			[
+				"v",
+				"volatile"
+			],
+			[
+				"PP",
+				"PPMOutputs"
+			],
+			[
+				"MO",
+				"MOT1"
+			],
+			[
+				"e",
+				"extern"
+			],
+			[
+				"PPM",
+				"PPMOutputStructure"
+			],
+			[
+				"inc",
+				"include"
+			],
+			[
+				"gy",
+				"gyroConvFactor"
+			],
+			[
+				"acc",
+				"accelConvFactor"
+			],
+			[
+				"acce",
+				"accelRegister"
+			]
+		]
+	},
+	"build_system": "Packages/User/Batch file.sublime-build",
+	"command_palette":
+	{
+		"height": 60.0,
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 386.0
+	},
+	"console":
+	{
+		"height": 145.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/include/prototypes.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/old/STMCubeMX Generated Files/Src/main.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/source/stm32f4xx_hal_msp.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/hal/source/stm32f4xx_hal_dma.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/source/stm32f4xx_it.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/source/analogue.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/hal/include/stm32f4xx_hal_adc.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/include/stm32f4xx_it.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/include/config.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/hal/include/stm32f4xx_hal_dma.h",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/I2C/I2C_TwoBoards_ComDMA/Inc/main.h",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/I2C/I2C_TwoBoards_ComDMA/Inc/stm32f4xx_it.h",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/I2C/I2C_TwoBoards_ComDMA/Src/stm32f4xx_hal_msp.c",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/ADC/ADC_RegularConversion_DMA/Src/stm32f4xx_it.c",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/DMA/DMA_FLASHToRAM/Src/main.c",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/DMA/DMA_FLASHToRAM/Src/stm32f4xx_it.c",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/I2C/I2C_TwoBoards_ComDMA/Src/main.c",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/I2C/I2C_TwoBoards_ComDMA/Inc/stm32f4xx_hal_conf.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Controller/fuzzyController_ert_rtw/fuzzyController.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/STM32F405RG_FLASH.ld",
+		"/C/Users/Raj/Documents/GitHub/AelithController/old/STMCubeMX Generated Files/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_conf_template.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal_dma.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_hal.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/include/stm32f4xx_it.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/source/stm32f4xx_hal_msp.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/ADC/ADC_RegularConversion_DMA/Src/main.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/ADC/ADC_RegularConversion_DMA/Src/stm32f4xx_it.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/ADC/ADC_RegularConversion_DMA/Inc/stm32f4xx_it.h",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/ADC/ADC_RegularConversion_DMA/Inc/stm32f4xx_hal_conf.h",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/ADC/ADC_RegularConversion_DMA/Src/system_stm32f4xx.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/ADC/ADC_RegularConversion_DMA/Src/stm32f4xx_hal_msp.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/ADC/ADC_RegularConversion_DMA/Inc/main.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_hal_adc.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_hal_dma.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/source/stm32f4xx_it.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal_adc.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal_dma_ex.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_hal_adc_ex.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/include/config.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/source/analogue.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/source/serial.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/source/analogue.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/include/config.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/include/prototypes.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/source/main.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/source/syscalls.c",
+		"/C/Users/Raj/Desktop/New folder/Src/stm32f4xx_it.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal_i2c.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal_i2c_ex.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal_uart.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/include/stm32f4xx_hal_conf.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/boot/stm32f405xx.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/boot/stm32f4xx.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/source/io.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/UART/UART_TwoBoards_ComIT/Inc/main.h",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/UART/UART_TwoBoards_ComIT/Src/main.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_hal_i2c.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal.c",
+		"/C/Users/Raj/Desktop/New folder/Src/main.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_hal_conf.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal_msp.c",
+		"/C/Users/Raj/Desktop/New folder/Src/stm32f4xx_hal_msp.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal_tim.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_hal_tim.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_hal_gpio.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal_gpio.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/source/imu.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_it.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/TIM/TIM_TimeBase/Src/main.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_hal_cortex.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal_cortex.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_hal_iwdg.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_it.h",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/TIM/TIM_TimeBase/Inc/main.h",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/TIM/TIM_TimeBase/Src/stm32f4xx_it.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/TIM/TIM_TimeBase/Inc/stm32f4xx_it.h",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/TIM/TIM_PWMInput/Src/system_stm32f4xx.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/TIM/TIM_PWMInput/Src/stm32f4xx_hal_msp.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/TIM/TIM_PWMInput/Src/stm32f4xx_it.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/TIM/TIM_PWMInput/Src/main.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/TIM/TIM_PWMInput/Inc/main.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/source/inputs.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/TIM/TIM_PWMInput/Inc/stm32f4xx_it.h",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/TIM/TIM_PWMInput/Inc/stm32f4xx_hal_conf.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal_tim_ex.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_hal_tim_ex.h",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/GPIO/GPIO_EXTI/Src/main.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/GPIO/GPIO_EXTI/Src/stm32f4xx_it.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_hal_gpio_ex.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/make.bat",
+		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/STM32F405RG_FLASH.ld",
+		"/C/Users/Raj/Desktop/AelithControllerHAL/boot/startup_stm32f405xx.s",
+		"/C/Users/Raj/Desktop/New folder/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f405xx.s",
+		"/C/Users/Raj/Desktop/New folder/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c",
+		"/C/Users/Raj/Desktop/New folder/Projects/TrueSTUDIO/AelithController Configuration/STM32F405RG_FLASH.ld",
+		"/C/Users/Raj/Desktop/New folder/Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h",
+		"/C/Users/Raj/Desktop/New folder/Projects/EWARM/stm32f405xx_flash.icf",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Projects/STM32F4-Discovery/Examples/I2C/I2C_TwoBoards_ComPolling/Src/stm32f4xx_it.c",
+		"/C/Users/Raj/Desktop/STM32Cube_FW_F4_V1.3.0/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/stm32f4xx_hal_i2c.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/include/stm32f4xx_hal_i2c.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/include/prototypes.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/make.bat",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/source/main.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Control System/fuzzyController_ert_rtw/fuzzyController.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Control System/fuzzyController_ert_rtw/fuzzyController.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Control System/fuzzyController_ert_rtw/fuzzyController_data.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/matlab/fuzzyController_private.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/source/imu.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Control System/fuzzyController_ert_rtw/fuzzyController_private.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/application/source/outputs.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/AeilthController.sublime-project",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/startup_stm32f4xx.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/arm-gcc-link.ld",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/matlab/fis/fis.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/matlab/fis/fis.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/stdlibs/source/syscalls.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/matlab/fuzzyController.c",
+		"/C/Users/Raj/AppData/Local/Temp/7zO734D.tmp/calloc.c",
+		"/C/Users/Raj/AppData/Local/Temp/7zOF16F.tmp/syscall.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Control System/Fuzzy0_ert_rtw/Fuzzy0_private.h",
+		"/C/CooCox/CoIDE/repo/Examples/553_HC-SR04/src/syscalls.c",
+		"/C/CooCox/CoIDE/repo/Components/74_Name/src/syscalls/syscalls.c",
+		"/C/CooCox/CoIDE/repo/Components/40_Name/src/syscalls/syscalls.c",
+		"/C/CooCox/CoIDE/repo/Components/30_C Library/src/syscalls/syscalls.c",
+		"/C/CooCox/CoIDE/repo/Components/958_Retarget printf, syscalls/src/cmsis_lib/source/syscalls.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Control System/fuzzyController_ert_rtw/fuzzyController_types.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/cmsis/core_cm4.h"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"count",
+			"count#",
+			"DMA",
+			"Configure",
+			"stream4",
+			"stream0",
+			"dma2_s",
+			"double",
+			"channe",
+			"UART_Transmit_IT",
+			"receive",
+			"__HAL_ADC_ENABLE_IT",
+			"interr",
+			"circu",
+			"deinit",
+			"inter",
+			"int",
+			"DMA_IT_TC",
+			"halfw",
+			"dma",
+			"stack",
+			"irq",
+			"adc_irQH",
+			"scan",
+			"irqh",
+			"ADCx_DMA_IRQHandler",
+			"HAL_ADC_ConvCpltCallback",
+			"HAL_ADC_IRQHandler",
+			"adc",
+			"samples",
+			"sample",
+			"filter",
+			"HAL_StatusTypeDef",
+			"transmit",
+			"HAL_I2C_Master_Receive",
+			"masterrequestwrite",
+			"HAL_I2C_Master_Transmit",
+			"write",
+			"start",
+			"HAL_ADC_MspInit",
+			"XferCpltCallback",
+			"HAL_DMA_IRQHandler",
+			"DMA2_Stream0_IRQHandler",
+			"callback",
+			"handler",
+			"hal_adc_start_dma",
+			"dma",
+			"EOCSe",
+			"EOC_S",
+			"adc_start_dma",
+			"adc",
+			"datal",
+			"/**",
+			"start",
+			"MSPInit",
+			"ini",
+			"autoreload",
+			"reload",
+			"write",
+			"rising",
+			"exti",
+			"hal_nvic",
+			"enable",
+			"start",
+			"pull",
+			"stm32f4xx_it.h",
+			"gpio_pin",
+			"reset",
+			"read",
+			"count",
+			"callback",
+			"handler",
+			"peri",
+			"period",
+			"get",
+			"counter",
+			"get_ITs",
+			"get",
+			"calloc",
+			"no_printf",
+			"printf",
+			"print",
+			"printf",
+			"exp",
+			"fiseva",
+			"fisEvaluate",
+			"exti",
+			"tim13",
+			"fpu",
+			"used",
+			"FPU",
+			"__INLINE",
+			"LVCGenRTInit",
+			"dma_get",
+			"dma_itconfig",
+			"dma",
+			"read",
+			"dma",
+			"ADC1",
+			"DR",
+			"DMA1",
+			"DMA2",
+			"dma",
+			"timeout",
+			"sr1",
+			"TIM4",
+			"/**",
+			"tim_it_trigger",
+			"tim_itc",
+			"TIM2",
+			"ena",
+			"TIM2_IRQH",
+			"tim2_irqh",
+			"typedef ",
+			"extern ",
+			"extern",
+			"pid_",
+			"ARMED",
+			"f.",
+			"ARMED",
+			"TIM_ICInitTypeDef",
+			"RCRadioStructure.",
+			"autoreload",
+			"autorelooad",
+			"period",
+			"gpiod"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"//printf"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 224.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 271.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
