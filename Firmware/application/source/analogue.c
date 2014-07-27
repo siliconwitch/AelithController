@@ -24,7 +24,7 @@
 AnalogueOutput volatile AnalogueResult = {0,0,0,0};
 
 /* Private variables */
-uint16_t rawADC[4];
+volatile uint16_t rawADC[4];
 
 /* Private structures */
 ADC_HandleTypeDef hadc1;
@@ -35,7 +35,9 @@ DMA_HandleTypeDef hdma_adc1;
 
 void initADC(void){
 	/* Start DMA and attach interrupt */
-	__DMA2_CLK_ENABLE();
+    __DMA2_CLK_ENABLE();
+    //HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 3, 5);
+    //HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn); /* Something goes wrong when turning this on */
 
 	/* Configure ADC1 */
 	ADC_ChannelConfTypeDef sConfig;
@@ -77,8 +79,8 @@ void initADC(void){
 }
 
 /* Put out values into a struct once complete */
-/* NOT WORKING? */
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
+/* This function cannot run currently as the DMA interrupts don't work */
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc1)
 {
 	AnalogueResult.ch1 = rawADC[0];
 	AnalogueResult.ch2 = rawADC[1];

@@ -46,8 +46,9 @@
 
 	/* Control related */
 	#define POWERBIAS 0
-	#define FRONTSLIP 0.8
-	#define REARSLIP 0
+	#define FRONTSLIP 0.95
+	#define REARSLIP 0.1
+ 	#define GYROGAIN 0.9
 
 /*------------------------*/
 /* PIN MAPPINGS FOR BOARD */
@@ -111,5 +112,7 @@
 	typedef struct { uint16_t ch1,  ch2,  ch3,  ch4; } AnalogueOutput; //currently unused
 
 	typedef struct { float x, y, z, roll, pitch, yaw, temp, valid; } IMUMotion;
+
+	uint8_t telemetryFlag;
 
 #endif

@@ -1,0 +1,39 @@
+[System]
+Name='steeringModule'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=4
+AndMethod='prod'
+OrMethod='max'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='gyroYaw'
+Range=[-2 2]
+NumMFs=2
+MF1='CCW':'trimf',[0 1 2]
+MF2='CW':'trimf',[-2 -1 0]
+
+[Input2]
+Name='steeringSignal'
+Range=[-3 3]
+NumMFs=2
+MF1='left':'trimf',[-3 -1 1]
+MF2='right':'trimf',[-1 1 3]
+
+[Output1]
+Name='steeringOutput'
+Range=[-3 3]
+NumMFs=2
+MF1='left':'trimf',[-3 -1 1]
+MF2='right':'trimf',[-1 1 3]
+
+[Rules]
+0 1, 1 (1) : 1
+0 2, 2 (1) : 1
+2 1, 1 (1) : 1
+1 2, 2 (1) : 1

@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"te",
+				"telemetryFlag"
+			],
+			[
+				"rx",
+				"rxString"
+			],
+			[
+				"c",
+				"command"
+			],
+			[
+				"sti",
+				"string"
+			],
+			[
+				"st",
+				"string"
+			],
+			[
+				"r",
+				"rxBuffer"
+			],
+			[
+				"in",
+				"index"
+			],
+			[
 				"s",
 				"string"
 			],
@@ -22,10 +50,6 @@
 			[
 				"h",
 				"hiwdg"
-			],
-			[
-				"in",
-				"include"
 			],
 			[
 				"R",
@@ -98,10 +122,6 @@
 			[
 				"FRO",
 				"FRONTPOWERBIAS"
-			],
-			[
-				"st",
-				"steering"
 			],
 			[
 				"RC",
@@ -185,6 +205,27 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/include/prototypes.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/old/STMCubeMX Generated Files/Src/main.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/source/stm32f4xx_hal_msp.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/hal/source/stm32f4xx_hal_dma.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/source/stm32f4xx_it.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/source/analogue.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/hal/include/stm32f4xx_hal_adc.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/include/stm32f4xx_it.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/include/config.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/hal/include/stm32f4xx_hal_dma.h",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/I2C/I2C_TwoBoards_ComDMA/Inc/main.h",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/I2C/I2C_TwoBoards_ComDMA/Inc/stm32f4xx_it.h",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/I2C/I2C_TwoBoards_ComDMA/Src/stm32f4xx_hal_msp.c",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/ADC/ADC_RegularConversion_DMA/Src/stm32f4xx_it.c",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/DMA/DMA_FLASHToRAM/Src/main.c",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/DMA/DMA_FLASHToRAM/Src/stm32f4xx_it.c",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/I2C/I2C_TwoBoards_ComDMA/Src/main.c",
+		"/C/Users/Raj/Desktop/STM32F4 Examples/I2C/I2C_TwoBoards_ComDMA/Inc/stm32f4xx_hal_conf.h",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Controller/fuzzyController_ert_rtw/fuzzyController.c",
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/STM32F405RG_FLASH.ld",
+		"/C/Users/Raj/Documents/GitHub/AelithController/old/STMCubeMX Generated Files/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_conf_template.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal_dma.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/include/stm32f4xx_hal.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/application/include/stm32f4xx_it.h",
@@ -291,28 +332,7 @@
 		"/C/CooCox/CoIDE/repo/Components/30_C Library/src/syscalls/syscalls.c",
 		"/C/CooCox/CoIDE/repo/Components/958_Retarget printf, syscalls/src/cmsis_lib/source/syscalls.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Control System/fuzzyController_ert_rtw/fuzzyController_types.h",
-		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/cmsis/core_cm4.h",
-		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/matlab/fuzzyController.h",
-		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/matlab/fuzzyController_data.c",
-		"/C/Program Files/MATLAB/R2013b/toolbox/fuzzy/fuzzy/fismain.c",
-		"/C/Program Files/MATLAB/R2013b/toolbox/fuzzy/fuzzy/src/evaluate.c",
-		"/C/Program Files/MATLAB/R2013b/toolbox/fuzzy/fuzzy/src/fiscore.c",
-		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/link.ld",
-		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/boot/stm32f4xx.h",
-		"/C/CooCox/CoIDE/configuration/ProgramData/math/link.ld",
-		"/C/CooCox/CoIDE/configuration/ProgramData/math/arm-gcc-link.ld",
-		"/C/Program Files (x86)/GNU Tools ARM Embedded/4.7 2013q2/lib/gcc/arm-none-eabi/4.7.4/armv7e-m/libgcov.a",
-		"/C/Users/Raj/Documents/GitHub/AelithController/Control System/fuzzyController_ert_rtw/MW_target_hardware_resources.h",
-		"/C/Users/Raj/Documents/GitHub/AelithController/Control System/fuzzyController_ert_rtw/startup_gcc.c",
-		"/C/Users/Raj/Documents/GitHub/AelithController/Control System/fuzzyController_ert_rtw/system_stm32f4xx.c",
-		"/C/Users/Raj/Documents/GitHub/AelithController/Control System/fuzzyController_ert_rtw/system_LM3S.c",
-		"/C/MATLAB/SupportPackages/R2013b/GNU Tools ARM Embedded/lib/gcc/arm-none-eabi/4.7.3/include/tgmath.h",
-		"/C/Program Files (x86)/GNU Tools ARM Embedded/4.7 2013q2/arm-none-eabi/include/c++/4.7.4/tr1/math.h",
-		"/C/Program Files (x86)/GNU Tools ARM Embedded/4.7 2013q2/lib/gcc/arm-none-eabi/4.7.4/include/tgmath.h",
-		"/C/Program Files/MATLAB/R2013b/toolbox/fuzzy/fuzzy/src/matlab2c.c",
-		"/C/Program Files/MATLAB/R2013b/toolbox/fuzzy/fuzzy/src/mf.c",
-		"/C/Program Files/MATLAB/R2013b/toolbox/fuzzy/fuzzy/src/anfis.h",
-		"/C/Program Files/MATLAB/R2013b/toolbox/fuzzy/fuzzy/src/fismat.c"
+		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/source/cmsis/core_cm4.h"
 	],
 	"find":
 	{
@@ -331,6 +351,26 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"count",
+			"count#",
+			"DMA",
+			"Configure",
+			"stream4",
+			"stream0",
+			"dma2_s",
+			"double",
+			"channe",
+			"UART_Transmit_IT",
+			"receive",
+			"__HAL_ADC_ENABLE_IT",
+			"interr",
+			"circu",
+			"deinit",
+			"inter",
+			"int",
+			"DMA_IT_TC",
+			"halfw",
+			"dma",
 			"stack",
 			"irq",
 			"adc_irQH",

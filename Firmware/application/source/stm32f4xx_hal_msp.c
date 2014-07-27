@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * File Name          : stm32f4xx_hal_msp.c
-  * Date               : 17/07/2014 01:42:17
+  * Date               : 22/07/2014 00:19:04
   * Description        : This file provides code for the MSP Initialization 
   *                      and de-Initialization codes.
   ******************************************************************************
@@ -37,6 +37,8 @@
 
 extern DMA_HandleTypeDef hdma_adc1;
 
+extern DMA_HandleTypeDef hdma_usart1_rx;
+
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
@@ -71,17 +73,11 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
     hdma_adc1.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
     hdma_adc1.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;
     hdma_adc1.Init.Mode = DMA_CIRCULAR;
-    hdma_adc1.Init.Priority = DMA_PRIORITY_HIGH;
+    hdma_adc1.Init.Priority = DMA_PRIORITY_MEDIUM;
     hdma_adc1.Init.FIFOMode = DMA_FIFOMODE_DISABLE;
     HAL_DMA_Init(&hdma_adc1);
 
     __HAL_LINKDMA(hadc,DMA_Handle,hdma_adc1);
-
-    /* Peripheral interrupt init*/
-    /* Sets the priority grouping field */
-    HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_0);
-    HAL_NVIC_SetPriority(ADC_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(ADC_IRQn);
 
   }
 
@@ -105,9 +101,6 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
 
     /* Peripheral DMA DeInit*/
     HAL_DMA_DeInit(hadc->DMA_Handle);
-
-    /* Peripheral interrupt Deinit*/
-    HAL_NVIC_DisableIRQ(ADC_IRQn);
   }
 
 }
@@ -207,6 +200,17 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
     HAL_NVIC_SetPriority(TIM4_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(TIM4_IRQn);
   }
+  else if(htim_base->Instance==TIM6)
+  {
+    /* Peripheral clock enable */
+    __TIM6_CLK_ENABLE();
+
+    /* Peripheral interrupt init*/
+    /* Sets the priority grouping field */
+    HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_0);
+    HAL_NVIC_SetPriority(TIM6_DAC_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(TIM6_DAC_IRQn);
+  }
   else if(htim_base->Instance==TIM10)
   {
     /* Peripheral clock enable */
@@ -281,6 +285,14 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)
     /* Peripheral interrupt Deinit*/
     HAL_NVIC_DisableIRQ(TIM4_IRQn);
   }
+  else if(htim_base->Instance==TIM6)
+  {
+    /* Peripheral clock disable */
+    __TIM6_CLK_DISABLE();
+
+    /* Peripheral interrupt Deinit*/
+    HAL_NVIC_DisableIRQ(TIM6_DAC_IRQn);
+  }
   else if(htim_base->Instance==TIM10)
   {
     /* Peripheral clock disable */
@@ -336,11 +348,22 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-    /* Peripheral interrupt init*/
-    /* Sets the priority grouping field */
-    HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_0);
-    HAL_NVIC_SetPriority(USART1_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(USART1_IRQn);
+    /* Peripheral DMA init*/
+  
+    hdma_usart1_rx.Instance = DMA2_Stream2;
+    hdma_usart1_rx.Init.Channel = DMA_CHANNEL_4;
+    hdma_usart1_rx.Init.Direction = DMA_PERIPH_TO_MEMORY;
+    hdma_usart1_rx.Init.PeriphInc = DMA_PINC_DISABLE;
+    hdma_usart1_rx.Init.MemInc = DMA_MINC_ENABLE;
+    hdma_usart1_rx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
+    hdma_usart1_rx.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
+    hdma_usart1_rx.Init.Mode = DMA_NORMAL;
+    hdma_usart1_rx.Init.Priority = DMA_PRIORITY_LOW;
+    hdma_usart1_rx.Init.FIFOMode = DMA_FIFOMODE_DISABLE;
+    HAL_DMA_Init(&hdma_usart1_rx);
+
+    __HAL_LINKDMA(huart,hdmarx,hdma_usart1_rx);
+
   }
 
 }
@@ -359,8 +382,8 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
     */
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_6|GPIO_PIN_7);
 
-    /* Peripheral interrupt Deinit*/
-    HAL_NVIC_DisableIRQ(USART1_IRQn);
+    /* Peripheral DMA DeInit*/
+    HAL_DMA_DeInit(huart->hdmarx);
   }
 
 }

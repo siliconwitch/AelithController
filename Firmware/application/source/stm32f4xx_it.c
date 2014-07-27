@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    stm32f4xx_it.c
-  * @date    17/07/2014 01:42:17
+  * @date    22/07/2014 00:19:04
   * @brief   Interrupt Service Routines.
   ******************************************************************************
   *
@@ -38,20 +38,30 @@
 
 /* External variables --------------------------------------------------------*/
 
-extern ADC_HandleTypeDef hadc1;
+extern DMA_HandleTypeDef hdma_adc1;
 extern I2C_HandleTypeDef hi2c1;
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
+extern TIM_HandleTypeDef htim6;
 extern TIM_HandleTypeDef htim10;
 extern TIM_HandleTypeDef htim11;
 extern TIM_HandleTypeDef htim13;
 extern TIM_HandleTypeDef htim14;
-extern UART_HandleTypeDef huart1;
+extern DMA_HandleTypeDef hdma_usart1_rx;
 
 /******************************************************************************/
 /*            Cortex-M4 Processor Interruption and Exception Handlers         */ 
 /******************************************************************************/
+
+/**
+* @brief This function handles DMA2 Stream2 global interrupt.
+*/
+void DMA2_Stream2_IRQHandler(void)
+{
+  HAL_NVIC_ClearPendingIRQ(DMA2_Stream2_IRQn);
+  HAL_DMA_IRQHandler(&hdma_usart1_rx);
+}
 
 /**
 * @brief This function handles EXTI Line1 interrupt.
@@ -94,6 +104,15 @@ void EXTI0_IRQHandler(void)
 }
 
 /**
+* @brief This function handles TIM6 global interrupt, DAC1 and DAC2 underrun error interrupts.
+*/
+void TIM6_DAC_IRQHandler(void)
+{
+  HAL_NVIC_ClearPendingIRQ(TIM6_DAC_IRQn);
+  HAL_TIM_IRQHandler(&htim6);
+}
+
+/**
 * @brief This function handles System tick timer.
 */
 void SysTick_Handler(void)
@@ -130,6 +149,15 @@ void I2C1_ER_IRQHandler(void)
 }
 
 /**
+* @brief This function handles DMA2 Stream0 global interrupt.
+*/
+void DMA2_Stream0_IRQHandler(void)
+{
+  HAL_NVIC_ClearPendingIRQ(DMA2_Stream0_IRQn);
+  HAL_DMA_IRQHandler(&hdma_adc1);
+}
+
+/**
 * @brief This function handles EXTI Line4 interrupt.
 */
 void EXTI4_IRQHandler(void)
@@ -155,15 +183,6 @@ void TIM8_TRG_COM_TIM14_IRQHandler(void)
 {
   HAL_NVIC_ClearPendingIRQ(TIM8_TRG_COM_TIM14_IRQn);
   HAL_TIM_IRQHandler(&htim14);
-}
-
-/**
-* @brief This function handles ADC1, ADC2 and ADC3 global interrupts.
-*/
-void ADC_IRQHandler(void)
-{
-  HAL_NVIC_ClearPendingIRQ(ADC_IRQn);
-  HAL_ADC_IRQHandler(&hadc1);
 }
 
 /**
@@ -194,15 +213,6 @@ void EXTI9_5_IRQHandler(void)
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_7);
-}
-
-/**
-* @brief This function handles USART1 global interrupt.
-*/
-void USART1_IRQHandler(void)
-{
-  HAL_NVIC_ClearPendingIRQ(USART1_IRQn);
-  HAL_UART_IRQHandler(&huart1);
 }
 
 /**

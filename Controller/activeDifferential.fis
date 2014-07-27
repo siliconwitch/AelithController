@@ -1,31 +1,24 @@
 [System]
-Name='fuzzyController'
+Name='activeDifferential'
 Type='mamdani'
 Version=2.0
-NumInputs=7
-NumOutputs=5
-NumRules=15
-AndMethod='min'
+NumInputs=5
+NumOutputs=4
+NumRules=9
+AndMethod='prod'
 OrMethod='max'
 ImpMethod='prod'
 AggMethod='sum'
 DefuzzMethod='centroid'
 
 [Input1]
-Name='gyroYaw'
+Name='steeringSignal'
 Range=[-2 2]
 NumMFs=2
-MF1='CCW':'trimf',[0 1 2]
-MF2='CW':'trimf',[-2 -1 0]
+MF1='left':'trimf',[-2 -1 0]
+MF2='right':'trimf',[-0 1 2]
 
 [Input2]
-Name='steeringSignal'
-Range=[-3 3]
-NumMFs=2
-MF1='left':'trimf',[-3 -1 1]
-MF2='right':'trimf',[-1 1 3]
-
-[Input3]
 Name='throttleSignal'
 Range=[-2 2]
 NumMFs=3
@@ -33,7 +26,7 @@ MF1='reverse':'trimf',[-2 -1 0]
 MF2='neutral':'trimf',[-1 0 1]
 MF3='forward':'trimf',[-0 1 2]
 
-[Input4]
+[Input3]
 Name='frontDifferential'
 Range=[-2 2]
 NumMFs=3
@@ -41,7 +34,7 @@ MF1='anti':'trimf',[-2 -1 0]
 MF2='loose':'trimf',[-1 0 1]
 MF3='tight':'trimf',[-0 1 2]
 
-[Input5]
+[Input4]
 Name='rearDifferential'
 Range=[-2 2]
 NumMFs=3
@@ -49,28 +42,14 @@ MF1='anti':'trimf',[-2 -1 0]
 MF2='loose':'trimf',[-1 0 1]
 MF3='tight':'trimf',[0 1 2]
 
-[Input6]
+[Input5]
 Name='powerBias'
 Range=[-3 3]
 NumMFs=2
 MF1='front':'trimf',[-2 -1 -0]
 MF2='back':'trimf',[-0 1 2]
 
-[Input7]
-Name='FLActualSpeed'
-Range=[-2 2]
-NumMFs=2
-MF1='slower':'trimf',[-2 -1 -0]
-MF2='faster':'trimf',[0 1 2]
-
 [Output1]
-Name='steeringOutput'
-Range=[-3 3]
-NumMFs=2
-MF1='left':'trimf',[-3 -1 1]
-MF2='right':'trimf',[-1 1 3]
-
-[Output2]
 Name='FLWheelOutput'
 Range=[-2 2]
 NumMFs=3
@@ -78,7 +57,7 @@ MF1='reverse':'trimf',[-2 -1 0]
 MF2='neutral':'trimf',[-1 0 1]
 MF3='forward':'trimf',[0 1 2]
 
-[Output3]
+[Output2]
 Name='FRWheelOutput'
 Range=[-2 2]
 NumMFs=3
@@ -86,7 +65,7 @@ MF1='reverse':'trimf',[-2 -1 0]
 MF2='neutral':'trimf',[-1 0 1]
 MF3='forward':'trimf',[0 1 2]
 
-[Output4]
+[Output3]
 Name='BLWheelOutput'
 Range=[-2 2]
 NumMFs=3
@@ -94,7 +73,7 @@ MF1='reverse':'trimf',[-2 -1 -0]
 MF2='neutral':'trimf',[-1 0 1]
 MF3='forward':'trimf',[0 1 2]
 
-[Output5]
+[Output4]
 Name='BRWheelOutput'
 Range=[-2 2]
 NumMFs=3
@@ -103,18 +82,12 @@ MF2='neutral':'trimf',[-1 0 1]
 MF3='forward':'trimf',[0 1 2]
 
 [Rules]
-0 1 0 0 0 0 0, 1 0 0 0 0 (1) : 1
-0 2 0 0 0 0 0, 2 0 0 0 0 (1) : 1
-0 0 0 0 0 1 0, 0 0 0 2 2 (1) : 1
-0 0 0 0 0 2 0, 0 2 2 0 0 (1) : 1
-0 0 2 0 0 0 0, 0 2 2 2 2 (1) : 1
-0 0 1 0 0 0 0, 0 1 1 1 1 (1) : 1
-0 1 3 0 2 0 0, 0 0 0 2 3 (1) : 1
-0 2 3 0 2 0 0, 0 0 0 3 2 (1) : 1
-0 1 3 2 0 0 0, 0 2 3 0 0 (1) : 1
-0 2 3 2 0 0 0, 0 3 2 0 0 (1) : 1
-0 0 3 0 0 0 0, 0 3 3 3 3 (1) : 1
-2 1 0 0 0 0 0, 1 0 0 0 0 (1) : 1
-1 2 0 0 0 0 0, 2 0 0 0 0 (1) : 1
-0 0 3 0 0 0 1, 0 3 0 0 0 (1) : 1
-0 0 3 0 0 0 2, 0 2 0 0 0 (1) : 1
+0 0 0 0 1, 0 0 2 2 (1) : 1
+0 0 0 0 2, 2 2 0 0 (1) : 1
+0 2 0 0 0, 2 2 2 2 (1) : 1
+0 1 0 0 0, 1 1 1 1 (1) : 1
+1 3 0 2 0, 0 0 2 3 (1) : 1
+2 3 0 2 0, 0 0 3 2 (1) : 1
+1 3 2 0 0, 2 3 0 0 (1) : 1
+2 3 2 0 0, 3 2 0 0 (1) : 1
+0 3 0 0 0, 3 3 3 3 (1) : 1

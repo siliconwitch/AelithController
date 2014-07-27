@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'fuzzyController'.
  *
- * Model version                  : 1.11
+ * Model version                  : 1.17
  * Simulink Coder version         : 8.5 (R2013b) 08-Aug-2013
- * C/C++ source code generated on : Tue Jul 15 21:10:01 2014
+ * C/C++ source code generated on : Mon Jul 21 19:59:36 2014
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -26,8 +26,6 @@ P_fuzzyController_T fuzzyController_P = {
   0.0,
   1.0,
   0.0,
-  1.0,
-  0.0,
   0.0,
   1.0,
   1.0,
@@ -70,6 +68,16 @@ P_fuzzyController_T fuzzyController_P = {
   0.0,
   0.0,
   1.0,
+  1.0,
+  0.0,
+  0.0,
+  1.0,
+  1.0,
+  0.0,
+  0.0,
+  1.0,
+  1.0,
+  0.0,
   1.0,
   0.0,
   0.0,
@@ -149,6 +157,11 @@ P_fuzzyController_T fuzzyController_P = {
     0.060000000000000053, 0.029999999999999805, 0.0 },
   1.0,
   1.0,
+  0.0,
+  1.0,
+  0.0,
+  0.0,
+  1.0,
 
   { -2.0, -1.96, -1.92, -1.88, -1.84, -1.8, -1.76, -1.72, -1.68,
     -1.6400000000000001, -1.6, -1.56, -1.52, -1.48, -1.44, -1.4,
@@ -456,247 +469,279 @@ P_fuzzyController_T fuzzyController_P = {
     2.0 },
   0.0,
 
-  { 0.0, 0.0, 0.0, 0.0, 0.0 },
+  { 0.0, 0.0, 0.0, 0.0 },
   1.0,
 
-  /* Start of '<S106>/If Action Subsystem2' */
-  {
-    -1.0,
-    0.0
-  }
-  /* End of '<S106>/If Action Subsystem2' */
-  ,
-
-  /* Start of '<S106>/If Action Subsystem3' */
-  {
-    -2.0,
-    -1.0
-  }
-  /* End of '<S106>/If Action Subsystem3' */
-  ,
-
-  /* Start of '<S105>/If Action Subsystem2' */
-  {
-    0.0,
-    1.0
-  }
-  /* End of '<S105>/If Action Subsystem2' */
-  ,
-
-  /* Start of '<S105>/If Action Subsystem3' */
-  {
-    -1.0,
-    0.0
-  }
-  /* End of '<S105>/If Action Subsystem3' */
-  ,
-
-  /* Start of '<S104>/If Action Subsystem2' */
-  {
-    1.0,
-    2.0
-  }
-  /* End of '<S104>/If Action Subsystem2' */
-  ,
-
-  /* Start of '<S104>/If Action Subsystem3' */
-  {
-    -0.0,
-    1.0
-  }
-  /* End of '<S104>/If Action Subsystem3' */
-  ,
-
-  /* Start of '<S95>/If Action Subsystem2' */
+  /* Start of '<S124>/If Action Subsystem2' */
   {
     1.0,
     3.0
   }
-  /* End of '<S95>/If Action Subsystem2' */
+  /* End of '<S124>/If Action Subsystem2' */
   ,
 
-  /* Start of '<S95>/If Action Subsystem3' */
+  /* Start of '<S124>/If Action Subsystem3' */
   {
     -1.0,
     1.0
   }
-  /* End of '<S95>/If Action Subsystem3' */
+  /* End of '<S124>/If Action Subsystem3' */
   ,
 
-  /* Start of '<S94>/If Action Subsystem2' */
+  /* Start of '<S123>/If Action Subsystem2' */
   {
     -1.0,
     1.0
   }
-  /* End of '<S94>/If Action Subsystem2' */
+  /* End of '<S123>/If Action Subsystem2' */
   ,
 
-  /* Start of '<S94>/If Action Subsystem3' */
+  /* Start of '<S123>/If Action Subsystem3' */
   {
     -3.0,
     -1.0
   }
-  /* End of '<S94>/If Action Subsystem3' */
+  /* End of '<S123>/If Action Subsystem3' */
   ,
 
-  /* Start of '<S81>/If Action Subsystem2' */
-  {
-    1.0,
-    2.0
-  }
-  /* End of '<S81>/If Action Subsystem2' */
-  ,
-
-  /* Start of '<S81>/If Action Subsystem3' */
-  {
-    0.0,
-    1.0
-  }
-  /* End of '<S81>/If Action Subsystem3' */
-  ,
-
-  /* Start of '<S80>/If Action Subsystem2' */
-  {
-    0.0,
-    1.0
-  }
-  /* End of '<S80>/If Action Subsystem2' */
-  ,
-
-  /* Start of '<S80>/If Action Subsystem3' */
+  /* Start of '<S114>/If Action Subsystem2' */
   {
     -1.0,
     0.0
   }
-  /* End of '<S80>/If Action Subsystem3' */
+  /* End of '<S114>/If Action Subsystem2' */
   ,
 
-  /* Start of '<S79>/If Action Subsystem2' */
-  {
-    -1.0,
-    0.0
-  }
-  /* End of '<S79>/If Action Subsystem2' */
-  ,
-
-  /* Start of '<S79>/If Action Subsystem3' */
+  /* Start of '<S114>/If Action Subsystem3' */
   {
     -2.0,
     -1.0
   }
-  /* End of '<S79>/If Action Subsystem3' */
+  /* End of '<S114>/If Action Subsystem3' */
   ,
 
-  /* Start of '<S70>/If Action Subsystem2' */
+  /* Start of '<S113>/If Action Subsystem2' */
+  {
+    1.0,
+    2.0
+  }
+  /* End of '<S113>/If Action Subsystem2' */
+  ,
+
+  /* Start of '<S113>/If Action Subsystem3' */
+  {
+    0.0,
+    1.0
+  }
+  /* End of '<S113>/If Action Subsystem3' */
+  ,
+
+  /* Start of '<S88>/If Action Subsystem2' */
+  {
+    -1.0,
+    0.0
+  }
+  /* End of '<S88>/If Action Subsystem2' */
+  ,
+
+  /* Start of '<S88>/If Action Subsystem3' */
+  {
+    -2.0,
+    -1.0
+  }
+  /* End of '<S88>/If Action Subsystem3' */
+  ,
+
+  /* Start of '<S87>/If Action Subsystem2' */
+  {
+    0.0,
+    1.0
+  }
+  /* End of '<S87>/If Action Subsystem2' */
+  ,
+
+  /* Start of '<S87>/If Action Subsystem3' */
+  {
+    -1.0,
+    0.0
+  }
+  /* End of '<S87>/If Action Subsystem3' */
+  ,
+
+  /* Start of '<S86>/If Action Subsystem2' */
+  {
+    1.0,
+    2.0
+  }
+  /* End of '<S86>/If Action Subsystem2' */
+  ,
+
+  /* Start of '<S86>/If Action Subsystem3' */
+  {
+    -0.0,
+    1.0
+  }
+  /* End of '<S86>/If Action Subsystem3' */
+  ,
+
+  /* Start of '<S77>/If Action Subsystem2' */
+  {
+    1.0,
+    2.0
+  }
+  /* End of '<S77>/If Action Subsystem2' */
+  ,
+
+  /* Start of '<S77>/If Action Subsystem3' */
+  {
+    -0.0,
+    1.0
+  }
+  /* End of '<S77>/If Action Subsystem3' */
+  ,
+
+  /* Start of '<S76>/If Action Subsystem2' */
+  {
+    -1.0,
+    0.0
+  }
+  /* End of '<S76>/If Action Subsystem2' */
+  ,
+
+  /* Start of '<S76>/If Action Subsystem3' */
+  {
+    -2.0,
+    -1.0
+  }
+  /* End of '<S76>/If Action Subsystem3' */
+  ,
+
+  /* Start of '<S63>/If Action Subsystem2' */
+  {
+    1.0,
+    2.0
+  }
+  /* End of '<S63>/If Action Subsystem2' */
+  ,
+
+  /* Start of '<S63>/If Action Subsystem3' */
+  {
+    0.0,
+    1.0
+  }
+  /* End of '<S63>/If Action Subsystem3' */
+  ,
+
+  /* Start of '<S62>/If Action Subsystem2' */
+  {
+    0.0,
+    1.0
+  }
+  /* End of '<S62>/If Action Subsystem2' */
+  ,
+
+  /* Start of '<S62>/If Action Subsystem3' */
+  {
+    -1.0,
+    0.0
+  }
+  /* End of '<S62>/If Action Subsystem3' */
+  ,
+
+  /* Start of '<S61>/If Action Subsystem2' */
+  {
+    -1.0,
+    0.0
+  }
+  /* End of '<S61>/If Action Subsystem2' */
+  ,
+
+  /* Start of '<S61>/If Action Subsystem3' */
+  {
+    -2.0,
+    -1.0
+  }
+  /* End of '<S61>/If Action Subsystem3' */
+  ,
+
+  /* Start of '<S52>/If Action Subsystem2' */
   {
     -1.0,
     -0.0
   }
-  /* End of '<S70>/If Action Subsystem2' */
+  /* End of '<S52>/If Action Subsystem2' */
   ,
 
-  /* Start of '<S70>/If Action Subsystem3' */
+  /* Start of '<S52>/If Action Subsystem3' */
   {
     -2.0,
     -1.0
   }
-  /* End of '<S70>/If Action Subsystem3' */
+  /* End of '<S52>/If Action Subsystem3' */
   ,
 
-  /* Start of '<S69>/If Action Subsystem2' */
+  /* Start of '<S51>/If Action Subsystem2' */
   {
     1.0,
     2.0
   }
-  /* End of '<S69>/If Action Subsystem2' */
+  /* End of '<S51>/If Action Subsystem2' */
   ,
 
-  /* Start of '<S69>/If Action Subsystem3' */
+  /* Start of '<S51>/If Action Subsystem3' */
   {
     -0.0,
     1.0
   }
-  /* End of '<S69>/If Action Subsystem3' */
+  /* End of '<S51>/If Action Subsystem3' */
   ,
 
-  /* Start of '<S60>/If Action Subsystem2' */
-  {
-    -1.0,
-    0.0
-  }
-  /* End of '<S60>/If Action Subsystem2' */
-  ,
-
-  /* Start of '<S60>/If Action Subsystem3' */
-  {
-    -2.0,
-    -1.0
-  }
-  /* End of '<S60>/If Action Subsystem3' */
-  ,
-
-  /* Start of '<S59>/If Action Subsystem2' */
+  /* Start of '<S38>/If Action Subsystem2' */
   {
     1.0,
     2.0
   }
-  /* End of '<S59>/If Action Subsystem2' */
+  /* End of '<S38>/If Action Subsystem2' */
   ,
 
-  /* Start of '<S59>/If Action Subsystem3' */
-  {
-    0.0,
-    1.0
-  }
-  /* End of '<S59>/If Action Subsystem3' */
-  ,
-
-  /* Start of '<S46>/If Action Subsystem2' */
-  {
-    1.0,
-    2.0
-  }
-  /* End of '<S46>/If Action Subsystem2' */
-  ,
-
-  /* Start of '<S46>/If Action Subsystem3' */
+  /* Start of '<S38>/If Action Subsystem3' */
   {
     -0.0,
     1.0
   }
-  /* End of '<S46>/If Action Subsystem3' */
+  /* End of '<S38>/If Action Subsystem3' */
   ,
 
-  /* Start of '<S45>/If Action Subsystem2' */
+  /* Start of '<S37>/If Action Subsystem2' */
   {
     0.0,
     1.0
   }
-  /* End of '<S45>/If Action Subsystem2' */
+  /* End of '<S37>/If Action Subsystem2' */
   ,
 
-  /* Start of '<S45>/If Action Subsystem3' */
+  /* Start of '<S37>/If Action Subsystem3' */
   {
     -1.0,
     0.0
   }
-  /* End of '<S45>/If Action Subsystem3' */
+  /* End of '<S37>/If Action Subsystem3' */
   ,
 
-  /* Start of '<S44>/If Action Subsystem2' */
+  /* Start of '<S36>/If Action Subsystem2' */
   {
     -1.0,
     0.0
   }
-  /* End of '<S44>/If Action Subsystem2' */
+  /* End of '<S36>/If Action Subsystem2' */
   ,
 
-  /* Start of '<S44>/If Action Subsystem3' */
+  /* Start of '<S36>/If Action Subsystem3' */
   {
     -2.0,
     -1.0
   }
-  /* End of '<S44>/If Action Subsystem3' */
+  /* End of '<S36>/If Action Subsystem3' */
 };
 
 /*

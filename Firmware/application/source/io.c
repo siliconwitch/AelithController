@@ -41,6 +41,7 @@ uint32_t denormaliseSignal(double input); /* Turns the float speed value back in
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
+TIM_HandleTypeDef htim6;	/* Free running timer for serial */
 TIM_HandleTypeDef htim10;
 TIM_HandleTypeDef htim11;
 TIM_HandleTypeDef htim13;
@@ -139,6 +140,21 @@ void initIO(){
 	HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig);
 
 	HAL_TIM_Base_Start_IT(&htim4);
+
+	
+	/* TIM6 Init */
+	htim6.Instance = TIM6;
+	htim6.Init.Prescaler = 42;
+	htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
+	htim6.Init.Period = 50000;
+	HAL_TIM_Base_Init(&htim6);
+
+	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+	HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig);
+
+	HAL_TIM_Base_Start_IT(&htim6);
+	
 
 	/* TIM10 Init */
 	htim10.Instance = TIM10;

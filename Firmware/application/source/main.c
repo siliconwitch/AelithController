@@ -26,6 +26,7 @@
 extern PPMOutputs PPMOutputStructure;
 extern RCRadio RCRadioStructure;
 extern IMUMotion Motion;
+extern uint8_t telemetryFlag;
 
 /* Private variables */
 IWDG_HandleTypeDef hiwdg;
@@ -63,6 +64,8 @@ int main(void)
 
   /* Intro message */
   sendSerialString("\n");
+  sendSerialString("For help type '-h'\n");
+  sendSerialString("\n");
   sendSerialString("Aelith Controller Ready\n");
   sendSerialString("(C) NakLojik 2014\n");
   sendSerialString("Enjoy your drive!\n");
@@ -74,6 +77,7 @@ int main(void)
         IMUGetMotion();
 
         /* Send inputs into the controller */
+        fuzzyController_U.gyroGain = GYROGAIN;
         fuzzyController_U.gyroYaw = Motion.yaw/DEFAULTGYRORANGE;          
         fuzzyController_U.steeringSignal = RCRadioStructure.steering;   
         fuzzyController_U.throttleSignal = RCRadioStructure.throttle;   
@@ -90,6 +94,12 @@ int main(void)
         PPMOutputStructure.MOT2 = fuzzyController_Y.FRWheelOutput;
         PPMOutputStructure.MOT3 = fuzzyController_Y.BLWheelOutput;
         PPMOutputStructure.MOT4 = fuzzyController_Y.BRWheelOutput;      
+        
+        /* Send telemetery */
+        if (telemetryFlag == 1)
+        {
+          //sendSerialString("idfs\n");
+        }
 
         /* Reset Watchdog */
         HAL_IWDG_Refresh(&hiwdg);
