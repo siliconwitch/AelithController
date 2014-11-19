@@ -169,6 +169,17 @@
 			]
 		]
 	},
+	"buffers":
+	[
+		{
+			"file": "make.bat",
+			"settings":
+			{
+				"buffer_size": 1421,
+				"line_ending": "Windows"
+			}
+		}
+	],
 	"build_system": "Packages/User/Batch file.sublime-build",
 	"command_palette":
 	{
@@ -203,8 +214,13 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/C/Users/Raj/Dropbox/Projects/AelithController/Firmware"
+	],
 	"file_history":
 	[
+		"/C/Users/Raj/Documents/GitHub/AelithController/Controller/fuzzyController_ert_rtw/fuzzyController.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/include/prototypes.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/old/STMCubeMX Generated Files/Src/main.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/application/source/stm32f4xx_hal_msp.c",
@@ -223,7 +239,6 @@
 		"/C/Users/Raj/Desktop/STM32F4 Examples/DMA/DMA_FLASHToRAM/Src/stm32f4xx_it.c",
 		"/C/Users/Raj/Desktop/STM32F4 Examples/I2C/I2C_TwoBoards_ComDMA/Src/main.c",
 		"/C/Users/Raj/Desktop/STM32F4 Examples/I2C/I2C_TwoBoards_ComDMA/Inc/stm32f4xx_hal_conf.h",
-		"/C/Users/Raj/Documents/GitHub/AelithController/Controller/fuzzyController_ert_rtw/fuzzyController.c",
 		"/C/Users/Raj/Documents/GitHub/AelithController/Firmware/STM32F405RG_FLASH.ld",
 		"/C/Users/Raj/Documents/GitHub/AelithController/old/STMCubeMX Generated Files/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_conf_template.h",
 		"/C/Users/Raj/Documents/GitHub/AelithController/AelithControllerHAL/hal/source/stm32f4xx_hal_dma.c",
@@ -336,7 +351,7 @@
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 28.0
 	},
 	"find_in_files":
 	{
@@ -492,9 +507,46 @@
 		"whole_word": false,
 		"wrap": true
 	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "make.bat",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1421,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Batch File/Batch File.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 28.0
 	},
 	"input":
 	{
@@ -531,9 +583,10 @@
 	{
 		"height": 0.0
 	},
+	"project": "AelithControllerProject.sublime-project",
 	"replace":
 	{
-		"height": 64.0
+		"height": 52.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -560,6 +613,7 @@
 		],
 		"width": 0.0
 	},
+	"selected_group": 0,
 	"settings":
 	{
 	},
