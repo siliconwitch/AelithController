@@ -1,5 +1,5 @@
 :: Using this make.bat from Sublime text 2. Create a new build with:
-:: {
+:: {	
 ::		"cmd": "$project_path/_make.bat",
 ::		"working_dir": "$project_path"
 :: }

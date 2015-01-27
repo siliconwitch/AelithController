@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "hal", "hal", "{7F5E4D6F-55C3-470C-88D1-07AE72D0141F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cmsis", "cmsis", "{D955FE8D-80E1-4759-A4C2-E835B5DD89AB}"
+	ProjectSection(SolutionItems) = preProject
+		cmsis\arm_common_tables.h = cmsis\arm_common_tables.h
+		cmsis\arm_const_structs.h = cmsis\arm_const_structs.h
+		cmsis\arm_math.h = cmsis\arm_math.h
+		cmsis\core_cm4.h = cmsis\core_cm4.h
+		cmsis\core_cm4_simd.h = cmsis\core_cm4_simd.h
+		cmsis\core_cmFunc.h = cmsis\core_cmFunc.h
+		cmsis\core_cmInstr.h = cmsis\core_cmInstr.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "boot", "boot", "{3C3395FD-2A24-4010-A736-25574F540258}"
+	ProjectSection(SolutionItems) = preProject
+		boot\startup_stm32f405xx.s = boot\startup_stm32f405xx.s
+		boot\stm32f405xx.h = boot\stm32f405xx.h
+		boot\stm32f4xx.h = boot\stm32f4xx.h
+		boot\system_stm32f4xx.c = boot\system_stm32f4xx.c
+		boot\system_stm32f4xx.h = boot\system_stm32f4xx.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "include", "include", "{C4EADC50-8C81-4B52-BD42-CBA028CA5B84}"
+	ProjectSection(SolutionItems) = preProject
+		hal\include\stm32f4xx_hal.h = hal\include\stm32f4xx_hal.h
+		hal\include\stm32f4xx_hal_adc.h = hal\include\stm32f4xx_hal_adc.h
+		hal\include\stm32f4xx_hal_adc_ex.h = hal\include\stm32f4xx_hal_adc_ex.h
+		hal\include\stm32f4xx_hal_cortex.h = hal\include\stm32f4xx_hal_cortex.h
+		hal\include\stm32f4xx_hal_def.h = hal\include\stm32f4xx_hal_def.h
+		hal\include\stm32f4xx_hal_dma.h = hal\include\stm32f4xx_hal_dma.h
+		hal\include\stm32f4xx_hal_dma_ex.h = hal\include\stm32f4xx_hal_dma_ex.h
+		hal\include\stm32f4xx_hal_flash.h = hal\include\stm32f4xx_hal_flash.h
+		hal\include\stm32f4xx_hal_flash_ex.h = hal\include\stm32f4xx_hal_flash_ex.h
+		hal\include\stm32f4xx_hal_flash_ramfunc.h = hal\include\stm32f4xx_hal_flash_ramfunc.h
+		hal\include\stm32f4xx_hal_gpio.h = hal\include\stm32f4xx_hal_gpio.h
+		hal\include\stm32f4xx_hal_gpio_ex.h = hal\include\stm32f4xx_hal_gpio_ex.h
+		hal\include\stm32f4xx_hal_i2c.h = hal\include\stm32f4xx_hal_i2c.h
+		hal\include\stm32f4xx_hal_i2c_ex.h = hal\include\stm32f4xx_hal_i2c_ex.h
+		hal\include\stm32f4xx_hal_iwdg.h = hal\include\stm32f4xx_hal_iwdg.h
+		hal\include\stm32f4xx_hal_pwr.h = hal\include\stm32f4xx_hal_pwr.h
+		hal\include\stm32f4xx_hal_pwr_ex.h = hal\include\stm32f4xx_hal_pwr_ex.h
+		hal\include\stm32f4xx_hal_rcc.h = hal\include\stm32f4xx_hal_rcc.h
+		hal\include\stm32f4xx_hal_rcc_ex.h = hal\include\stm32f4xx_hal_rcc_ex.h
+		hal\include\stm32f4xx_hal_tim.h = hal\include\stm32f4xx_hal_tim.h
+		hal\include\stm32f4xx_hal_tim_ex.h = hal\include\stm32f4xx_hal_tim_ex.h
+		hal\include\stm32f4xx_hal_uart.h = hal\include\stm32f4xx_hal_uart.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{6B502CC8-CF65-4D28-9ED7-E35ECE0E72BF}"
+	ProjectSection(SolutionItems) = preProject
+		hal\source\stm32f4xx_hal.c = hal\source\stm32f4xx_hal.c
+		hal\source\stm32f4xx_hal_adc.c = hal\source\stm32f4xx_hal_adc.c
+		hal\source\stm32f4xx_hal_adc_ex.c = hal\source\stm32f4xx_hal_adc_ex.c
+		hal\source\stm32f4xx_hal_cortex.c = hal\source\stm32f4xx_hal_cortex.c
+		hal\source\stm32f4xx_hal_dma.c = hal\source\stm32f4xx_hal_dma.c
+		hal\source\stm32f4xx_hal_dma_ex.c = hal\source\stm32f4xx_hal_dma_ex.c
+		hal\source\stm32f4xx_hal_flash.c = hal\source\stm32f4xx_hal_flash.c
+		hal\source\stm32f4xx_hal_flash_ex.c = hal\source\stm32f4xx_hal_flash_ex.c
+		hal\source\stm32f4xx_hal_flash_ramfunc.c = hal\source\stm32f4xx_hal_flash_ramfunc.c
+		hal\source\stm32f4xx_hal_gpio.c = hal\source\stm32f4xx_hal_gpio.c
+		hal\source\stm32f4xx_hal_i2c.c = hal\source\stm32f4xx_hal_i2c.c
+		hal\source\stm32f4xx_hal_i2c_ex.c = hal\source\stm32f4xx_hal_i2c_ex.c
+		hal\source\stm32f4xx_hal_iwdg.c = hal\source\stm32f4xx_hal_iwdg.c
+		hal\source\stm32f4xx_hal_pwr.c = hal\source\stm32f4xx_hal_pwr.c
+		hal\source\stm32f4xx_hal_pwr_ex.c = hal\source\stm32f4xx_hal_pwr_ex.c
+		hal\source\stm32f4xx_hal_rcc.c = hal\source\stm32f4xx_hal_rcc.c
+		hal\source\stm32f4xx_hal_rcc_ex.c = hal\source\stm32f4xx_hal_rcc_ex.c
+		hal\source\stm32f4xx_hal_tim.c = hal\source\stm32f4xx_hal_tim.c
+		hal\source\stm32f4xx_hal_tim_ex.c = hal\source\stm32f4xx_hal_tim_ex.c
+		hal\source\stm32f4xx_hal_uart.c = hal\source\stm32f4xx_hal_uart.c
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C4EADC50-8C81-4B52-BD42-CBA028CA5B84} = {7F5E4D6F-55C3-470C-88D1-07AE72D0141F}
+		{6B502CC8-CF65-4D28-9ED7-E35ECE0E72BF} = {7F5E4D6F-55C3-470C-88D1-07AE72D0141F}
+	EndGlobalSection
+EndGlobal

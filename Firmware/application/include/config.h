@@ -48,7 +48,7 @@
 	#define POWERBIAS 0
 	#define FRONTSLIP 0.95
 	#define REARSLIP 0.1
- 	#define GYROGAIN 0.9
+ 	#define GYROGAIN 0.0 //0.9
 
 /*------------------------*/
 /* PIN MAPPINGS FOR BOARD */

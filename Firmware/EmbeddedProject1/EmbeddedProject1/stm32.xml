@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<EmbeddedProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+  <BspID>com.sysprogs.arm.stm32</BspID>
+  <McuID>STM32F405VG</McuID>
+  <MCUDefinitionFile>devices\stm32f405xx.xml</MCUDefinitionFile>
+  <MCUProperties>
+    <Entries>
+      <KeyValue>
+        <Key>com.sysprogs.bspoptions.primary_memory</Key>
+        <Value>flash</Value>
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.bspoptions.stm32.floatmode</Key>
+        <Value>-mfloat-abi=hard</Value>
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.toolchainoptions.arm.libctype</Key>
+        <Value>--specs=nano.specs -u _printf_float -u _scanf_float</Value>
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.toolchainoptions.arm.compactcpp</Key>
+        <Value>compactcpp</Value>
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.toolchainoptions.arm.libnosys</Key>
+        <Value>--specs=nosys.specs</Value>
+      </KeyValue>
+    </Entries>
+  </MCUProperties>
+  <BSPSourceFolderName>Device-specific files</BSPSourceFolderName>
+</EmbeddedProfile>
